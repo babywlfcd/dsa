@@ -1,2 +1,2 @@
-# dsa
-DSA and System Design - assignments and practice
+# DSA and System Design
+Assignments and practice
