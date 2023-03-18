@@ -7,7 +7,7 @@ using Assignments;
 
 namespace AssignmentsTests
 {
-    public class RecursionPracticeTests
+    public class RecursionPracticeTest
     {
         [Theory]
         [InlineData(46, 10)]
