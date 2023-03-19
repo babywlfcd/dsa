@@ -19,22 +19,24 @@ namespace Assignments
     {
         /// <summary>
         /// Compare and swap
+        /// B.C => O(n) for array already order
+        /// W.C => 1 + 2 + ... + n = n * (n + 1)/2 => O(n^2)
+        /// T.C = O(n^2)
+        /// S.C => O(1)
+        /// swaps is order of n^2
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public int[] BubbleSort(int[] array)
+        public int[] BubbleSort(int[] input)
         {
-            
-            for (var i = 0; i < array.Length; i++)
+            for (var i = 0; i < input.Length; i++)
             {
                 var swap = false;
-                for (var j = 0; j < array.Length - 1; j++)
+                for (var j = 0; j < input.Length - 1; j++)
                 {
-                    if (array[j] > array[j + 1])
+                    if (input[j] > input[j + 1])
                     {
-                        var temp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = temp;
+                        Swap(input, j, j+1);
                         swap = true;
                     }
 
@@ -43,7 +45,41 @@ namespace Assignments
                 }
             }
 
-            return array;
+            return input;
+        }
+
+        /// <summary>
+        /// Selection sort -> check the min value and swap elem at idx of min val with first elem
+        /// B.C, W.C, T.C = O(n^2)
+        /// number of swaps is n
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int[] SelectionSort(int[] input)
+        {
+            for (var i = 0; i < input.Length - 1; i++)
+            {
+                var minValueIndex = i;
+
+                for(var j = i + 1; j < input.Length; j++)
+                {
+                    if (input[j] < input[minValueIndex])
+                        minValueIndex = j;
+                }
+
+                Swap(input, i, minValueIndex);
+            }
+
+            return input;
+        }
+
+        private void Swap(int[] input, int idx1, int idx2)
+        {
+            if (input[idx1] > input[idx2])
+            {
+                (input[idx1], input[idx2]) = (input[idx2], input[idx1]);
+            }
+
         }
     }
 }
