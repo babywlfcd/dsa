@@ -18,7 +18,7 @@ namespace Assignments
     public class Sorting
     {
         /// <summary>
-        /// Compare and swap
+        /// Compare and swap - 2 consecutive values
         /// B.C => O(n) for array already order
         /// W.C => 1 + 2 + ... + n = n * (n + 1)/2 => O(n^2)
         /// T.C = O(n^2)
@@ -49,7 +49,8 @@ namespace Assignments
         }
 
         /// <summary>
-        /// Selection sort -> check the min value and swap elem at idx of min val with first elem
+        /// Selection sort => select an element of unsorted list in each iteration and place eit at the beginning
+        /// -> check the min value and swap elem at idx of min val with first elem
         /// B.C, W.C, T.C = O(n^2)
         /// number of swaps is n
         /// </summary>
@@ -73,13 +74,40 @@ namespace Assignments
             return input;
         }
 
+        
+        /// <summary>
+        /// Insertion sort - as playing cards
+        /// choose a pivot and sift all values grater than pivot to right
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int[] InsertionSort(int[] input)
+        {
+            var length = input.Length - 1;
+            for (var i = 0; i < input.Length; i++)
+            {
+                var pivot = input[i];
+                var j = i;
+
+                // condition ends when current value is less than pivot
+                while (j >= 0 && input[j - 1] > pivot)
+                {
+                    input[j + 1] = input[j];
+                    j--;
+                }
+
+                input[j + 1] = pivot;
+            }
+
+            return input;
+        }
+
         private void Swap(int[] input, int idx1, int idx2)
         {
             if (input[idx1] > input[idx2])
             {
                 (input[idx1], input[idx2]) = (input[idx2], input[idx1]);
             }
-
         }
     }
 }
