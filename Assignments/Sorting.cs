@@ -108,9 +108,6 @@ namespace Assignments
             {
                 (input[idx1], input[idx2]) = (input[idx2], input[idx1]);
             }
-
         }
-
-
     }
 }
