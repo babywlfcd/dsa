@@ -51,5 +51,33 @@ namespace AssignmentsTests
                 Assert.Equal(expected[i], result[i]);
             }
         }
+
+        [Fact]
+        public void MergeSort_SortArrayElements_InAscendingOrder()
+        {
+            var input = new[] { 1, 3, 8, 7, 9, 2, 8 };
+            var expected = new int[] { 1, 2, 3, 7, 8, 8, 9 };
+            var sut = new Sorting();
+            var result = sut.MergeSort(input);
+
+            for (var i = 0; i < result.Length; i++)
+            {
+                Assert.Equal(expected[i], result[i]);
+            }
+        }
+
+        [Fact]
+        public void MergeSort2_SortArrayElements_InAscendingOrder()
+        {
+            var input = new[] { 1, 3, 8, 7, 9, 2, 8 };
+            var expected = new int[] { 1, 2, 3, 7, 8, 8, 9 };
+            var sut = new Sorting();
+            var result = sut.MergeSort2(input);
+
+            for (var i = 0; i < result.Length; i++)
+            {
+                Assert.Equal(expected[i], result[i]);
+            }
+        }
     }
 }
