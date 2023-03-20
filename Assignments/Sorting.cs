@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Assignments
 {
@@ -77,7 +78,10 @@ namespace Assignments
         
         /// <summary>
         /// Insertion sort - as playing cards
-        /// choose a pivot and sift all values grater than pivot to right
+        /// choose a pivot and shift all values greater than pivot to right
+        /// B.C => omega(n)
+        /// W.c. => O(n^2)
+        /// A.C => O(n^2)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -100,6 +104,94 @@ namespace Assignments
             }
 
             return input;
+        }
+
+        /// <summary>
+        /// Merge Sort
+        /// Divide & concur
+        /// Divide each half of the array till 1 array element
+        /// Concur - merge two ordered array
+        /// O(n * log(n))
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int[] MergeSort(int[] input)
+        {
+            if (input.Length <= 1)
+                return input;
+
+            var middleIndex = input.Length / 2;
+            var leftHalf = input.Take(middleIndex).ToArray();
+            var rightHalf = input.Skip(middleIndex).ToArray();
+            var test = MergeSortedArrays(MergeSort(leftHalf), MergeSort(rightHalf));
+
+            return test;
+        }
+
+        /// <summary>
+        /// Merge Sort
+        /// Divide & concur
+        /// Divide each half of the array till 1 array element
+        /// Concur - merge two ordered array
+        /// O(n * log(n))
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int[] MergeSort2(int[] input)
+        {
+            if (input.Length <= 1)
+                return input;
+
+            var middleIndex = input.Length / 2;
+            var leftHalf = MergeSort(input[..^middleIndex]);
+            var rightHalf = MergeSort(input[(middleIndex+1)..input.Length]);
+            var test = MergeSortedArrays(MergeSort(leftHalf), MergeSort(rightHalf));
+
+            return test;
+        }
+
+        private int[] MergeSortedArrays(int[] leftArr, int[] rightArr)
+        {
+            var sortedArray = new int[rightArr.Length + leftArr.Length];
+            var currentIndex = 0; //control elements for the result
+            var leftIndex = 0; // control elements from the left array to fill the  result
+            var rightIndex = 0; // control elements from the right array to fill the  result
+
+            while (leftIndex < leftArr.Length && rightIndex < rightArr.Length)
+            {
+                
+                if (leftArr[leftIndex] < rightArr[rightIndex])
+                {
+                    sortedArray[currentIndex] = leftArr[leftIndex];
+                    leftIndex++;
+                    
+                }
+                else
+                {
+                    sortedArray[currentIndex] = rightArr[rightIndex];
+                    rightIndex++;
+                }
+
+                currentIndex++;
+            }
+
+            // add elements from left array if any
+            while (leftIndex < leftArr.Length)
+            {
+                sortedArray[currentIndex] = leftArr[leftIndex];
+                leftIndex++;
+                currentIndex++;
+            }
+
+            //add elements from the right array if any
+            while (rightIndex < rightArr.Length)
+            {
+                sortedArray[currentIndex] = rightArr[rightIndex];
+                rightIndex++;
+                currentIndex++;
+            }
+
+            return sortedArray;
         }
 
         private void Swap(int[] input, int idx1, int idx2)
