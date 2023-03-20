@@ -91,10 +91,10 @@ namespace Assignments
             for (var i = 0; i < input.Length; i++)
             {
                 var pivot = input[i];
-                var j = i;
+                var j = i - 1;
 
                 // condition ends when current value is less than pivot
-                while (j >= 0 && input[j - 1] > pivot)
+                while (j >= 0 && input[j] > pivot)
                 {
                     input[j + 1] = input[j];
                     j--;
