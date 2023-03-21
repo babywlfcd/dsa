@@ -11,7 +11,7 @@ namespace AssignmentsTests
     public class SortingTest
     {
         [Fact]
-        public void BubbleSort_SortArrayElements_InAscendingOrder()
+        public void BubbleSort_UnsortedArray_AscendingSortedArray()
         {
             var input = new[] {1, 3, 8, 7, 9, 2, 8};
             var expected = new int[] {1, 2, 3, 7, 8, 8, 9};
@@ -25,7 +25,7 @@ namespace AssignmentsTests
         }
 
         [Fact]
-        public void SelectionSort_SortArrayElements_InAscendingOrder()
+        public void SelectionSort_UnsortedArray_AscendingSortedArray()
         {
             var input = new[] { 1, 3, 8, 7, 9, 2, 8 };
             var expected = new int[] { 1, 2, 3, 7, 8, 8, 9 };
@@ -39,7 +39,7 @@ namespace AssignmentsTests
         }
 
         [Fact]
-        public void InsertionSort_SortArrayElements_InAscendingOrder()
+        public void InsertionSort_UnsortedArray_AscendingSortedArray()
         {
             var input = new[] { 1, 3, 8, 7, 9, 2, 8 };
             var expected = new int[] { 1, 2, 3, 7, 8, 8, 9 };
@@ -53,7 +53,7 @@ namespace AssignmentsTests
         }
 
         [Fact]
-        public void MergeSort_SortArrayElements_InAscendingOrder()
+        public void MergeSort_UnsortedArray_AscendingSortedArray()
         {
             var input = new[] { 1, 3, 8, 7, 9, 2, 8 };
             var expected = new int[] { 1, 2, 3, 7, 8, 8, 9 };
@@ -66,11 +66,11 @@ namespace AssignmentsTests
             }
         }
 
-        [Fact]
-        public void MergeSort2_SortArrayElements_InAscendingOrder()
+        [Theory]
+        [InlineData(new[] { 1, 3, 8, 7, 9, 2, 8 }, new [] { 1, 2, 3, 7, 8, 8, 9 })]
+        [InlineData(new[] {2}, new[] {2})]
+        public void MergeSort2_UnsortedArray_AscendingSortedArray(int[] input, int[]expected)
         {
-            var input = new[] { 1, 3, 8, 7, 9, 2, 8 };
-            var expected = new int[] { 1, 2, 3, 7, 8, 8, 9 };
             var sut = new Sorting();
             var result = sut.MergeSort2(input);
 
