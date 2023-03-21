@@ -15,7 +15,7 @@ namespace AssignmentsTests
         [InlineData(999999999, 81)]
         [InlineData(1, 1)]
         [InlineData(1000000000, 1)]
-        public void DigitSum_ShouldReturnSumOfDigits_ForNumber(int a, int expected)
+        public void DigitSum_Should_SumOfDigits_For_ANumber(int a, int expected)
         {
             var sut = new RecursionPractice();
             var result = sut.SumDigits(a);
@@ -28,7 +28,7 @@ namespace AssignmentsTests
         [InlineData(999999999, 81)]
         [InlineData(1, 1)]
         [InlineData(1000000000, 1)]
-        public void DigitSumRecursive_ShouldReturnSumOfDigits_ForNumber(int a, int expected)
+        public void DigitSumRecursive_ShouldReturn_SumOfDigits_For_ANumber(int a, int expected)
         {
             var sut = new RecursionPractice();
             var result = sut.SumOfDigits(a);
@@ -42,7 +42,7 @@ namespace AssignmentsTests
         [InlineData(999999999, false)]
         [InlineData(1, true)]
         [InlineData(1000000000, true)]
-        public void IsMagic_ShouldReturnOne_ForMagicNumber(int a, bool expected)
+        public void IsMagic_ShouldReturn_One_For_MagicNumber(int a, bool expected)
         {
             var sut = new RecursionPractice();
             var result = sut.IsMagic(a);
@@ -54,7 +54,7 @@ namespace AssignmentsTests
         [InlineData(9, 34)]
         [InlineData(0, 0)]
         [InlineData(20, 6765)]
-        public void Fibonacci_ShouldReturnNthNumber_ForFibonacciSeries(int n, int expected)
+        public void Fibonacci_ShouldReturn_NthElementOfFibonacciSeries_For_N(int n, int expected)
         {
             var sut = new RecursionPractice();
             var result = sut.SetNthFibonacciNumber(n);
@@ -66,7 +66,7 @@ namespace AssignmentsTests
         [InlineData(1, 1)]
         [InlineData(0, 0)]
         [InlineData(12, 479001600)]
-        public void FindFactorial_ShouldReturnFactorialOfN(int n, int expected)
+        public void FindFactorial_ShouldReturn_FactorialOfN_For_AGivenNumber(int n, int expected)
         {
             var sut = new RecursionPractice();
             var result = sut.FindFactorial(n);
@@ -82,7 +82,7 @@ namespace AssignmentsTests
         //[InlineData(-5, 3, 7, 5)] - why the result here is 6?
         [InlineData(-1000000000, 0, 1, 0)]
         [InlineData(1000000000, 1000000000, 1000000000, 0)]
-        public void CalculateExpressionRec_ShouldReturnPositiveOnly(int a, int b, int c, int expected)
+        public void CalculateExpressionRec_ShouldReturn_PositiveOnly(int a, int b, int c, int expected)
         {
             var sut = new RecursionPractice();
             var result = sut.CalculateExpressionRec(a, b, c);
@@ -95,20 +95,25 @@ namespace AssignmentsTests
         [InlineData("algotutor", "rotutogla")]
         [InlineData("cool", "looc")]
         [InlineData("a", "a")]
-        public void ReverseString_ShouldReturnReverseString(string s , string expected)
+        public void ReverseString_ShouldReturn_ReverseString_For_AGivenString(string s , string expected)
         {
             var sut = new RecursionPractice();
             var result = sut.ReverseString(s);
             Assert.Equal(expected, result);
         }
 
+        /// <summary>
+        /// Nth element that meet criteria f(A) = f(A-1) + f(A-2) + f(A-3) + A
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="expected"></param>
         [Theory]
         [InlineData(3, 7)]
         [InlineData(2, 2)]
         [InlineData(0, 1)]
         [InlineData(1, 1)]
         [InlineData(20, 300642)]
-        public void SetAthNumber_ShouldReturnNumberExpression(int a, int expected)
+        public void SetAthNumber_ShouldReturn_NthElementOfExpression_For_AnInteger(int a, int expected)
         {
             var sut = new RecursionPractice();
             var result = sut.SetAthNumber(a);
@@ -121,7 +126,7 @@ namespace AssignmentsTests
         [InlineData(2, 1, 0)]
         [InlineData(2, 2, 1)]
         [InlineData(4, 3, 1)]
-        public void GetKthValue_ShouldReturnZeroOrOne(int a, int b, int expected)
+        public void GetKthValue_ShouldReturn_ZeroOrOne(int a, int b, int expected)
         {
             var sut = new RecursionPractice();
             var result = sut.GetKthValue(a, b);
