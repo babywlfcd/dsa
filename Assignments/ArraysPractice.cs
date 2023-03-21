@@ -9,6 +9,7 @@ namespace Assignments
     public class ArraysPractice
     {
         /// <summary>
+        /// Easy
         /// Merge 2 ordered arrays
         /// 2 pointers approach
         ///  - left index starts from first element of the first array
@@ -61,6 +62,7 @@ namespace Assignments
         }
 
         /// <summary>
+        /// Easy 
         /// 88. Merge Sorted Array 
         /// https://leetcode.com/problems/merge-sorted-array/
         /// 2 pointers approach
@@ -90,6 +92,7 @@ namespace Assignments
                     input1[index] = input2[index];
                     index--;
                 }
+
                 return;
             }
 
@@ -121,5 +124,50 @@ namespace Assignments
             }
         }
 
+        /// <summary>
+        /// Medium
+        /// 11. Container With Most Water
+        /// https://leetcode.com/problems/container-with-most-water/
+        /// Math basic formula Rectangle area = l * L = height * width = length * breadth 
+        /// 2 pointers approach
+        ///     - left pointer starts from the beginning of the array
+        ///     - right pointer starts from the end of the array
+        /// Get the mon value between left and right and apply formula for area
+        /// Length = min(left, right; Breadth = distance(left, right)
+        /// area = min(left, right) * distance(left, right)
+        /// Keep tracking max Area and advance the index left or right based on min val used.
+        /// if min value is left advance left, otherwise right
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public int MaxArea(int[] height)
+        {
+            var maxArea = 0;
+            var left = 0;
+            var right = height.Length - 1;
+            // edge cases
+            if (height.Length < 2)
+                return 0;
+
+            while (left <= right)
+            {
+                var area = 0;
+                if (height[left] <= height[right])
+                {
+                    area = height[left] * (right - left);
+                    left++;
+                }
+                else
+                {
+                    area = height[right] * (right - left);
+                    right--;
+                }
+
+                if (maxArea < area)
+                    maxArea = area;
+            }
+
+            return maxArea;
+        }
     }
 }

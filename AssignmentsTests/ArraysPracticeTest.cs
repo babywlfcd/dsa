@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assignments;
+using Xunit.Sdk;
 
 namespace AssignmentsTests
 {
@@ -56,6 +57,19 @@ namespace AssignmentsTests
 
             for (var i = 0; i < list1.Length; i++)
                 Assert.Equal(expected[i], list1[i]);
+        }
+
+        [Theory]
+        [InlineData(new[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 }, 49)]
+        [InlineData(new[] { 1, 1 }, 1)]
+        [InlineData(new[] { 1 }, 0)]
+        public void MaxArea_ShouldReturn_MaxArea_For_AListOfGivenHeights(int[] height, int expected)
+        {
+            var sut = new ArraysPractice();
+
+            var result = sut.MaxArea(height);
+
+            Assert.Equal(expected, result);
         }
     }
 }
