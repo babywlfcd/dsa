@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AlgoTutor", "AlgoTutor", "{969ECFAA-929C-4C93-BD2D-F2E8C68A5FF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice", "Practice\Practice.csproj", "{24CBB139-9F8C-46DF-A65B-96C82B7B0DB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignments", "Assignments\Assignments.csproj", "{24CBB139-9F8C-46DF-A65B-96C82B7B0DB6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignmentsTests", "AssignmentsTests\AssignmentsTests.csproj", "{615FB911-79A5-48D5-82DA-5596D5178AB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticeTests", "PracticeTests\PracticeTests.csproj", "{615FB911-79A5-48D5-82DA-5596D5178AB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +24,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{24CBB139-9F8C-46DF-A65B-96C82B7B0DB6} = {969ECFAA-929C-4C93-BD2D-F2E8C68A5FF7}
-		{615FB911-79A5-48D5-82DA-5596D5178AB5} = {969ECFAA-929C-4C93-BD2D-F2E8C68A5FF7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75E4889F-FF7E-4C7C-8037-0396ED47D4A4}

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Assignments
+﻿namespace Practice
 {
     /// <summary>
     /// Sorting algorithms
@@ -87,7 +79,6 @@ namespace Assignments
         /// <returns></returns>
         public int[] InsertionSort(int[] input)
         {
-            var length = input.Length - 1;
             for (var i = 0; i < input.Length; i++)
             {
                 var pivot = input[i];
@@ -111,7 +102,12 @@ namespace Assignments
         /// Divide & concur
         /// Divide each half of the array till 1 array element
         /// Concur - merge two ordered array
-        /// O(n * log(n))
+        /// Time complexity:
+        /// 1. Division n / 2^k => 1 (n elements, k divisions) => 2^k = n => apply log base 2
+        ///     => log(2^k) = log(n) => k = log(n)
+        /// 2. Merge -> O(n)
+        /// T.C => O(n * log(n))
+        /// S.C => O(n)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
