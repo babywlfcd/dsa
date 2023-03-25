@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assignments;
-using Xunit.Sdk;
+﻿using Practice;
 
-namespace AssignmentsTests
+namespace PracticeTests
 {
     public class ArraysPracticeTest
     {
@@ -15,6 +9,10 @@ namespace AssignmentsTests
             new [] {1, 2, 3, 8, 11, 18}, 
             new[] {1, 5, 28},
             new[] {1, 1, 2, 3, 5, 8, 11, 18, 28})]
+        [InlineData(
+            new[] { 1, 5, 28 }, 
+            new[] { 1, 2, 3, 8, 11, 18 },
+            new[] { 1, 1, 2, 3, 5, 8, 11, 18, 28 })]
         public static void MergeTwoOrderedArrays_ShouldReturn_AnAscendingOrderedArray_For_TwoGivenArrays(int[] input1, int[] input2, int[] expected)
         {
             var sut = new ArraysPractice();
@@ -47,6 +45,10 @@ namespace AssignmentsTests
             new[] { 0 }, 0,
             new[] { 1 }, 1,
             new[] { 1 })]
+        [InlineData(
+            new[] { 1, 2, 3, 4, 5 }, 5,
+            new int[] { }, 0,
+            new[] { 1, 2, 3, 4, 5 })]
 
         public void MergeTwoArrays_ShouldReturn_FirstArrayOrderedAndMerged_For_TwoArrays(
             int[] list1, int m, int[] list2, int n, int[] expected)
