@@ -174,6 +174,14 @@ namespace Assignments
         }
 
         #region water problems
+        /// <summary>
+        /// 42. Trapping Rain Water - brute force solution
+        /// T.C -> O(n^2)
+        /// S.C -> O(1)
+        /// TODO
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
         public int Trap(int[] height)
         {
             return 0;
