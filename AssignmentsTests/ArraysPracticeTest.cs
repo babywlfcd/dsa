@@ -71,5 +71,18 @@ namespace AssignmentsTests
 
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData(new[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 }, 6)]
+        [InlineData(new[] { 4, 2, 0, 3, 2, 5 }, 9)]
+        //[InlineData(new[] { 1 }, 0)]
+        public void TrapOptimizeTime_ShouldReturn_WaterTrap_For_AListOfGivenHeights(int[] height, int expected)
+        {
+            var sut = new ArraysPractice();
+
+            var result = sut.TrapOptimizeTime(height);
+
+            Assert.Equal(expected, result);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Assignments
     {
         /// <summary>
         /// Easy
-        /// Merge 2 ordered arrays
+        /// Merge 2 ordered arrays - general implementation
         /// 2 pointers approach
         ///  - left index starts from first element of the first array
         ///  - right index stats from the firs element of the second array
@@ -137,6 +137,8 @@ namespace Assignments
         /// area = min(left, right) * distance(left, right)
         /// Keep tracking max Area and advance the index left or right based on min val used.
         /// if min value is left advance left, otherwise right
+        /// T.C -> O(n)
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="height"></param>
         /// <returns></returns>
@@ -145,13 +147,14 @@ namespace Assignments
             var maxArea = 0;
             var left = 0;
             var right = height.Length - 1;
+
             // edge cases
             if (height.Length < 2)
                 return 0;
 
+            var area = 0;
             while (left <= right)
             {
-                var area = 0;
                 if (height[left] <= height[right])
                 {
                     area = height[left] * (right - left);
@@ -169,5 +172,60 @@ namespace Assignments
 
             return maxArea;
         }
+
+        #region water problems
+        public int Trap(int[] height)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 42. Trapping Rain Water
+        /// https://leetcode.com/problems/trapping-rain-water/
+        /// Store left anf right max value for each current value in a array
+        /// and apply min(maxLeft, maxRight) - current values
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public int TrapOptimizeTime(int[] height)
+        {
+            var length = height.Length -1;
+            var maxLeft = new int[height.Length];
+            maxLeft[0] = 0;
+            var maxRight = new int[height.Length];
+            maxRight[length] = 0;
+            var result = new int[height.Length];
+            var totalWater = 0;
+
+            for (var i = 0; i < height.Length - 1; i++)
+            {
+                if (height[i] > maxLeft[i])
+                    maxLeft[i + 1] = height[i];
+                else
+                    maxLeft[i + 1]  = maxLeft[i];
+
+                if (height[length - i] > maxRight[length - i])
+                    maxRight[length - i - 1] = height[length - i];
+                else
+                    maxRight[length - i - 1] = maxRight[length - i];
+            }
+
+            for (var i = 0; i < height.Length; i++)
+            {
+                var minHeight = Math.Min(maxLeft[i], maxRight[i]);
+                result[i] = minHeight - height[i];
+            }
+
+            for (var i = 0; i < result.Length; i++)
+            {
+                if (result[i] > 0)
+                    totalWater += result[i];
+            }
+
+            return totalWater;
+        }
+        #endregion
     }
 }
