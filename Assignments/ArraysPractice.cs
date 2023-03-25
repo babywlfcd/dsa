@@ -9,7 +9,8 @@ namespace Assignments
     public class ArraysPractice
     {
         /// <summary>
-        /// Merge 2 ordered arrays
+        /// Easy
+        /// Merge 2 ordered arrays - general implementation
         /// 2 pointers approach
         ///  - left index starts from first element of the first array
         ///  - right index stats from the firs element of the second array
@@ -61,6 +62,7 @@ namespace Assignments
         }
 
         /// <summary>
+        /// Easy 
         /// 88. Merge Sorted Array 
         /// https://leetcode.com/problems/merge-sorted-array/
         /// 2 pointers approach
@@ -90,6 +92,7 @@ namespace Assignments
                     input1[index] = input2[index];
                     index--;
                 }
+
                 return;
             }
 
@@ -121,5 +124,116 @@ namespace Assignments
             }
         }
 
+        /// <summary>
+        /// Medium
+        /// 11. Container With Most Water
+        /// https://leetcode.com/problems/container-with-most-water/
+        /// Math basic formula Rectangle area = l * L = height * width = length * breadth 
+        /// 2 pointers approach
+        ///     - left pointer starts from the beginning of the array
+        ///     - right pointer starts from the end of the array
+        /// Get the mon value between left and right and apply formula for area
+        /// Length = min(left, right; Breadth = distance(left, right)
+        /// area = min(left, right) * distance(left, right)
+        /// Keep tracking max Area and advance the index left or right based on min val used.
+        /// if min value is left advance left, otherwise right
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public int MaxArea(int[] height)
+        {
+            var maxArea = 0;
+            var left = 0;
+            var right = height.Length - 1;
+
+            // edge cases
+            if (height.Length < 2)
+                return 0;
+
+            var area = 0;
+            while (left <= right)
+            {
+                if (height[left] <= height[right])
+                {
+                    area = height[left] * (right - left);
+                    left++;
+                }
+                else
+                {
+                    area = height[right] * (right - left);
+                    right--;
+                }
+
+                if (maxArea < area)
+                    maxArea = area;
+            }
+
+            return maxArea;
+        }
+
+        #region water problems
+        /// <summary>
+        /// 42. Trapping Rain Water - brute force solution
+        /// T.C -> O(n^2)
+        /// S.C -> O(1)
+        /// TODO
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public int Trap(int[] height)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 42. Trapping Rain Water
+        /// https://leetcode.com/problems/trapping-rain-water/
+        /// Store left anf right max value for each current value in a array
+        /// and apply min(maxLeft, maxRight) - current values
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public int TrapOptimizeTime(int[] height)
+        {
+            var length = height.Length -1;
+            var maxLeft = new int[height.Length];
+            maxLeft[0] = 0;
+            var maxRight = new int[height.Length];
+            maxRight[length] = 0;
+            var result = new int[height.Length];
+            var totalWater = 0;
+
+            for (var i = 0; i < height.Length - 1; i++)
+            {
+                if (height[i] > maxLeft[i])
+                    maxLeft[i + 1] = height[i];
+                else
+                    maxLeft[i + 1]  = maxLeft[i];
+
+                if (height[length - i] > maxRight[length - i])
+                    maxRight[length - i - 1] = height[length - i];
+                else
+                    maxRight[length - i - 1] = maxRight[length - i];
+            }
+
+            for (var i = 0; i < height.Length; i++)
+            {
+                var minHeight = Math.Min(maxLeft[i], maxRight[i]);
+                result[i] = minHeight - height[i];
+            }
+
+            for (var i = 0; i < result.Length; i++)
+            {
+                if (result[i] > 0)
+                    totalWater += result[i];
+            }
+
+            return totalWater;
+        }
+        #endregion
     }
 }
