@@ -146,6 +146,8 @@ namespace Practice.Course.Assignments
         /// Solution 2:
         /// Improve time complexity with an extra space.
         /// TODO - implement later on hashing
+        /// T.C ->
+        /// S.C ->
         /// </summary>
         /// <param name="input"></param>
         /// <param name="b"></param>
@@ -154,5 +156,37 @@ namespace Practice.Course.Assignments
         {
             return 0;
         }
+
+        /// <summary>
+        /// Q3. Max and min of an array
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string FindMaxAndMin(int[] input)
+        {
+            
+            if (input.Length < 2)
+                return input[0].ToString();
+
+            var result = new int[2];
+            var min = int.MaxValue;
+            var max = int.MinValue;
+            for (var i = 0; i < input.Length; i++)
+            {
+                if (input[i] < min)
+                    min = input[i];
+                else
+                    max = input[i];
+            }
+
+            result[0] = max;
+            result[1] = min;
+
+            return string.Join(" ",result);
+        }
+
+
     }
 }
