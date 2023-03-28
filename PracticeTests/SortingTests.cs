@@ -3,7 +3,7 @@
 namespace PracticeTests
 {
     
-    public class SortingTest
+    public class SortingTests
     {
         [Fact]
         public void BubbleSort_UnsortedArray_AscendingSortedArray()
