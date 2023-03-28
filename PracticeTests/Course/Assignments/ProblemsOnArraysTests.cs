@@ -1,4 +1,5 @@
 ﻿using Practice.Course.Assignments;
+using Xunit;
 
 namespace PracticeTests.Course.Assignments
 {
@@ -34,7 +35,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new[] { 1, 2, 3, 4 }, 7, 1)]
         [InlineData(new[] { 1, 2, 4 }, 4, 0)]
         [InlineData(new[] { 1, 2, 2 }, 4, 1)]
-        public void CheckGoodPairBruteForce_ShouldReturn_OneOrZero_IfExist_TwoNumbersWithSumEqualTargetRespectiveNoPairNumbersSumMeetTheTarget(int[] input, int b, int expected)
+        public void CheckGoodPairBruteForce_ShouldReturn_OneOrZero_If_ExistTwoNumbersWithSumEqualTargetRespectiveNoPairNumbersSumMeetTheTarget(int[] input, int b, int expected)
         {
             var sut = new ProblemsOnArray();
 
@@ -44,10 +45,10 @@ namespace PracticeTests.Course.Assignments
         }
 
         [Theory]
-        [InlineData(new[] { 1, 2, 3, 4, 5 }, "5 1")]
-        [InlineData(new[] { 10, 50, 40, 80}, "80 10")]
-        [InlineData(new[] {8}, "8")]
-        public void FindMaxAndMin_ShouldReturnAStringWithMinAndMaxWithinAnArray_For_AGivenArray(int[] input, string expected)
+        [InlineData(new[] { 1, 2, 3, 4, 5 }, new[] {5, 1})]
+        [InlineData(new[] { 10, 50, 40, 80}, new[] {80, 10})]
+        [InlineData(new[] {8}, new[] {8})]
+        public void FindMaxAndMin_ShouldReturn_MinAndMaxWithinAnArray_For_AGivenArray(int[] input, int[] expected)
         {
             var sut = new ProblemsOnArray();
 
@@ -56,6 +57,41 @@ namespace PracticeTests.Course.Assignments
             Assert.Equal(expected, actual);
         }
 
-        
+        [Theory]
+        [MemberData(nameof(Scenarios))]
+        public void CheckIfBExistInEachScenario_ShouldReturn_ListOfOneAndZero_When_TargetExistRespectiveNotExist_ForAListOfScenarios(List<List<int>> input, int target, List<int> expected)
+        {
+            var sut = new ProblemsOnArray();
+
+            var actual = sut.CheckIfBExistInEachScenario(input, target);
+
+            Assert.Equal(expected, actual);
+        }
+
+        public static IEnumerable<object[]> Scenarios()
+        {
+            yield return new object[]
+            {
+                new List<List<int>>
+                {
+                    new List<int>() {4, 1, 5, 9, 1},
+                    new List<int>() {-1, 0, 1},
+                    new List<int>() {1, 5, 9, 2}
+                },
+                5,
+                new List<int> {1, 0 , 1}
+            };
+            yield return new object[]
+            {
+                new List<List<int>>
+                {
+                    new List<int>() {7, 7, 2},
+                    new List<int>() {8, 1, 6, 12},
+                    new List<int>() {}
+                },
+                3,
+                new List<int> {0, 0, 0}
+            };
+        }
     }
 }
