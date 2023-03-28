@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practice.Course.Assignments
+﻿namespace Practice.Course.Assignments
 {
     public class ProblemsOnArray
     {
@@ -113,5 +107,78 @@ namespace Practice.Course.Assignments
 
             return input;
         }
+
+        /// <summary>
+        /// Q2. GoodPair -
+        /// Solution 1:
+        ///     Brute force - check the condition for each pair of numbers
+        /// T.C -> O(n^2)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int CheckGoodPairBruteForce(int[] input, int b)
+        {
+            for (var i = 0; i < input.Length; i++)
+            {
+                for (var j = 0; j < input.Length; j++)
+                {
+                    if (i != j && input[i] + input[j] == b)
+                    {
+                        return 1;
+                    }
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Q2. GoodPair
+        /// Solution 2:
+        /// Improve time complexity with an extra space.
+        /// TODO - implement later on hashing
+        /// T.C ->
+        /// S.C ->
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public int CheckGoodPair(int[] input, int b)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// Q3. Max and min of an array
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string FindMaxAndMin(int[] input)
+        {
+            
+            if (input.Length < 2)
+                return input[0].ToString();
+
+            var result = new int[2];
+            var min = int.MaxValue;
+            var max = int.MinValue;
+            for (var i = 0; i < input.Length; i++)
+            {
+                if (input[i] < min)
+                    min = input[i];
+                else
+                    max = input[i];
+            }
+
+            result[0] = max;
+            result[1] = min;
+
+            return string.Join(" ",result);
+        }
+
+
     }
 }
