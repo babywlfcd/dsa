@@ -169,6 +169,7 @@
 
         #region water problems
         /// <summary>
+        /// Hard
         /// 42. Trapping Rain Water - brute force solution
         /// T.C -> O(n^2)
         /// S.C -> O(1)
