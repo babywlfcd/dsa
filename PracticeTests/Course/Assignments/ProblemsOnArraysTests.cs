@@ -34,5 +34,18 @@ namespace PracticeTests.Course.Assignments
 
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData(new[] { 1, 2, 3, 4 }, 7, 1)]
+        [InlineData(new[] { 1, 2, 4 }, 4, 0)]
+        [InlineData(new[] { 1, 2, 2 }, 4, 1)]
+        public void CheckGoodPairBruteForce(int[] input, int b, int expected)
+        {
+            var sut = new ProblemsOnArray();
+
+            var actual = sut.CheckGoodPairBruteForce(input, b);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
