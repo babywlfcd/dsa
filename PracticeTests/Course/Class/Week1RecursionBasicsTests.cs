@@ -2,7 +2,7 @@
 
 namespace PracticeTests.Course.Class
 {
-    public class Week1RecursionBasicsTest
+    public class Week1RecursionBasicsTests
     {
         [Theory]
         [InlineData(46, 10)]
