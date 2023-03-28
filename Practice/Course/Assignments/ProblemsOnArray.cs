@@ -156,29 +156,66 @@
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public string FindMaxAndMin(int[] input)
+        public int[] FindMaxAndMin(int[] input)
         {
             
             if (input.Length < 2)
-                return input[0].ToString();
+                return input;
 
             var result = new int[2];
             var min = int.MaxValue;
             var max = int.MinValue;
-            for (var i = 0; i < input.Length; i++)
+            foreach (var item in input)
             {
-                if (input[i] < min)
-                    min = input[i];
+                if (item < min)
+                    min = item;
                 else
-                    max = input[i];
+                    max = item;
             }
 
             result[0] = max;
             result[1] = min;
 
-            return string.Join(" ",result);
+            return result;
         }
 
+        //Q4 reverse an array - Implemented in Week2Array
 
+        /// <summary>
+        /// Q5. Search Element
+        /// T.C -> O(m*n) where m = target, n = number of scenarios
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public List<int> CheckIfBExistInEachScenario(List<List<int>> input, int target)
+        {
+            var caseNo = 0;
+            var result = new List<int>();
+            
+            while (caseNo < input.Count)
+            {
+                var hasTarget = false;
+
+                if (input[caseNo].Count != 0)
+                {
+                    for (var i = 0; i < input[caseNo].Count; i++)
+                    {
+                        if (input[caseNo][i] == target)
+                        {
+                            hasTarget = true;
+                            result.Add(1);
+                            break;
+                        }
+                    }
+                }
+
+
+                if(!hasTarget) result.Add(0);
+                
+                caseNo++;
+            }
+            return result;
+        }
     }
 }
