@@ -196,7 +196,7 @@
         ///     2. greater than pivot to the right
         /// Repeat recursively till left >= right
         /// B.C, A.C => O(n * log(n)) => T.C => O(n * log(n)
-        /// W.C (n^2)
+        /// W.C (n^2) - when array is in descending order and pivot is always the last element witch is the min value of the array
         /// S.C => O(n * log(n). If we ignore the stack from recursion S.C => O(1)??
         /// </summary>
         /// <param name="input"></param>
