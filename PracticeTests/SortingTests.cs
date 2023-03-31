@@ -74,5 +74,19 @@ namespace PracticeTests
                 Assert.Equal(expected[i], result[i]);
             }
         }
+
+        [Theory]
+        [InlineData(new[] { 1, 8, 3, 9, 4, 5, 7 }, 0, 6, new[] { 1, 3, 4, 5, 7, 8, 9 })]
+        [InlineData(new[] { 2 }, 0, 0, new[] { 2 })]
+        public void QuickSort_UnsortedArray_AscendingSortedArray(int[] input, int low, int high,int[] expected)
+        {
+            var sut = new Sorting();
+            var result = sut.QuickSort(input, low, high);
+
+            for (var i = 0; i < result.Length; i++)
+            {
+                Assert.Equal(expected[i], result[i]);
+            }
+        }
     }
 }
