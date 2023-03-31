@@ -24,7 +24,7 @@
 
             while (leftArrIndex < leftArr.Length && rightArrIndex < rightArr.Length)
             {
-                if (leftArr[leftArrIndex] < rightArr[rightArrIndex])
+                if (leftArr[leftArrIndex] <= rightArr[rightArrIndex])
                 {
                     result[currentIndex] = leftArr[leftArrIndex];
                     leftArrIndex++;

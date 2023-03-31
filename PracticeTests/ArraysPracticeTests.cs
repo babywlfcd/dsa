@@ -2,7 +2,7 @@
 
 namespace PracticeTests
 {
-    public class ArraysPracticeTest
+    public class ArraysPracticeTests
     {
         [Theory]
         [InlineData(

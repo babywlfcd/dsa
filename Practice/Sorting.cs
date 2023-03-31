@@ -141,9 +141,9 @@
             var middleIndex = input.Length / 2;
             var leftHalf = MergeSort(input[..^middleIndex]);
             var rightHalf = MergeSort(input[(middleIndex+1)..input.Length]);
-            var test = MergeSortedArrays(MergeSort(leftHalf), MergeSort(rightHalf));
+            var result = MergeSortedArrays(MergeSort(leftHalf), MergeSort(rightHalf));
 
-            return test;
+            return result;
         }
 
         private int[] MergeSortedArrays(int[] leftArr, int[] rightArr)
@@ -156,7 +156,7 @@
             while (leftIndex < leftArr.Length && rightIndex < rightArr.Length)
             {
                 
-                if (leftArr[leftIndex] < rightArr[rightIndex])
+                if (leftArr[leftIndex] <= rightArr[rightIndex])
                 {
                     sortedArray[currentIndex] = leftArr[leftIndex];
                     leftIndex++;
@@ -188,6 +188,56 @@
             }
 
             return sortedArray;
+        }
+
+        /// <summary>
+        /// Quick sort - pick up a pivot and and place it in the right position by moving:
+        ///     1. less than pivot to the left
+        ///     2. greater than pivot to the right
+        /// Repeat recursively till left >= right
+        /// B.C, A.C => O(n * log(n)) => T.C => O(n * log(n)
+        /// W.C (n^2) - when array is in descending order and pivot is always the last element witch is the min value of the array
+        /// S.C => O(n * log(n). If we ignore the stack from recursion S.C => O(1)??
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int[] QuickSort(int[] input, int start, int end)
+        {
+            if (start >= end)
+                return input;
+            
+            var index = Partition(input, start, end);
+            QuickSort(input, start, index - 1);
+            QuickSort(input, index + 1, end);
+
+            return input;
+        }
+
+        private int Partition(int[] input, int low, int high)
+        {
+            var pivot = input[high];
+            var i = low - 1;
+            for (var j = low; j < high; j++)
+            {
+                if (input[j] < pivot)
+                {
+                    i++;
+                }
+                else
+                {
+                    continue;
+                }
+
+                var temp = input[i];
+                input[i] = input[j];
+                input[j] = temp;
+            }
+
+            var temp2 = input[i + 1];
+            input[i + 1] = input[high];
+            input[high] = temp2;
+
+            return i + 1;
         }
 
         private void Swap(int[] input, int idx1, int idx2)
