@@ -200,6 +200,8 @@
         /// S.C => O(n * log(n). If we ignore the stack from recursion S.C => O(1)??
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         /// <returns></returns>
         public int[] QuickSort(int[] input, int start, int end)
         {
