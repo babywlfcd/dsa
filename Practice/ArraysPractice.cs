@@ -229,6 +229,50 @@
 
             return totalWater;
         }
+
+
+        /// <summary>
+        /// Kth Rotation to left
+        /// Solution 2: in place approach - optimal solution for k rotations instead of list of rotations, when additional space is not needed
+        ///     1. rotate the array
+        ///     2. rotate last k elements back
+        ///     3. rotate first n - k back
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int[] Rotate(int[] input, int k)
+        {
+
+            // array will be in the same position when n = k (n length of tha input array, k number of rotations)
+            // -> k = k % n
+            // Example: [ 1 2 3 ] k = 4, n = 3
+            //  rotation 1 -> [ 2 3 1]
+            //  rotation 2 ->[ 3 1 2 ] 
+            //  rotation 3 ->[ 1 2 3 ]
+            //  rotation 4 -> similar with rotation 1
+            //  -> 4 -> 4 % 3 = 1 -> [2 3 1]
+            k %= input.Length;
+
+            // moving to the left:
+            // start index = input.Length - k: end index = input.Length + (input.Length - k)
+            Reverse(input, 0, input.Length);
+            Reverse(input, 0, input.Length - k);
+            Reverse(input, input.Length - k, input.Length + (input.Length - k));
+
+            return input;
+        }
+        private void Reverse(int[] input, int indexStart, int indexEnd)
+        {
+            for (var i = indexStart; i < indexEnd / 2; i++)
+            {
+                var temp = input[i];
+                input[i] = input[indexEnd - 1 - i];
+                input[indexEnd - 1 - i] = temp;
+            }
+        }
         #endregion
     }
 }
