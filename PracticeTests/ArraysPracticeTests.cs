@@ -1,4 +1,5 @@
 ﻿using Practice;
+using Practice.Course.Assignments;
 
 namespace PracticeTests
 {
@@ -85,6 +86,27 @@ namespace PracticeTests
             var result = sut.TrapOptimizeTime(height);
 
             Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [MemberData(nameof(RotationData))]
+        public void Rotate_ShouldReturn_ShouldReturn_ListOfTheArraysRotatedKTimesToLeft_For_ForAListOfScenariosAndListOfRotations(int[] input, int rotations, int[] expected)
+        {
+            var sut = new ArraysPractice();
+
+            var actual = sut.Rotate(input, rotations);
+
+            Assert.Equal(expected, actual);
+        }
+        public static IEnumerable<object[]> RotationData()
+        {
+            yield return new object[]
+            {
+                new [] {1, 2, 3, 4, 5},
+                3,
+                new [] {4, 5, 1, 2, 3},
+
+            };
         }
     }
 }
