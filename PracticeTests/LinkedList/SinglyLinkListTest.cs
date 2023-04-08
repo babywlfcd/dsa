@@ -343,5 +343,45 @@ namespace PracticeTests.LinkedList
             Assert.Null(singlyLinkedList.Head);
             Assert.Equal(3, singlyLinkedList.Length);
         }
+
+        [Fact]
+        public void Traverse_EmptySinglyLinkedList_EmptyString()
+        {
+            // arrange
+            var sut = new SinglyLinkedList();
+            // act
+            var actual = sut.Traverse(sut);
+            // assert
+            Assert.Equal(string.Empty, actual);
+            Assert.Equal(0, sut.Length);
+        }
+
+        [Fact]
+        public void Traverse_SinglyLinkedListWithANode_PrintHead()
+        {
+            // arrange
+            var sut = new SinglyLinkedList();
+            sut.AddAtTail(3);
+            // act
+            var actual = sut.Traverse(sut);
+            // assert
+            Assert.Equal("3", actual);
+            Assert.Equal(1, sut.Length);
+        }
+
+        [Fact]
+        public void Traverse_SinglyLinkedList_PrintNodes()
+        {
+            // arrange
+            var sut = new SinglyLinkedList();
+            sut.AddAtTail(3);
+            sut.AddAtTail(8);
+            // act
+            var actual = sut.Traverse(sut);
+            // assert
+            Assert.Equal("3 8", actual);
+            Assert.Equal(2, sut.Length);
+        }
+
     }
 }

@@ -49,7 +49,7 @@ namespace Practice.LinkedLists
         /// <summary>
         /// Add at tail:
         /// 1. Start from head.
-        /// 2. Traverse the hole list till the tail
+        /// 2. Traverse the whole list till the tail
         /// 3. assign the new node to tail
         /// T.C  -> O(n)
         /// </summary>
@@ -229,6 +229,28 @@ namespace Practice.LinkedLists
 
             Head = null;
             return Head;
+        }
+
+        /// <summary>
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="Head"></param>
+        /// <returns></returns>
+        public string Traverse(SinglyLinkedList linkedList)
+        {
+            var sb = new StringBuilder();
+            var current = linkedList.Head;
+            while (current != null && current.Next != null)
+            {
+                sb.Append(current.Value);
+                sb.Append(" ");
+                current = current.Next;
+            }
+
+            Head = current;
+            sb.Append(Head.Value);
+            return sb.ToString();
         }
     }
 }
