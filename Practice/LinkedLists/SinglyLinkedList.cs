@@ -10,6 +10,13 @@ namespace Practice.LinkedLists
 {
     /// <summary>
     /// Singly list implementation
+    /// Remark: Linked List refers to the singly linked list
+    /// Advantages:
+    ///     1. No size limitation
+    ///     2. Insertion / Deletion easy (comparing with arrays)
+    /// Disadvantages:
+    ///     1. Sequential access -> need to traverse tle linked list to reach a node (vs array -> index)
+    ///     2. Extra pointer -> extra size
     /// </summary>
     public class SinglyLinkedList
     {
@@ -41,7 +48,6 @@ namespace Practice.LinkedLists
 
             var current = new SinglyNode(val);
             current.Next = Head;
-
             Head = current;
             Length++;
         }
@@ -50,7 +56,7 @@ namespace Practice.LinkedLists
         /// Add at tail:
         /// 1. Start from head.
         /// 2. Traverse the whole list till the tail
-        /// 3. assign the new node to tail
+        /// 3. Assign the new node to tail
         /// T.C  -> O(n)
         /// </summary>
         /// <param name="val"></param>
@@ -71,6 +77,7 @@ namespace Practice.LinkedLists
 
             var node = new SinglyNode(val);
             current.Next = node;
+            node.Next = null;
             current = node;
             Length++;
         }
@@ -240,6 +247,9 @@ namespace Practice.LinkedLists
         public string Traverse(SinglyLinkedList linkedList)
         {
             var sb = new StringBuilder();
+            if (linkedList.Head == null)
+                return string.Empty;
+
             var current = linkedList.Head;
             while (current != null && current.Next != null)
             {
