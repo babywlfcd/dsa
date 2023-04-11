@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Practice.Course.Assignments
 {
+    /// <summary>
+    /// Singly node object: https://github.com/babywlfcd/dsa/blob/main/Practice/LinkedLists/SinglyNode.cs
+    /// Singly linked list implementation: https://github.com/babywlfcd/dsa/blob/main/Practice/LinkedLists/SinglyLinkedList.cs
+    /// </summary>
     public class LinkedListAssignment
     {
         /// <summary>
