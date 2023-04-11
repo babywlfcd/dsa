@@ -170,7 +170,7 @@ namespace Practice.Course.Assignments
             if (head == null)
                 return false;
 
-            var nodes = new Dictionary<int, bool>();
+            var nodes = new Dictionary<int?, bool>();
             var current = head;
 
             // traverse whole linked list
@@ -181,37 +181,6 @@ namespace Practice.Course.Assignments
 
                 nodes[current.Value] = false;
                 current = current.Next;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 8. List Cycle
-        /// Solution 2: slow / fast pointers
-        /// Explanation:
-        ///  Slow pointer advance 1 node
-        ///  Fast pointer advance 2 nodes
-        ///     1. Store node value in hash map
-        ///     2. Add nodes to  the map if are not already added
-        ///     3. Find the answer if node value is already present in the dictionary
-        /// T.C -> O(n)
-        /// S.C -> (1) 
-        /// </summary>
-        /// <param name="head"></param>
-        /// <returns></returns>
-        public bool HasCycle(SinglyNode head)
-        {
-            var fast = head;
-            var slow = head;
-
-            while (fast != null && fast.Next != null)
-            {
-                slow = slow.Next;
-                fast = fast.Next.Next;
-
-                if (slow == fast)
-                    return true;
             }
 
             return false;
@@ -245,5 +214,95 @@ namespace Practice.Course.Assignments
 
             return Print(head);
         }
+
+        /// <summary>
+        /// 5. Remove Nth Node from List End
+        /// Solution - 2 pointers -> node and current
+        ///     1. start node and current from head
+        ///     2. move current till n position -> now distance between node and current is n
+        ///     3. move node and current till the end of the linked list
+        ///     4. remove node from the list
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public string RemoveNthNodeFromEnd(SinglyNode head, int n)
+        {
+            if (head == null)
+                return "NULL";
+
+            var nodeToRemove = head;
+            var current = head;
+            var count = n;
+            if (current.HasNullTail)
+                count = n + 1;
+            while (count > 0)
+            {
+                
+                // n greater than linked list length
+                if (current == null)
+                    return "NULL";
+
+                current = current.Next;
+                count--;
+            }
+
+            while (current != null && current.Next != null)
+            {
+                nodeToRemove = nodeToRemove.Next;
+                current = current.Next;
+            }
+
+            if (current.HasNullTail)
+            {
+                nodeToRemove.Next = nodeToRemove.Next.Next;
+                return Print(head) + "NULL";
+            }
+
+
+            if (nodeToRemove.Next.Next == null)
+            {
+                nodeToRemove.Next = null;
+                return Print(head) + "->NULL";
+            }
+
+            nodeToRemove.Next = nodeToRemove.Next.Next;
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 8. List Cycle
+        /// Solution 2: slow / fast pointers
+        /// Explanation:
+        ///  Slow pointer advance 1 node
+        ///  Fast pointer advance 2 nodes
+        ///     1. Store node value in hash map
+        ///     2. Add nodes to  the map if are not already added
+        ///     3. Find the answer if node value is already present in the dictionary
+        /// T.C -> O(n)
+        /// S.C -> (1) 
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public bool HasCycle(SinglyNode head)
+        {
+            var fast = head;
+            var slow = head;
+
+            while (fast != null && fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+
+                if (slow == fast)
+                    return true;
+            }
+
+            return false;
+        }
+
+        
     }
 }

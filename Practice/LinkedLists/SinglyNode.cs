@@ -8,10 +8,11 @@ namespace Practice.LinkedLists
 {
     public class SinglyNode
     {
-        public int Value;
+        public int? Value;
         public SinglyNode Next;
+        public bool HasNullTail;
 
-        public SinglyNode(int value, SinglyNode next = null)
+        public SinglyNode(int? value, SinglyNode next = null)
         {
             Value = value;
             Next = next;

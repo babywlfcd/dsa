@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Practice.LinkedLists
 {
@@ -22,11 +16,13 @@ namespace Practice.LinkedLists
     {
         public SinglyNode Head;
         public int Length;
+        public bool HasNullTail;
 
-        public SinglyLinkedList()
+        public SinglyLinkedList(SinglyNode head = null)
         {
-            Head = null;
+            Head = head;
             Length = 0;
+            HasNullTail = false;
         }
 
         /// <summary>
@@ -46,9 +42,43 @@ namespace Practice.LinkedLists
                 return;
             }
 
-            var current = new SinglyNode(val);
-            current.Next = Head;
-            Head = current;
+            var newNode = new SinglyNode(val);
+            newNode.Next = Head;
+            Head = newNode;
+            HasNullTail = false;
+            Length++;
+        }
+
+        /// <summary>
+        /// Add new node at head:
+        /// 1. Initialize new node current
+        /// 2. Link new node to head
+        /// 3. Assign current to head
+        /// T.C. -> O(1)
+        /// </summary>
+        /// <param name="val"></param>
+        public void AddAtTailNull(int? val)
+        {
+            
+
+            if (Head == null)
+            {
+                Head = new SinglyNode(val);
+                Head.HasNullTail = true;
+                Length++;
+                return;
+            }
+
+            var current = Head;
+            while (current != null && current.Next != null)
+            {
+                current = current.Next;
+            }
+
+            var newNode = new SinglyNode(val);
+            current.Next = newNode;
+            newNode.Next = null;
+            newNode.HasNullTail = true;
             Length++;
         }
 
@@ -75,10 +105,9 @@ namespace Practice.LinkedLists
                 current = current.Next;
             }
 
-            var node = new SinglyNode(val);
-            current.Next = node;
-            node.Next = null;
-            current = node;
+            var newNode = new SinglyNode(val);
+            current.Next = newNode;
+            newNode.Next = null;
             Length++;
         }
 
@@ -111,7 +140,7 @@ namespace Practice.LinkedLists
             var nodeToAdd = new SinglyNode(val);
             var nextNode = current.Next;
             current.Next = nodeToAdd;
-            current.Next.Next = nextNode;
+            nodeToAdd.Next = nextNode;
             Length++;
         }
 
@@ -206,7 +235,6 @@ namespace Practice.LinkedLists
             while (index - 1 > 0)
             {
                 current = current.Next;
-                Length++;
                 index--;
             }
 
@@ -226,7 +254,7 @@ namespace Practice.LinkedLists
 
             var current = Head;
 
-            while (current != null && current.Next != null)
+            while (current != null)
             {
                 if (current.Value == val)
                     return current;
@@ -244,13 +272,13 @@ namespace Practice.LinkedLists
         /// </summary>
         /// <param name="Head"></param>
         /// <returns></returns>
-        public string Traverse(SinglyLinkedList linkedList)
+        public string Traverse(SinglyNode head)
         {
             var sb = new StringBuilder();
-            if (linkedList.Head == null)
+            if (head == null)
                 return string.Empty;
 
-            var current = linkedList.Head;
+            var current = head;
             while (current != null && current.Next != null)
             {
                 sb.Append(current.Value);
