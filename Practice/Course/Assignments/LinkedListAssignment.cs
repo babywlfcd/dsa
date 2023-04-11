@@ -23,6 +23,8 @@ namespace Practice.Course.Assignments
         ///     1. Find the middle of the linked list
         ///     2. Delete middle node
         ///     3. Traverse the linked list and print
+        /// T.C -> O(n)
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="head"></param>
         /// <returns></returns>
@@ -63,7 +65,6 @@ namespace Practice.Course.Assignments
 
             current.Next = current.Next.Next;
         }
-
         private string Print(SinglyNode head)
         {
             var sb = new StringBuilder();
@@ -83,7 +84,6 @@ namespace Practice.Course.Assignments
             sb.Append(head.Value);
             return sb.ToString();
         }
-
 
         /// <summary>
         /// 3. Find middle of a linked list 
@@ -138,7 +138,6 @@ namespace Practice.Course.Assignments
         /// <returns></returns>
         public SinglyNode FindMiddleNodeSlowFaster(SinglyNode head)
         {
-
             var slow = head;
             var fast = head.Next;
             var count = 1;
@@ -154,7 +153,6 @@ namespace Practice.Course.Assignments
 
             return slow;
         }
-
 
         /// <summary>
         /// 8. List Cycle
@@ -196,7 +194,9 @@ namespace Practice.Course.Assignments
         ///  Fast pointer advance 2 nodes
         ///     1. Store node value in hash map
         ///     2. Add nodes to  the map if are not already added
-        ///     3. Find the answer if node value is already present in the dictionary 
+        ///     3. Find the answer if node value is already present in the dictionary
+        /// T.C -> O(n)
+        /// S.C -> (1) 
         /// </summary>
         /// <param name="head"></param>
         /// <returns></returns>
