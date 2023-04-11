@@ -7,10 +7,200 @@ namespace PracticeTests.Course.Assignments
     public class LinkedListAssignmentTests
     {
         [Fact]
-        public void FindMiddleNode_SinglyLinkedList_NodeFromMiddleOfTheLinkedList()
+        public void DeleteMiddle_SinglyLinkedListThreeNodes_PrintLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+
+            var expected = "1->3";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.DeleteMiddle(singlyLinkedList.Head);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void DeleteMiddle_EmptySinglyLinkedList_StringEmpty()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+
+            var expected = string.Empty;
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.DeleteMiddle(singlyLinkedList.Head);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void DeleteMiddle_SinglyLinkedListOnlyHead_PrintHead()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(9);
+
+            var expected = "9";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.DeleteMiddle(singlyLinkedList.Head);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void DeleteMiddle_SinglyLinkedList_PrintRemainedNodesLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(5);
+
+            var expected = "1->2->4->5";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.DeleteMiddle(singlyLinkedList.Head);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void DeleteMiddle_SinglyLinkedListTwoNodes_PrintLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+
+            var expected = "1->2";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.DeleteMiddle(singlyLinkedList.Head);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void FindMiddleNode_SinglyLinkedListOddNumberOfNodes_NodeFromMiddleOfTheLinkedList()
         {
             // arrange
             
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(5);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.FindMiddleNode(singlyLinkedList.Head);
+            Assert.Equal(3, actual.Value);
+        }
+
+        [Fact]
+        public void FindMiddleNode_SinglyLinkedListEvenNumberOfNodes_NodeFromMiddleOfTheLinkedList()
+        {
+            // arrange
+
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.FindMiddleNode(singlyLinkedList.Head);
+            Assert.Equal(3, actual.Value);
+        }
+
+        [Fact]
+        public void FindMiddleNode_SinglyLinkedListTwoNodes_NodeFromMiddleOfTheLinkedList()
+        {
+            // arrange
+
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.FindMiddleNode(singlyLinkedList.Head);
+            Assert.Equal(2, actual.Value);
+        }
+
+        [Fact]
+        public void FindMiddleNodeSlowFast_SinglyLinkedListEvenNumberOfNodes_NodeFromMiddleOfTheLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(9);
+            singlyLinkedList.AddAtTail(8);
+            singlyLinkedList.AddAtTail(7);
+            singlyLinkedList.AddAtTail(5);
+
+            var sut = new LinkedListAssignment();
+
+            var actual = sut.FindMiddleNodeSlowFaster(singlyLinkedList.Head);
+            Assert.Equal(7, actual.Value);
+        }
+
+        [Fact]
+        public void FindMiddleNodeSlowFaster_SinglyLinkedListOddNumberOfNodes_NodeFromMiddleOfTheLinkedList()
+        {
+            // arrange
+
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(5);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.FindMiddleNodeSlowFaster(singlyLinkedList.Head);
+            Assert.Equal(3, actual.Value);
+        }
+
+        [Fact]
+        public void HasCycleAdditionalSpace_EmptySinglyLinkedList_False()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+
+            var sut = new LinkedListAssignment();
+            // act
+            var result = sut.HasCycleAdditionalSpace(singlyLinkedList.Head);
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void HasCycleAdditionalSpace_SinglyLinkedListTwoNodesLoop_True()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(9);
+            singlyLinkedList.AddAtTail(9);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var result = sut.HasCycleAdditionalSpace(singlyLinkedList.Head);
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void HasCycleAdditionalSpace_SinglyLinkedListWithNoLoop_False()
+        {
+            // arrange
             var singlyLinkedList = new SinglyLinkedList();
             singlyLinkedList.AddAtTail(9);
             singlyLinkedList.AddAtTail(8);
@@ -19,13 +209,13 @@ namespace PracticeTests.Course.Assignments
             singlyLinkedList.AddAtTail(6);
 
             var sut = new LinkedListAssignment();
-            // act
-            var actual = sut.FindMiddleNode(singlyLinkedList.Head);
-            Assert.Equal(7, actual.Value);
+
+            var result = sut.HasCycleAdditionalSpace(singlyLinkedList.Head);
+            Assert.False(result);
         }
 
         [Fact]
-        public void FindMiddleNodeSlowFast_SinglyLinkedList_NodeFromMiddleOfTheLinkedList()
+        public void HasCycleAdditionalSpace_SinglyLinkedListWithLoop_True()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
@@ -34,41 +224,16 @@ namespace PracticeTests.Course.Assignments
             singlyLinkedList.AddAtTail(7);
             singlyLinkedList.AddAtTail(5);
             singlyLinkedList.AddAtTail(6);
+            singlyLinkedList.AddAtTail(7);
 
-            var sut = new Week4LinkedList();
+            var sut = new LinkedListAssignment();
 
-            var actual = sut.FindMiddleNodeSlowFaster(singlyLinkedList);
-            Assert.Equal(7, actual.Value);
-        }
-
-        [Fact]
-        public void HasLoopAdditionalSpace_EmptySinglyLinkedList_False()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-
-            var sut = new Week4LinkedList();
-            // act
-            var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void HasLoopAdditionalSpace_SinglyLinkedListTwoNodesLoop_True()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(9);
-
-            var sut = new Week4LinkedList();
-            // act
-            var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
+            var result = sut.HasCycleAdditionalSpace(singlyLinkedList.Head);
             Assert.True(result);
         }
 
         [Fact]
-        public void HasLoopAdditionalSpace_SinglyLinkedListWithNoLoop_False()
+        public void HasCycle_SinglyLinkedListWithNoLoop_False()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
@@ -78,49 +243,14 @@ namespace PracticeTests.Course.Assignments
             singlyLinkedList.AddAtTail(5);
             singlyLinkedList.AddAtTail(6);
 
-            var sut = new Week4LinkedList();
+            var sut = new LinkedListAssignment();
 
-            var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
+            var result = sut.HasCycle(singlyLinkedList.Head);
             Assert.False(result);
         }
 
         [Fact]
-        public void HasLoopAdditionalSpace_SinglyLinkedListWithLoop_True()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(8);
-            singlyLinkedList.AddAtTail(7);
-            singlyLinkedList.AddAtTail(5);
-            singlyLinkedList.AddAtTail(6);
-            singlyLinkedList.AddAtTail(7);
-
-            var sut = new Week4LinkedList();
-
-            var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void HasLoop_SinglyLinkedListWithNoLoop_False()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(8);
-            singlyLinkedList.AddAtTail(7);
-            singlyLinkedList.AddAtTail(5);
-            singlyLinkedList.AddAtTail(6);
-
-            var sut = new Week4LinkedList();
-
-            var result = sut.HasLoop(singlyLinkedList.Head);
-            Assert.False(result);
-        }
-
-        [Fact]
-        public void HasLoop_SinglyLinkedListWithLoop_True()
+        public void HasCycle_SinglyLinkedListWithLoop_True()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
@@ -136,94 +266,10 @@ namespace PracticeTests.Course.Assignments
 
             cycle.Next = nodeToCycle;
 
-            var sut = new Week4LinkedList();
+            var sut = new LinkedListAssignment();
 
-            var result = sut.HasLoop(singlyLinkedList.Head);
+            var result = sut.HasCycle(singlyLinkedList.Head);
             Assert.True(result);
-        }
-
-        [Fact]
-        public void ReverseLinkedList_SinglyLinkedList_ReversedSinglyLinkedList()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(7);
-            singlyLinkedList.AddAtTail(6);
-            
-            var sut = new Week4LinkedList();
-            // act
-            var actual = sut.ReverseLinkedList(singlyLinkedList.Head);
-            // assert
-            Assert.Equal(6, actual.Value);
-            Assert.Equal(7, actual.Next.Value);
-            Assert.Equal(9, actual.Next.Next.Value);
-            Assert.Null(actual.Next.Next.Next);
-        }
-
-        [Fact]
-        public void ReverseLinkedListRecursive_SinglyLinkedList_ReversedSinglyLinkedList()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(7);
-            singlyLinkedList.AddAtTail(6);
-
-            var sut = new Week4LinkedList();
-            // act
-            var actual = sut.ReverseLinkedListRecursive(singlyLinkedList.Head);
-            // assert
-            Assert.Equal(6, actual.Value);
-            Assert.Equal(7, actual.Next.Value);
-            Assert.Equal(9, actual.Next.Next.Value);
-            Assert.Null(actual.Next.Next.Next);
-        }
-
-        [Fact]
-        public void ReverseLinkedListRecursive_EmptySinglyLinkedList_Null()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-
-            var sut = new Week4LinkedList();
-            // act
-            var actual = sut.ReverseLinkedListRecursive(singlyLinkedList.Head);
-            // assert
-            Assert.Null(actual);
-        }
-
-        [Fact]
-        public void ReverseLinkedListRecursive_SinglyLinkedListOneNode_Head()
-        {
-            // arrange
-            var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(3);
-
-            var sut = new Week4LinkedList();
-            // act
-            var actual = sut.ReverseLinkedListRecursive(singlyLinkedList.Head);
-            // assert
-            Assert.Equal(3, actual.Value);
-            Assert.Null(actual.Next);
-        }
-
-
-        [Fact]
-        public void ReverseDoublyLinkedList_SinglyLinkedListOneNode_Head()
-        {
-            // arrange
-            var doublyLinkedList = new DoublyLinkedList();
-            doublyLinkedList.AddAtTail(3);
-            doublyLinkedList.AddAtTail(4);
-            doublyLinkedList.AddAtTail(5);
-
-            var sut = new Week4LinkedList();
-            // act
-            var actual = sut.ReverseDoublyLinkedList(doublyLinkedList.Head);
-            // assert
-            Assert.Equal(3, actual.Value);
-            Assert.Null(actual.Next);
         }
     }
 }
