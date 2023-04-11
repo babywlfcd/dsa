@@ -38,7 +38,7 @@ namespace PracticeTests.Course.Assignments
         }
 
         [Fact]
-        public void DeleteMiddle_SinglyLinkedListOnlyHead_PrintHead()
+        public void DeleteMiddle_SinglyLinkedListOneNode_PrintHead()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
@@ -91,7 +91,6 @@ namespace PracticeTests.Course.Assignments
         public void FindMiddleNode_SinglyLinkedListOddNumberOfNodes_NodeFromMiddleOfTheLinkedList()
         {
             // arrange
-            
             var singlyLinkedList = new SinglyLinkedList();
             singlyLinkedList.AddAtTail(1);
             singlyLinkedList.AddAtTail(2);
@@ -270,6 +269,69 @@ namespace PracticeTests.Course.Assignments
 
             var result = sut.HasCycle(singlyLinkedList.Head);
             Assert.True(result);
+        }
+
+        [Fact]
+        public void ReverseLinkedList_EmptySinglyLinkedList_StringEmpty()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReverseLinkedList(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(string.Empty, actual);
+        }
+
+        [Fact]
+        public void ReverseLinkedList_SinglyLinkedList_ReversedSinglyLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(5);
+            var expected = "5->4->3->2->1";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var head = sut.ReverseLinkedList(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(expected, head);
+        }
+
+        [Fact]
+        public void ReverseLinkedList_SinglyLinkedListOneNode_PrintHead()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            var expected = "1";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var head = sut.ReverseLinkedList(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(expected, head);
+        }
+
+        [Fact]
+        public void ReverseLinkedList_SinglyLinkedListTwoNodes_PrintReversedNodes()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            var expected = "2->1";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var head = sut.ReverseLinkedList(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(expected, head);
         }
     }
 }

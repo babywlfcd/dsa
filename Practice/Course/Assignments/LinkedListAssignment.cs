@@ -216,5 +216,34 @@ namespace Practice.Course.Assignments
 
             return false;
         }
+
+        /// <summary>
+        /// 4. Reverse Linked List
+        /// iterative solution: 3 pointers
+        ///     1. prev - null
+        ///     2. current - head
+        ///     3. next - head.next
+        /// T.C -> O(n);
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public string ReverseLinkedList(SinglyNode head)
+        {
+            SinglyNode previewNode = null;
+            var current = head;
+
+            while (current != null)
+            {
+                var nextNode = current.Next;
+                current.Next = previewNode;
+                previewNode = current;
+                current = nextNode;
+            }
+
+            head = previewNode;
+
+            return Print(head);
+        }
     }
 }
