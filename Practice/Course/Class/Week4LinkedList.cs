@@ -84,7 +84,7 @@ namespace Practice.Course.Class
             if (head == null)
                 return false;
 
-            var nodes = new Dictionary<int, bool>();
+            var nodes = new Dictionary<int?, bool>();
             var current = head;
 
             // traverse whole linked list
@@ -172,9 +172,10 @@ namespace Practice.Course.Class
             if (head.Next == null)
                 return head;
 
+            var preview = head;
             var temp = ReverseLinkedListRecursive(head.Next);
-            temp.Next = head;
-            head.Next = null;
+            preview.Next.Next = preview;
+            preview.Next = null;
             head = temp;
             return head;
         }
@@ -189,22 +190,24 @@ namespace Practice.Course.Class
         /// <returns></returns>
         public DoublyNode ReverseDoublyLinkedList(DoublyNode head)
         {
-            DoublyNode preview = null;
+            if (head == null)
+                return null;
+
+            if (head.Next == null)
+                return head;
+
             var current = head;
 
-            while (current != null)
+            DoublyNode temp = null;
+            while (current != null && current.Next != null)
             {
-                preview = current.Previous;
+                temp = current.Next;
                 current.Previous = current.Next;
-                current.Next = preview;
+                current.Next = current.Previous;
                 current = current.Next;
             }
 
-            if (preview != null)
-            {
-                head = preview.Previous;
-            }
-
+            head = temp;
             return head;
 
         }
@@ -225,10 +228,11 @@ namespace Practice.Course.Class
         {
             var p = singlyLinkedList.Head;
             var q = singlyLinkedList.Head;
-            var count = 0;
-            while (count < k)
+            var count = k;
+            while (count < 0)
             {
                 q = q.Next;
+                count--;
             }
 
             p = p.Next;

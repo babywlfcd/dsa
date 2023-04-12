@@ -33,11 +33,9 @@
                 return;
             }
 
-            var newNode = new DoublyNode(val)
-            {
-                Next = Head,
-                Previous = null
-            };
+            var newNode = new DoublyNode(val);
+            newNode.Next = Head;
+            Head.Previous = newNode;
             Head = newNode;
         }
 

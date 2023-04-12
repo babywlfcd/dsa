@@ -170,7 +170,7 @@ namespace Practice.Course.Assignments
             if (head == null)
                 return false;
 
-            var nodes = new Dictionary<int, bool>();
+            var nodes = new Dictionary<int?, bool>();
             var current = head;
 
             // traverse whole linked list
@@ -184,6 +184,79 @@ namespace Practice.Course.Assignments
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// 4. Reverse Linked List
+        /// iterative solution: 3 pointers
+        ///     1. prev - null
+        ///     2. current - head
+        ///     3. next - head.next
+        /// T.C -> O(n);
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public string ReverseLinkedList(SinglyNode head)
+        {
+            SinglyNode previewNode = null;
+            var current = head;
+
+            while (current != null)
+            {
+                var nextNode = current.Next;
+                current.Next = previewNode;
+                previewNode = current;
+                current = nextNode;
+            }
+
+            head = previewNode;
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 5. Remove Nth Node from List End
+        /// Solution - 2 pointers -> node and current
+        ///     1. start node and current from head
+        ///     2. move current till n position -> now distance between node and current is n
+        ///     3. move node and current till the end of the linked list
+        ///     4. remove node from the list
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public string RemoveNthNodeFromEnd(SinglyNode head, int n)
+        {
+            if (head == null)
+                return null;
+
+            var nodeToRemove = head;
+            var current = head;
+            var count = n;
+
+            while (count > 0 && current != null)
+            {
+                current = current.Next;
+                count--;
+            }
+            // if n exceed linked list length do not remove
+            if (count != 0)
+                return Print(head);
+
+            if (current == null)
+                return null;
+
+            while (current != null && current.Next != null)
+            {
+                nodeToRemove = nodeToRemove.Next;
+                current = current.Next;
+            }
+
+            nodeToRemove.Next = nodeToRemove.Next.Next;
+
+            return Print(head);
         }
 
         /// <summary>
@@ -216,5 +289,7 @@ namespace Practice.Course.Assignments
 
             return false;
         }
+
+        
     }
 }
