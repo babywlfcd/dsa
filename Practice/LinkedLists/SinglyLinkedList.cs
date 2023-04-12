@@ -16,13 +16,11 @@ namespace Practice.LinkedLists
     {
         public SinglyNode Head;
         public int Length;
-        public bool HasNullTail;
 
         public SinglyLinkedList(SinglyNode head = null)
         {
             Head = head;
             Length = 0;
-            HasNullTail = false;
         }
 
         /// <summary>
@@ -45,40 +43,6 @@ namespace Practice.LinkedLists
             var newNode = new SinglyNode(val);
             newNode.Next = Head;
             Head = newNode;
-            HasNullTail = false;
-            Length++;
-        }
-
-        /// <summary>
-        /// Add new node at head:
-        /// 1. Initialize new node current
-        /// 2. Link new node to head
-        /// 3. Assign current to head
-        /// T.C. -> O(1)
-        /// </summary>
-        /// <param name="val"></param>
-        public void AddAtTailNull(int? val)
-        {
-            
-
-            if (Head == null)
-            {
-                Head = new SinglyNode(val);
-                Head.HasNullTail = true;
-                Length++;
-                return;
-            }
-
-            var current = Head;
-            while (current != null && current.Next != null)
-            {
-                current = current.Next;
-            }
-
-            var newNode = new SinglyNode(val);
-            current.Next = newNode;
-            newNode.Next = null;
-            newNode.HasNullTail = true;
             Length++;
         }
 

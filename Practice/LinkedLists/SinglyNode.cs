@@ -10,7 +10,6 @@ namespace Practice.LinkedLists
     {
         public int? Value;
         public SinglyNode Next;
-        public bool HasNullTail;
 
         public SinglyNode(int? value, SinglyNode next = null)
         {

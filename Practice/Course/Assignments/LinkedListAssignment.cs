@@ -230,41 +230,28 @@ namespace Practice.Course.Assignments
         public string RemoveNthNodeFromEnd(SinglyNode head, int n)
         {
             if (head == null)
-                return "NULL";
+                return null;
 
             var nodeToRemove = head;
             var current = head;
             var count = n;
-            if (current.HasNullTail)
-                count = n + 1;
-            while (count > 0)
-            {
-                
-                // n greater than linked list length
-                if (current == null)
-                    return "NULL";
 
+            while (count > 0 && current != null)
+            {
                 current = current.Next;
                 count--;
             }
+            // if n exceed linked list length do not remove
+            if (count != 0)
+                return Print(head);
+
+            if (current == null)
+                return null;
 
             while (current != null && current.Next != null)
             {
                 nodeToRemove = nodeToRemove.Next;
                 current = current.Next;
-            }
-
-            if (current.HasNullTail)
-            {
-                nodeToRemove.Next = nodeToRemove.Next.Next;
-                return Print(head) + "NULL";
-            }
-
-
-            if (nodeToRemove.Next.Next == null)
-            {
-                nodeToRemove.Next = null;
-                return Print(head) + "->NULL";
             }
 
             nodeToRemove.Next = nodeToRemove.Next.Next;

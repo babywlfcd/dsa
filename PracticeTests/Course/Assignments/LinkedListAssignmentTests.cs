@@ -362,27 +362,22 @@ namespace PracticeTests.Course.Assignments
             var singlyLinkedList = new SinglyLinkedList();
             singlyLinkedList.AddAtTail(1);
 
-            var expected = "NULL";
 
             var sut = new LinkedListAssignment();
             // act
-            var head = sut.RemoveNthNodeFromEnd(singlyLinkedList.Head, 2);
+            var head = sut.RemoveNthNodeFromEnd(singlyLinkedList.Head, 1);
             // assert
-            Assert.Equal(expected, head);
+            Assert.Null(head);
         }
 
         [Fact]
         public void RemoveNthNodeFromEnd_SinglyLinkedListOneNodes_PrintNull()
         {
-            // arrange
-
-            var expected = "NULL";
-
             var sut = new LinkedListAssignment();
             // act
             var head = sut.RemoveNthNodeFromEnd(null, 1);
             // assert
-            Assert.Equal(expected, head);
+            Assert.Null(head);
         }
 
         [Fact]
@@ -394,7 +389,7 @@ namespace PracticeTests.Course.Assignments
             singlyLinkedList.AddAtTail(2);
 
 
-            var expected = "1->NULL";
+            var expected = "1";
 
             var sut = new LinkedListAssignment();
             // act
@@ -408,13 +403,11 @@ namespace PracticeTests.Course.Assignments
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTailNull(1);
-            singlyLinkedList.AddAtTailNull(2);
-            singlyLinkedList.AddAtTailNull(3);
-            singlyLinkedList.AddAtTailNull(null);
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
 
-
-            var expected = "1->3->NULL";
+            var expected = "1->3";
 
             var sut = new LinkedListAssignment();
             // act
@@ -428,18 +421,17 @@ namespace PracticeTests.Course.Assignments
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTailNull(1);
-            singlyLinkedList.AddAtTailNull(2);
-            singlyLinkedList.AddAtTailNull(3);
-            singlyLinkedList.AddAtTailNull(4);
-            singlyLinkedList.AddAtTailNull(null);
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
 
 
-            var expected = "1->2->4->NULL";
+            var expected = "1->2->4";
 
             var sut = new LinkedListAssignment();
             // act
-            var head = sut.RemoveNthNodeFromEnd(singlyLinkedList.Head, 3);
+            var head = sut.RemoveNthNodeFromEnd(singlyLinkedList.Head, 2);
             // assert
             Assert.Equal(expected, head);
         }
