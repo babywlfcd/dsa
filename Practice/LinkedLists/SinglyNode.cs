@@ -16,6 +16,5 @@ namespace Practice.LinkedLists
             Value = value;
             Next = next;
         }
-
     }
 }
