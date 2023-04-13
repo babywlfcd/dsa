@@ -523,5 +523,64 @@ namespace PracticeTests.Course.Assignments
             // assert
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void ReverseKthNodes_LinkedListAndAndIntegerN_LinkedListWithNNodesReversed()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(5);
+            singlyLinkedList.AddAtHead(4);
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "2->1->3->4->5";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReverseKthNodes(singlyLinkedList.Head, 2);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void ReverseKthNodes_LinkedListAndAndIntegerNEqualToLinkedListLength_LinkedListReversed()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(5);
+            singlyLinkedList.AddAtHead(4);
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "5->4->3->2->1";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReverseKthNodes(singlyLinkedList.Head, 5);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReverseKthNodes_LinkedListAndAndIntegerNZero_LinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(5);
+            singlyLinkedList.AddAtHead(4);
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "1->2->3->4->5";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReverseKthNodes(singlyLinkedList.Head, 0);
+            // assert
+            Assert.Equal(expected, actual);
+        }
     }
 }

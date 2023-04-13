@@ -167,18 +167,18 @@ namespace Practice.Course.Assignments
         /// <returns></returns>
         public string ReverseLinkedList(SinglyNode head)
         {
-            SinglyNode previewNode = null;
+            SinglyNode prevNode = null;
             var current = head;
 
             while (current != null)
             {
                 var nextNode = current.Next;
-                current.Next = previewNode;
-                previewNode = current;
+                current.Next = prevNode;
+                prevNode = current;
                 current = nextNode;
             }
 
-            head = previewNode;
+            head = prevNode;
 
             return Print(head);
         }
@@ -227,6 +227,17 @@ namespace Practice.Course.Assignments
             return Print(head);
         }
 
+        /// <summary>
+        /// 6. Remove Duplicates from Sorted List
+        /// Solution:
+        ///     1. start first pointer to head and second pointer to next
+        ///     2. advance first pointer if values are different
+        ///     3. else remove next node
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
         public string RemoveDuplicates(SinglyNode head)
         {
             if (head == null)
@@ -237,8 +248,6 @@ namespace Practice.Course.Assignments
 
             while (current != null)
             {
-                
-
                 if (keepNode.Value != current.Value)
                 {
                     keepNode.Next = current;
@@ -253,6 +262,42 @@ namespace Practice.Course.Assignments
 
                 current = current.Next;
             }
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 7. K reverse linked list
+        /// T.C ->O(k)
+        /// S.C ->O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public string ReverseKthNodes(SinglyNode head, int k)
+        {
+            if (k == 0)
+                return Print(head);
+
+            SinglyNode prevNode = null;
+            var prevHead = head;
+            var nextNodeUnreversed = head;
+
+            var current = head;
+            var count = k;
+            while (k > 0)
+            {
+                var nextNode = current.Next;
+                nextNodeUnreversed = nextNode;
+                current.Next = prevNode;
+                prevNode = current;
+                current = nextNode;
+                k--;
+            }
+
+            prevHead.Next = nextNodeUnreversed;
+
+            head = prevNode;
 
             return Print(head);
         }
