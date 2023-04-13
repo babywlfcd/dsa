@@ -155,38 +155,6 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
-        /// 8. List Cycle
-        /// Solution 1: Extra space
-        ///     1. Store node value in hash map
-        ///     2. Add nodes to  the map if are not already added
-        ///     3. Find the answer if node value is already present in the dictionary
-        /// T.C -> O(n)
-        /// S.C -> O(n)
-        /// </summary>
-        /// <param name="head"></param>
-        /// <returns></returns>
-        public bool HasCycleAdditionalSpace(SinglyNode head)
-        {
-            if (head == null)
-                return false;
-
-            var nodes = new Dictionary<int?, bool>();
-            var current = head;
-
-            // traverse whole linked list
-            while (current != null)
-            {
-                if (nodes.ContainsKey(current.Value))
-                    return true;
-
-                nodes[current.Value] = false;
-                current = current.Next;
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// 4. Reverse Linked List
         /// iterative solution: 3 pointers
         ///     1. prev - null
@@ -257,6 +225,68 @@ namespace Practice.Course.Assignments
             nodeToRemove.Next = nodeToRemove.Next.Next;
 
             return Print(head);
+        }
+
+        public string RemoveDuplicates(SinglyNode head)
+        {
+            if (head == null)
+                return null;
+
+            var keepNode = head; 
+            var current = head.Next;
+
+            while (current != null)
+            {
+                
+
+                if (keepNode.Value != current.Value)
+                {
+                    keepNode.Next = current;
+                    keepNode = current;
+                }
+
+                if (current.Next == null)
+                {
+                    keepNode.Next = null;
+                    break;
+                }
+
+                current = current.Next;
+            }
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 8. List Cycle
+        /// Solution 1: Extra space
+        ///     1. Store node value in hash map
+        ///     2. Add nodes to  the map if are not already added
+        ///     3. Find the answer if node value is already present in the dictionary
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public bool HasCycleAdditionalSpace(SinglyNode head)
+        {
+            if (head == null)
+                return false;
+
+            var nodes = new Dictionary<int?, bool>();
+            var current = head;
+
+            // traverse whole linked list
+            while (current != null)
+            {
+                if (nodes.ContainsKey(current.Value))
+                    return true;
+
+                nodes[current.Value] = false;
+                current = current.Next;
+            }
+
+            return false;
         }
 
         /// <summary>
