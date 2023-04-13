@@ -230,6 +230,7 @@
             return totalWater;
         }
 
+        #endregion
 
         /// <summary>
         /// Kth Rotation to left
@@ -245,7 +246,6 @@
         /// <returns></returns>
         public int[] Rotate(int[] input, int k)
         {
-
             // array will be in the same position when n = k (n length of tha input array, k number of rotations)
             // -> k = k % n
             // Example: [ 1 2 3 ] k = 4, n = 3
@@ -273,6 +273,5 @@
                 input[indexEnd - 1 - i] = temp;
             }
         }
-        #endregion
     }
 }

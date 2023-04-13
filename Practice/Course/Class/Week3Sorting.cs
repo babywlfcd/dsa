@@ -24,10 +24,11 @@ namespace Practice.Course.Class
             {
                 for (int j = 0; j < input.Length; j++)
                 {
-                    if (input[i] == input[j])
+                    if (i < j && input[i] > input[j])
                         count++;
                 }
             }
+
             return count;
         }
 

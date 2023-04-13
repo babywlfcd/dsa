@@ -369,6 +369,9 @@ namespace Practice.Course.Assignments
         /// 9. Remove Loop from Linked List
         /// Solution:
         ///     1. Detect cycle node -> Floyd algorithm to find cycle
+        ///     2. detect second time the node to brake the link to the cycle
+        /// T.C -> O(n)
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="head"></param>
         /// <returns></returns>
@@ -398,7 +401,7 @@ namespace Practice.Course.Assignments
 
             if (!hasCycle)
                 return Print(head);
-
+            // detect cycle node
             fast = head;
             slow = commonNode;
             
@@ -408,6 +411,7 @@ namespace Practice.Course.Assignments
                 slow = slow.Next;
             }
 
+            // detect cycle node again
             SinglyNode lastNodeSlow = slow;
             var nextNode = slow.Next;
             while (lastNodeSlow != nextNode)
