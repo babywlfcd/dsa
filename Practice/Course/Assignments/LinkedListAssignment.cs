@@ -432,6 +432,8 @@ namespace Practice.Course.Assignments
         /// Solution 1
         ///     1. Create an array with nodes value
         ///     2. Change values in the original linked list
+        /// T.C -> O(n)
+        /// S.C -> O(n)
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
@@ -475,9 +477,47 @@ namespace Practice.Course.Assignments
                         current = current.Next;
                         break;
                     }
+
                     left++;
                     right--;
                 }
+            }
+
+            return Print(head);
+        }
+
+        public string SortLinkedList(SinglyNode head)
+        {
+            if (head == null)
+                return string.Empty;
+
+            var current = head;
+            var length = 0;
+            while (current != null)
+            {
+                current = current.Next;
+                length++;
+            }
+
+            var nodeValues = new int?[length];
+
+            current = head;
+            var index = 0;
+            while (current != null)
+            {
+                nodeValues[index] = current.Value;
+                current = current.Next;
+                index++;
+            }
+
+            Array.Sort(nodeValues);
+            index = 0;
+            current = head;
+            while (current != null)
+            {
+                current.Value = nodeValues[index];
+                current = current.Next;
+                index++;
             }
 
             return Print(head);

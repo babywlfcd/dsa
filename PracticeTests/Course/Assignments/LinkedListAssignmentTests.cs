@@ -721,5 +721,33 @@ namespace PracticeTests.Course.Assignments
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void SortLinkedList_SinglyLinkedListMultipleNodes_PrintLinkedListReordered()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(3);
+
+            var expected = "1->2->3->4";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.SortLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void SortLinkedList_Null_StringEmpty()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.SortLinkedList(null);
+
+            Assert.Equal(string.Empty, actual);
+        }
+
     }
 }
