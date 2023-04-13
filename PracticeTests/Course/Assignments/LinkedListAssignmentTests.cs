@@ -660,5 +660,66 @@ namespace PracticeTests.Course.Assignments
             Assert.Equal(string.Empty, actual);
         }
 
+
+        [Fact]
+        public void ReorderLinkedList_SinglyLinkedListMultipleNodes_PrintLinkedListReordered()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(5);
+
+            var expected = "1->5->2->4->3";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReorderLinkedList_Null_StringEmpty()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(null);
+
+            Assert.Equal(string.Empty, actual);
+        }
+
+        [Fact]
+        public void ReorderLinkedList_SinglyLinkedListWOneNode_PrintHead()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+
+            var expected = "1";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReorderLinkedList_SinglyLinkedListTwoNodes_PrintNodes()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+
+            var expected = "1->2";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
     }
 }

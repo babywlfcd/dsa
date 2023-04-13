@@ -426,6 +426,62 @@ namespace Practice.Course.Assignments
 
             return Print(head);
         }
+
+        /// <summary>
+        /// 10. Reorder List
+        /// Solution 1
+        ///     1. Create an array with nodes value
+        ///     2. Change values in the original linked list
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public string ReorderLinkedList(SinglyNode head)
+        {
+            if(head == null) return string.Empty;
+
+            var current = head;
+            var count = 0;
+            while (current != null)
+            {
+                count++;
+                current = current.Next;
+            }
+
+            var nodeValues = new int?[count];
+            current = head;
+            var index = 0;
+            while (current != null)
+            {
+                nodeValues[index++] = current.Value;
+                current = current.Next;
+            }
+
+            current = head;
+            index = 0;
+            while (current != null)
+            {
+                var left = 0;
+                var right = nodeValues.Length - 1;
+                while (left <= right)
+                {
+                    current.Value = nodeValues[left];
+                    if (current.Next != null)
+                    {
+                        current.Next.Value = nodeValues[right];
+                        current = current.Next.Next;
+                    }
+                    else
+                    {
+                        current = current.Next;
+                        break;
+                    }
+                    left++;
+                    right--;
+                }
+            }
+
+            return Print(head);
+        }
         
     }
 }
