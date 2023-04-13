@@ -365,6 +365,63 @@ namespace Practice.Course.Assignments
             return false;
         }
 
+        /// <summary>
+        /// 9. Remove Loop from Linked List
+        /// Solution:
+        ///     1. Detect cycle node -> Floyd algorithm to find cycle
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public string RemoveCycle(SinglyNode head)
+        {
+            if (head == null)
+                return string.Empty;
+
+            var slow = head;
+            var fast = head;
+            var commonNode = head;
+
+            //detect if the linked list has cycle
+            var hasCycle = false;
+            while (fast != null && fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+
+                if (slow == fast)
+                {
+                    commonNode = slow;
+                    hasCycle = true;
+                    break;
+                }
+            }
+
+            if (!hasCycle)
+                return Print(head);
+
+            fast = head;
+            slow = commonNode;
+            
+            while (fast != slow)
+            {
+                fast = fast.Next;
+                slow = slow.Next;
+            }
+
+            SinglyNode lastNodeSlow = slow;
+            var nextNode = slow.Next;
+            while (lastNodeSlow != nextNode)
+            {
+                nextNode = nextNode.Next;
+                if (lastNodeSlow == nextNode.Next)
+                {
+                    nextNode.Next = null;
+                    break;
+                }
+            }
+
+            return Print(head);
+        }
         
     }
 }
