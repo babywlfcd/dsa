@@ -18,8 +18,4 @@
     <Compile Remove="StackAndQueue\Stack2.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Tree\" />
-  </ItemGroup>
-
 </Project>
