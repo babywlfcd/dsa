@@ -13,9 +13,9 @@ namespace Practice.Course.Assignments
         /// <summary>
         /// Q1. Rotation game
         /// Solution 1 - brute force - release always the first position of the array:
-        /// 1. keep last element in a variable
-        /// 2. move all elements to the right
-        /// 3. move it to the first position
+        ///     1. keep last element in a variable
+        ///     2. move all elements to the right
+        ///     3. move it to the first position
         /// T.C -> b times O(n) -> O(n*b)
         /// S.C -> O(1)
         /// </summary>
@@ -159,6 +159,8 @@ namespace Practice.Course.Assignments
 
         /// <summary>
         /// Q3. Max and min of an array
+        /// Solution:
+        ///     Iterate once over the array and fins min and max
         /// T.C -> O(n)
         /// S.C -> O(1)
         /// </summary>
@@ -189,7 +191,7 @@ namespace Practice.Course.Assignments
 
         //Q4 reverse an array - Implemented in Week2Array
         /// <summary>
-        /// Reverse an array
+        /// Q4. Reverse an array
         /// Solution:
         /// 2 pointers approach
         ///     1. start with one pointer at the beginning of the array and one at the end of the array
@@ -263,7 +265,7 @@ namespace Practice.Course.Assignments
 
         /// <summary>
         /// Q1. Little Pony and Maximum Element
-        /// Solution Iterate over array and count numbers grater than b
+        /// Solution - Iterate over array and count numbers grater than b
         /// T.C => O(n)
         /// S.C => O(1)
         /// </summary>
@@ -291,9 +293,9 @@ namespace Practice.Course.Assignments
         /// <summary>
         /// Q2. Second Largest
         /// Solution:
-        /// 1. traverse array twice.
-        /// 2. max variable keep the max value
-        /// 3. second variable will keep the second value
+        ///     1. traverse array twice.
+        ///     2. max variable keep the max value
+        ///     3. second variable will keep the second value
         /// T.C => O(n)
         /// S.C +> O(1)
         /// </summary>
@@ -334,7 +336,7 @@ namespace Practice.Course.Assignments
         /// <summary>
         /// Q3. MINIMUM PICKS
         /// Solution:
-        /// Traverse the array and track maximum value for even and minimum value for odds
+        ///     Traverse the array and track maximum value for even and minimum value for odds
         /// T.C -> O(n)
         /// S.C -> O(1)
         /// </summary>
@@ -434,10 +436,10 @@ namespace Practice.Course.Assignments
         ///         - last k elements with first k elements of the array
         ///         - first n - k elements with last n - k elements of the  array
         /// Example of 1 scenario:
-        /// [1, 2, 3, 4, 5] n = 5; k = 2
-        /// result -> [0 0 0 0 0]
-        /// first iteration -> [0 0 0 1 2]
-        /// second iteration -> [3 4 5 1 2]
+        ///     [1, 2, 3, 4, 5] n = 5; k = 2
+        ///     result -> [0 0 0 0 0]
+        ///     first iteration -> [0 0 0 1 2]
+        ///     second iteration -> [3 4 5 1 2]
         /// T.C -> O(n * m) where n - length of the rotations array, m - length of the input array
         /// S.C -> O(m) where m - length of the input array
         /// </summary>
@@ -480,8 +482,63 @@ namespace Practice.Course.Assignments
             return result;
         }
 
-        // TODO:
-        // Q6. Leaders in an array
-        // Q7.Bulbs
+        /// <summary>
+        /// Q6. Leaders in an array
+        /// Solution:
+        ///     1. Traverse the array from the end 
+        ///     2. Keep tracking the max value
+        ///     3. compare current value with maximum
+        ///     4. if value is greater than max advance to the next element 
+        ///     5. else add element to the result and update max
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public List<int> FindLeaders(int[] input)
+        {
+            var max = int.MinValue;
+            var result = new List<int>();
+            for (var i = input.Length - 1 ; i >= 0; i--)
+            {
+                if (input[i] < max)
+                    continue;
+                result.Add(input[i]);
+                max = input[i];
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Q7.Bulbs
+        /// Solution1: Brute force
+        /// Traverse the array and change all next values of the array to 0 if is one or 1 if is 0
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int Bubs(int[] input)
+        {
+            var count = 0;
+            for (var i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 0)
+                {
+                    for (var j = i; j < input.Length; j++)
+                    {
+                        if (input[j] == 0)
+                            input[j] = 1;
+                        else
+                            input[j] = 0;
+                    }
+
+                    count++;
+                }
+            }
+
+            return count;
+        }
     }
 }

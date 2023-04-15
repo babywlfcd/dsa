@@ -487,8 +487,8 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
-        /// 13. Merge Two Sorted Lists
-        /// Solution 1:
+        /// 12. Sort List
+        /// Solution:
         ///     1. Traverse the linked list to find the length of the linked list
         ///     2. Create an array with length of the linked list length
         ///     3. Traverse the linked list again to store the nodes values
@@ -535,6 +535,53 @@ namespace Practice.Course.Assignments
             }
 
             return Print(head);
+        }
+
+        /// <summary>
+        /// 13. Merge Two Sorted Lists
+        /// l1 - length of the first linked list
+        /// l2 - length of the second linked list
+        /// T.C -> O(l1 + l2)
+        /// S.C -> O(l1 + l2)
+        /// </summary>
+        /// <param name="head1"></param>
+        /// <param name="head2"></param>
+        /// <returns></returns>
+        public string MergeTwoLinkedLists(SinglyNode head1, SinglyNode head2)
+        {
+            if (head1 == null && head2 == null)
+                return null;
+
+            if (head1 == null)
+                return Print(head2);
+
+            if (head2 == null)
+                return Print(head1);
+
+            var newHead = new SinglyNode(0); // Creating this dummy node ease the logic
+            var runnerHead = newHead;        // This is the runner node
+
+            while (head1 != null && head2 != null)
+            {
+                if (head1.Value <= head2.Value)
+                {
+                    runnerHead.Next = head1;
+                    head1 = head1.Next;
+                }
+                else
+                {
+                    runnerHead.Next = head2;
+                    head2 = head2.Next;
+                }
+
+                runnerHead = runnerHead.Next;
+            }
+
+            // Simply add the 'leftover' from the while loop at the end 
+            if (head1 != null) runnerHead.Next = head1;
+            if (head2 != null) runnerHead.Next = head2;
+
+            return Print(newHead.Next);
         }
 
         /// <summary>
