@@ -811,5 +811,108 @@ namespace PracticeTests.Course.Assignments
             Assert.False(actual);
         }
 
+        [Fact]
+        public void MergeTwoLinkedLists_Null_StringEmpty()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.MergeTwoLinkedLists(null, null);
+
+            Assert.Null(actual);
+        }
+
+        [Fact]
+        public void IsPalindrome_FirstNullAndSecondLinkedList_PrintSecondLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+
+            var expected = "1->2";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.MergeTwoLinkedLists(null, singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void MergeTwoLinkedLists_FirstLinkedListAndNull_PrintFirstLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+
+            var expected = "1->2";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.MergeTwoLinkedLists(singlyLinkedList.Head, null);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void MergeTwoLinkedLists_TwoLinkedListSameLEngth_PrintLinkedListSorted()
+        {
+            // arrange
+            var firstLinkedList = new SinglyLinkedList();
+            firstLinkedList.AddAtTail(1);
+
+            var secondLinkedList = new SinglyLinkedList();
+            secondLinkedList.AddAtTail(2);
+
+            var expected = "1->2";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.MergeTwoLinkedLists(firstLinkedList.Head, secondLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void MergeTwoLinkedLists_TwoLinkedListLengthOneGraterThanLengthTwo_PrintLinkedListSorted()
+        {
+            // arrange
+            var firstLinkedList = new SinglyLinkedList();
+            firstLinkedList.AddAtTail(1);
+            firstLinkedList.AddAtTail(3);
+
+            var secondLinkedList = new SinglyLinkedList();
+            secondLinkedList.AddAtTail(2);
+
+            var expected = "1->2->3";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.MergeTwoLinkedLists(firstLinkedList.Head, secondLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void MergeTwoLinkedLists_TwoLinkedListLengthOneLessThanLengthTwo_PrintLinkedListSorted()
+        {
+            // arrange
+            var firstLinkedList = new SinglyLinkedList();
+            firstLinkedList.AddAtTail(2);
+
+            var secondLinkedList = new SinglyLinkedList();
+            secondLinkedList.AddAtTail(1);
+            secondLinkedList.AddAtTail(3);
+
+            var expected = "1->2->3";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.MergeTwoLinkedLists(firstLinkedList.Head, secondLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
