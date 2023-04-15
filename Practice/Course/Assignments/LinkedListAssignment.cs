@@ -155,38 +155,6 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
-        /// 8. List Cycle
-        /// Solution 1: Extra space
-        ///     1. Store node value in hash map
-        ///     2. Add nodes to  the map if are not already added
-        ///     3. Find the answer if node value is already present in the dictionary
-        /// T.C -> O(n)
-        /// S.C -> O(n)
-        /// </summary>
-        /// <param name="head"></param>
-        /// <returns></returns>
-        public bool HasCycleAdditionalSpace(SinglyNode head)
-        {
-            if (head == null)
-                return false;
-
-            var nodes = new Dictionary<int?, bool>();
-            var current = head;
-
-            // traverse whole linked list
-            while (current != null)
-            {
-                if (nodes.ContainsKey(current.Value))
-                    return true;
-
-                nodes[current.Value] = false;
-                current = current.Next;
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// 4. Reverse Linked List
         /// iterative solution: 3 pointers
         ///     1. prev - null
@@ -199,18 +167,18 @@ namespace Practice.Course.Assignments
         /// <returns></returns>
         public string ReverseLinkedList(SinglyNode head)
         {
-            SinglyNode previewNode = null;
+            SinglyNode prevNode = null;
             var current = head;
 
             while (current != null)
             {
                 var nextNode = current.Next;
-                current.Next = previewNode;
-                previewNode = current;
+                current.Next = prevNode;
+                prevNode = current;
                 current = nextNode;
             }
 
-            head = previewNode;
+            head = prevNode;
 
             return Print(head);
         }
@@ -260,6 +228,113 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
+        /// 6. Remove Duplicates from Sorted List
+        /// Solution:
+        ///     1. start first pointer to head and second pointer to next
+        ///     2. advance first pointer if values are different
+        ///     3. else remove next node
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public string RemoveDuplicates(SinglyNode head)
+        {
+            if (head == null)
+                return null;
+
+            var keepNode = head; 
+            var current = head.Next;
+
+            while (current != null)
+            {
+                if (keepNode.Value != current.Value)
+                {
+                    keepNode.Next = current;
+                    keepNode = current;
+                }
+
+                if (current.Next == null)
+                {
+                    keepNode.Next = null;
+                    break;
+                }
+
+                current = current.Next;
+            }
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 7. K reverse linked list
+        /// T.C ->O(k)
+        /// S.C ->O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public string ReverseKthNodes(SinglyNode head, int k)
+        {
+            if (k == 0)
+                return Print(head);
+
+            SinglyNode prevNode = null;
+            var prevHead = head;
+            var nextNodeUnreversed = head;
+
+            var current = head;
+            var count = k;
+            while (k > 0)
+            {
+                var nextNode = current.Next;
+                nextNodeUnreversed = nextNode;
+                current.Next = prevNode;
+                prevNode = current;
+                current = nextNode;
+                k--;
+            }
+
+            prevHead.Next = nextNodeUnreversed;
+
+            head = prevNode;
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 8. List Cycle
+        /// Solution 1: Extra space
+        ///     1. Store node value in hash map
+        ///     2. Add nodes to  the map if are not already added
+        ///     3. Find the answer if node value is already present in the dictionary
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public bool HasCycleAdditionalSpace(SinglyNode head)
+        {
+            if (head == null)
+                return false;
+
+            var nodes = new Dictionary<int?, bool>();
+            var current = head;
+
+            // traverse whole linked list
+            while (current != null)
+            {
+                if (nodes.ContainsKey(current.Value))
+                    return true;
+
+                nodes[current.Value] = false;
+                current = current.Next;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 8. List Cycle
         /// Solution 2: slow / fast pointers
         /// Explanation:
@@ -290,6 +365,236 @@ namespace Practice.Course.Assignments
             return false;
         }
 
-        
+        /// <summary>
+        /// 9. Remove Loop from Linked List
+        /// Solution:
+        ///     1. Detect cycle node -> Floyd algorithm to find cycle
+        ///     2. detect second time the node to brake the link to the cycle
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public string RemoveCycle(SinglyNode head)
+        {
+            if (head == null)
+                return string.Empty;
+
+            var slow = head;
+            var fast = head;
+            var commonNode = head;
+
+            //detect if the linked list has cycle
+            var hasCycle = false;
+            while (fast != null && fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+
+                if (slow == fast)
+                {
+                    commonNode = slow;
+                    hasCycle = true;
+                    break;
+                }
+            }
+
+            if (!hasCycle)
+                return Print(head);
+            // detect cycle node
+            fast = head;
+            slow = commonNode;
+
+            while (fast != slow)
+            {
+                fast = fast.Next;
+                slow = slow.Next;
+            }
+
+            // detect cycle node again
+            SinglyNode lastNodeSlow = slow;
+            var nextNode = slow.Next;
+            while (lastNodeSlow != nextNode)
+            {
+                nextNode = nextNode.Next;
+                if (lastNodeSlow == nextNode.Next)
+                {
+                    nextNode.Next = null;
+                    break;
+                }
+            }
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 10. Reorder List
+        /// Solution 1
+        ///     1. Create an array with nodes value
+        ///     2. Change values in the original linked list
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public string ReorderLinkedList(SinglyNode head)
+        {
+            if(head == null) return string.Empty;
+
+            var current = head;
+            var count = 0;
+            while (current != null)
+            {
+                count++;
+                current = current.Next;
+            }
+
+            var nodeValues = new int?[count];
+            current = head;
+            var index = 0;
+            while (current != null)
+            {
+                nodeValues[index++] = current.Value;
+                current = current.Next;
+            }
+
+            current = head;
+            index = 0;
+            while (current != null)
+            {
+                var left = 0;
+                var right = nodeValues.Length - 1;
+                while (left <= right)
+                {
+                    current.Value = nodeValues[left];
+                    if (current.Next != null)
+                    {
+                        current.Next.Value = nodeValues[right];
+                        current = current.Next.Next;
+                    }
+                    else
+                    {
+                        current = current.Next;
+                        break;
+                    }
+
+                    left++;
+                    right--;
+                }
+            }
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 13. Merge Two Sorted Lists
+        /// Solution 1:
+        ///     1. Traverse the linked list to find the length of the linked list
+        ///     2. Create an array with length of the linked list length
+        ///     3. Traverse the linked list again to store the nodes values
+        ///     4. Sort the array
+        ///     5. Traverse the linked list third time, track the index
+        ///        and replace the linked list nodes values with the values stored in the array
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public string SortLinkedList(SinglyNode head)
+        {
+            if (head == null)
+                return string.Empty;
+
+            var current = head;
+            var length = 0;
+            while (current != null)
+            {
+                current = current.Next;
+                length++;
+            }
+
+            var nodeValues = new int?[length];
+
+            current = head;
+            var index = 0;
+            while (current != null)
+            {
+                nodeValues[index] = current.Value;
+                current = current.Next;
+                index++;
+            }
+
+            Array.Sort(nodeValues);
+            index = 0;
+            current = head;
+            while (current != null)
+            {
+                current.Value = nodeValues[index];
+                current = current.Next;
+                index++;
+            }
+
+            return Print(head);
+        }
+
+        /// <summary>
+        /// 14. Palindrome List (by keeping the same structure)
+        /// Solution
+        ///     1. Find Middle of the linked list - slow, fast pointer
+        ///     2. Reverse the second half
+        ///     3. check first half is same with second half
+        ///     4. construct the original linked list by reversing the second half back
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public bool IsPalindrome(SinglyNode head)
+        {
+            if (head == null || head.Next == null)
+                return true;
+
+            var slow = head;
+            var fast = head;
+
+            while (fast != null && fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+            }
+
+            var secondHalfLinkedListHead = ReverseSinglyLinkedList(slow);
+            var firstHalfHead = head;
+
+            while (secondHalfLinkedListHead != null)
+            {
+                if (firstHalfHead.Value != secondHalfLinkedListHead.Value)
+                    return false;
+
+                firstHalfHead = firstHalfHead.Next;
+                secondHalfLinkedListHead = secondHalfLinkedListHead.Next;
+            }
+
+            var originalLinkedList = ReverseSinglyLinkedList(firstHalfHead);
+
+            return true;
+        }
+
+        private SinglyNode ReverseSinglyLinkedList(SinglyNode head)
+        {
+            SinglyNode previewNode = null;
+            var currentNode = head;
+
+            while (currentNode != null)
+            {
+                var nextNode = currentNode.Next;
+                currentNode.Next = previewNode;
+                previewNode = currentNode;
+                currentNode = nextNode;
+            }
+
+            return previewNode;
+        }
+
     }
 }

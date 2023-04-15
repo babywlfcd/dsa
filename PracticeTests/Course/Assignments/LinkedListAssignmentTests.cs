@@ -171,6 +171,16 @@ namespace PracticeTests.Course.Assignments
         }
 
         [Fact]
+        public void HasCycleAdditionalSpace_Null_False()
+        {
+            // arrange
+            var sut = new LinkedListAssignment();
+            // act
+            var result = sut.HasCycleAdditionalSpace(null);
+            Assert.False(result);
+        }
+
+        [Fact]
         public void HasCycleAdditionalSpace_EmptySinglyLinkedList_False()
         {
             // arrange
@@ -187,8 +197,10 @@ namespace PracticeTests.Course.Assignments
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(9);
+            singlyLinkedList.AddAtHead(9);
+            var cycle = singlyLinkedList.GetNodeAtIndex(singlyLinkedList.Length - 1);
+            var linkCycle = singlyLinkedList.GetNodeAtIndex(singlyLinkedList.Length - 1);
+            linkCycle.Next = cycle;
 
             var sut = new LinkedListAssignment();
             // act
@@ -201,11 +213,11 @@ namespace PracticeTests.Course.Assignments
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(8);
-            singlyLinkedList.AddAtTail(7);
-            singlyLinkedList.AddAtTail(5);
-            singlyLinkedList.AddAtTail(6);
+            singlyLinkedList.AddAtHead(9);
+            singlyLinkedList.AddAtHead(8);
+            singlyLinkedList.AddAtHead(7);
+            singlyLinkedList.AddAtHead(5);
+            singlyLinkedList.AddAtHead(6);
 
             var sut = new LinkedListAssignment();
 
@@ -221,9 +233,11 @@ namespace PracticeTests.Course.Assignments
             singlyLinkedList.AddAtTail(9);
             singlyLinkedList.AddAtTail(8);
             singlyLinkedList.AddAtTail(7);
+            var cycle = singlyLinkedList.GetNodeAtIndex(singlyLinkedList.Length - 1);
             singlyLinkedList.AddAtTail(5);
             singlyLinkedList.AddAtTail(6);
-            singlyLinkedList.AddAtTail(7);
+            var linkCycle = singlyLinkedList.GetNodeAtIndex(singlyLinkedList.Length - 1);
+            linkCycle.Next = cycle;
 
             var sut = new LinkedListAssignment();
 
@@ -356,16 +370,27 @@ namespace PracticeTests.Course.Assignments
         }
 
         [Fact]
-        public void RemoveNthNodeFromEnd_SinglyLinkedListNGreaterThanLinkedListLength_PrintNull()
+        public void RemoveNthNodeFromEnd_SinglyLinkedListNGreaterThanLinkedListLength_PrintLinkedListNodes()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
             singlyLinkedList.AddAtTail(1);
 
+            var expected = "1";
 
             var sut = new LinkedListAssignment();
             // act
-            var head = sut.RemoveNthNodeFromEnd(singlyLinkedList.Head, 1);
+            var head = sut.RemoveNthNodeFromEnd(singlyLinkedList.Head, 2);
+            // assert
+            Assert.Equal(expected, head);
+        }
+
+        [Fact]
+        public void RemoveNthNodeFromEnd_Null_PrintNull()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var head = sut.RemoveNthNodeFromEnd(null, 1);
             // assert
             Assert.Null(head);
         }
@@ -373,9 +398,13 @@ namespace PracticeTests.Course.Assignments
         [Fact]
         public void RemoveNthNodeFromEnd_SinglyLinkedListOneNodes_PrintNull()
         {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+
             var sut = new LinkedListAssignment();
             // act
-            var head = sut.RemoveNthNodeFromEnd(null, 1);
+            var head = sut.RemoveNthNodeFromEnd(singlyLinkedList.Head, 1);
             // assert
             Assert.Null(head);
         }
@@ -399,7 +428,7 @@ namespace PracticeTests.Course.Assignments
         }
 
         [Fact]
-        public void RemoveNthNodeFromEnd_SinglyLinkedListNLastNode2_PrintLinkedListWithNull()
+        public void RemoveNthNodeFromEnd_SinglyLinkedListIntegerNLessThanLinkedListLength_PrintLinkedListWithNull()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
@@ -435,5 +464,352 @@ namespace PracticeTests.Course.Assignments
             // assert
             Assert.Equal(expected, head);
         }
+
+        [Fact]
+        public void RemoveDuplicates_Null_StringEmpty()
+        {
+            // arrange
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveDuplicates(null);
+            // assert
+            Assert.Null(actual);
+        }
+
+        [Fact]
+        public void RemoveDuplicates_LinkedList_LinkedListUniqueValueNodes()
+        {
+            // arrange
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "1->2->3";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveDuplicates(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void RemoveDuplicates_LinkedListOneNode_LinkedListUniqueValueNodes()
+        {
+            // arrange
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "1";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveDuplicates(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void RemoveDuplicates_LinkedListMultipleNodesSameValue_LinkedListOneNodes()
+        {
+            // arrange
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(1);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "1";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveDuplicates(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void RemoveDuplicates_LinkedListUniqueNodesValues_LinkedListUniqueValueNodes()
+        {
+            // arrange
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "1->2->3";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveDuplicates(singlyLinkedList.Head);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReverseKthNodes_LinkedListAndAndIntegerN_LinkedListWithNNodesReversed()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(5);
+            singlyLinkedList.AddAtHead(4);
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "2->1->3->4->5";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReverseKthNodes(singlyLinkedList.Head, 2);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void ReverseKthNodes_LinkedListAndAndIntegerNEqualToLinkedListLength_LinkedListReversed()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(5);
+            singlyLinkedList.AddAtHead(4);
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "5->4->3->2->1";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReverseKthNodes(singlyLinkedList.Head, 5);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReverseKthNodes_LinkedListAndAndIntegerNZero_LinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtHead(5);
+            singlyLinkedList.AddAtHead(4);
+            singlyLinkedList.AddAtHead(3);
+            singlyLinkedList.AddAtHead(2);
+            singlyLinkedList.AddAtHead(1);
+
+            var expected = "1->2->3->4->5";
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReverseKthNodes(singlyLinkedList.Head, 0);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void RemoveCycle_SinglyLinkedListWithNoLoop_True()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+           
+            var expected = "1->2";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveCycle(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void RemoveCycle_SinglyLinkedListWithLoop_PrintLinkedList()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(5);
+            var cycleNode = singlyLinkedList.GetNodeAtIndex(2);
+            var lastNode = singlyLinkedList.GetNodeAtIndex(4);
+
+            lastNode.Next = cycleNode;
+            var expected = "1->2->3->4->5";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveCycle(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void RemoveCycle_Null_PrintStringEmpty()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.RemoveCycle(null);
+
+            Assert.Equal(string.Empty, actual);
+        }
+
+
+        [Fact]
+        public void ReorderLinkedList_SinglyLinkedListMultipleNodes_PrintLinkedListReordered()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(5);
+
+            var expected = "1->5->2->4->3";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReorderLinkedList_Null_StringEmpty()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(null);
+
+            Assert.Equal(string.Empty, actual);
+        }
+
+        [Fact]
+        public void ReorderLinkedList_SinglyLinkedListWOneNode_PrintHead()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+
+            var expected = "1";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ReorderLinkedList_SinglyLinkedListTwoNodes_PrintNodes()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+
+            var expected = "1->2";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.ReorderLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void SortLinkedList_SinglyLinkedListMultipleNodes_PrintLinkedListReordered()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(4);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(3);
+
+            var expected = "1->2->3->4";
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.SortLinkedList(singlyLinkedList.Head);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void SortLinkedList_Null_StringEmpty()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.SortLinkedList(null);
+
+            Assert.Equal(string.Empty, actual);
+
+            var mylist = new List<int[]>();
+            var el1 = new int[] {1, 2, 3};
+            mylist.Add(el1);
+        }
+
+
+        [Fact]
+        public void IsPalindrome_Null_True()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(null);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void IsPalindrome_LinkedListOneNode_True()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(singlyLinkedList.Head);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void IsPalindrome_LinkedListValidPalindrome_True()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(1);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(singlyLinkedList.Head);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void IsPalindrome_LinkedListInvalidPalindrome_False()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(singlyLinkedList.Head);
+
+            Assert.False(actual);
+        }
+
     }
 }
