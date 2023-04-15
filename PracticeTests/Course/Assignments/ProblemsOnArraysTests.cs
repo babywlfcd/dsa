@@ -207,14 +207,14 @@ namespace PracticeTests.Course.Assignments
             Assert.Equal(expected.ToArray(), actual);
         }
         [Theory]
-        //[InlineData(new[] { 0, 1, 0, 1 }, 4)]
-        //[InlineData(new[] { 1, 1, 1, 1 }, 0)]
+        [InlineData(new[] { 0, 1, 0, 1 }, 4)]
+        [InlineData(new[] { 1, 1, 1, 1 }, 0)]
         [InlineData(new[] { 0, 0, 1, 1 }, 2)]
         public void Bubs_ShouldReturn_Leaders_For_AGivenArray(int[] input, int expected)
         {
             var sut = new ProblemsOnArray();
 
-            var actual = sut.Bubs2(input);
+            var actual = sut.Bubs1(input);
 
             Assert.Equal(expected, actual);
         }
