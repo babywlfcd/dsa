@@ -487,8 +487,8 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
-        /// 13. Merge Two Sorted Lists
-        /// Solution 1:
+        /// 12. Sort List
+        /// Solution:
         ///     1. Traverse the linked list to find the length of the linked list
         ///     2. Create an array with length of the linked list length
         ///     3. Traverse the linked list again to store the nodes values
