@@ -747,6 +747,68 @@ namespace PracticeTests.Course.Assignments
             var actual = sut.SortLinkedList(null);
 
             Assert.Equal(string.Empty, actual);
+
+            var mylist = new List<int[]>();
+            var el1 = new int[] {1, 2, 3};
+            mylist.Add(el1);
+        }
+
+
+        [Fact]
+        public void IsPalindrome_Null_True()
+        {
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(null);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void IsPalindrome_LinkedListOneNode_True()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(singlyLinkedList.Head);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void IsPalindrome_LinkedListValidPalindrome_True()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(1);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(singlyLinkedList.Head);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void IsPalindrome_LinkedListInvalidPalindrome_False()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+
+            var sut = new LinkedListAssignment();
+            // act
+            var actual = sut.IsPalindrome(singlyLinkedList.Head);
+
+            Assert.False(actual);
         }
 
     }

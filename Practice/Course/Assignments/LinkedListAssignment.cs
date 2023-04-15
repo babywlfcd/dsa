@@ -486,6 +486,20 @@ namespace Practice.Course.Assignments
             return Print(head);
         }
 
+        /// <summary>
+        /// 13. Merge Two Sorted Lists
+        /// Solution 1:
+        ///     1. Traverse the linked list to find the length of the linked list
+        ///     2. Create an array with length of the linked list length
+        ///     3. Traverse the linked list again to store the nodes values
+        ///     4. Sort the array
+        ///     5. Traverse the linked list third time, track the index
+        ///        and replace the linked list nodes values with the values stored in the array
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
         public string SortLinkedList(SinglyNode head)
         {
             if (head == null)
@@ -522,6 +536,65 @@ namespace Practice.Course.Assignments
 
             return Print(head);
         }
-        
+
+        /// <summary>
+        /// 14. Palindrome List (by keeping the same structure)
+        /// Solution
+        ///     1. Find Middle of the linked list - slow, fast pointer
+        ///     2. Reverse the second half
+        ///     3. check first half is same with second half
+        ///     4. construct the original linked list by reversing the second half back
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public bool IsPalindrome(SinglyNode head)
+        {
+            if (head == null || head.Next == null)
+                return true;
+
+            var slow = head;
+            var fast = head;
+
+            while (fast != null && fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+            }
+
+            var secondHalfLinkedListHead = ReverseSinglyLinkedList(slow);
+            var firstHalfHead = head;
+
+            while (secondHalfLinkedListHead != null)
+            {
+                if (firstHalfHead.Value != secondHalfLinkedListHead.Value)
+                    return false;
+
+                firstHalfHead = firstHalfHead.Next;
+                secondHalfLinkedListHead = secondHalfLinkedListHead.Next;
+            }
+
+            var originalLinkedList = ReverseSinglyLinkedList(firstHalfHead);
+
+            return true;
+        }
+
+        private SinglyNode ReverseSinglyLinkedList(SinglyNode head)
+        {
+            SinglyNode previewNode = null;
+            var currentNode = head;
+
+            while (currentNode != null)
+            {
+                var nextNode = currentNode.Next;
+                currentNode.Next = previewNode;
+                previewNode = currentNode;
+                currentNode = nextNode;
+            }
+
+            return previewNode;
+        }
+
     }
 }
