@@ -27,8 +27,8 @@ namespace Practice.Course.Assignments
         /// <returns></returns>
         public int FindMaxKthElem(int[] input, int k)
         {
-            if (input == null)
-                return 0;
+            if (input.Length < k)
+                return -1;
 
             Array.Sort(input);
             Array.Reverse(input);
@@ -48,6 +48,9 @@ namespace Practice.Course.Assignments
                 if (count == k)
                     break;
             }
+
+            if (count < k)
+                return -1;
 
             return maxValue;
         }
@@ -117,7 +120,68 @@ namespace Practice.Course.Assignments
                 input1[x] = input2[x];
                 x++;
             }
+        }
 
+        /// <summary>
+        /// Question - 7
+        /// Solution - using hash map
+        ///     1. Traverse first the array and store color occurrence in a dictionary
+        ///     2. Traverse again the array and set values to the corresponding color
+        ///        value and decrease the occurrence in the map
+        /// T.C -> O(n)
+        /// S.C -> O(1) keep  constant (3) number of key - value
+        /// </summary>
+        /// <param name="input"></param>
+        public void SortColors(int[] input)
+        {
+            if (input.Length == 0)
+                return;
+
+            var givenColors = new Dictionary<string, int>();
+            givenColors["red"] = 0;
+            givenColors["white"] = 0;
+            givenColors["blue"] = 0;
+
+            for (var i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 0)
+                {
+                    givenColors["red"] += 1;
+                    continue;
+                }
+
+                if (input[i] == 1)
+                {
+                    givenColors["white"] += 1;
+                    continue;
+                }
+
+                givenColors["blue"] += 1;
+            }
+
+            for (var i = 0; i < input.Length; i++)
+            {
+                while (givenColors["red"] != 0)
+                {
+                    input[i] = 0;
+                    givenColors["red"] -= 1;
+                    i++;
+                }
+
+                while (givenColors["white"] != 0)
+                {
+                    input[i] = 1;
+                    givenColors["white"] -= 1;
+                    i++;
+                }
+
+                while (givenColors["blue"] != 0)
+                {
+                    input[i] = 2;
+                    givenColors["blue"] -= 1;
+                    i++;
+                }
+            }
         }
     }
 }

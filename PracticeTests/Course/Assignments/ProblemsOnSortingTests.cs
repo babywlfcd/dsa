@@ -14,6 +14,8 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new[] { 8, 4, 7, 3 }, 2, 7)]
         [InlineData(new[] { 3, 2, 1, 5, 6, 4 }, 2, 5)]
         [InlineData(new[] {3, 2, 3, 1, 2, 4, 5, 5, 6}, 4, 3)]
+        [InlineData(new int[0], 1, -1)]
+        [InlineData(new int[] {1, 2, 3, 1, 2, 3,}, 4, -1)]
         public void
             FindMaxKthElem_ShouldReturn_KthDistinctLargestNumber_For_AGivenArray(int[] input, int k, int expected)
         {
@@ -43,6 +45,10 @@ namespace PracticeTests.Course.Assignments
             new[] { 0 }, 0,
             new[] { 1 }, 1,
             new[] { 1 })]
+        [InlineData(
+            new[] { 3 }, 1,
+            new int[0], 0,
+            new[] { 3 })]
 
         public void  MergeTwoArrays_ShouldReturnMergedArray_AndKeepIndexItem(
             int[] list1, int m, int[] list2, int n, int[] expected)
@@ -51,8 +57,21 @@ namespace PracticeTests.Course.Assignments
 
             sut.MergeTwoArrays(list1, m, list2, n);
 
-            for (var i = 0; i < list1.Length; i++)
-                Assert.Equal(expected[i], list1[i]);
+            Assert.Equal(expected, list1);
+        }
+
+        [Theory]
+        [InlineData(new[] { 2, 0, 2, 1, 1, 0 }, new[] { 0, 0, 1, 1, 2, 2 })]
+        [InlineData(new[] { 2, 0, 1 }, new[] { 0, 1, 2 })]
+        [InlineData(new int[0], new int[0])]
+        public void SortColors_ShouldReturn_SortedColorsInOrderRedWhiteBlue_ForAGivenListOfColors(
+            int[] input, int[] expected)
+        {
+            var sut = new ProblemsOnSorting();
+
+            sut.SortColors(input);
+
+            Assert.Equal(expected, input);
         }
     }
 }
