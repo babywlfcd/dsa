@@ -132,6 +132,10 @@ namespace PracticeTests.Course.Assignments
                     new[] {5, 8},
                 }, true
             };
+            yield return new object[]
+            {
+                new List<int[]>(), false
+            };
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practice.Course.Assignments
+﻿namespace Practice.Course.Assignments
 {
     public class ProblemsOnSorting
     {
@@ -18,12 +12,25 @@ namespace Practice.Course.Assignments
 
         /// <summary>
         /// Question - 2 - can attend to all meetings
+        /// Solution
+        ///     1. sort intervals based on the left value of the interval
+        ///     2. check if the right values ar ordered and return yes if is the case
+        ///     3. Otherwise return false
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public bool CanAttendToMeetings(List<List<int>> input)
+        public bool CanAttendToMeetings(List<int[]> input)
         {
-            return false;
+            if(input.Count == 0) return false;
+            input.Sort((a, b) => a[0] - b[0]);
+
+            for (var i = 0; i < input.Count - 1; i++)
+            {
+                if (input[i + 1][0] < input[i][1])
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>
