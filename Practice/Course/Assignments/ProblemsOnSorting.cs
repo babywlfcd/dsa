@@ -183,5 +183,52 @@ namespace Practice.Course.Assignments
                 }
             }
         }
+
+        /// <summary>
+        /// Question - 8 - delete char to have a good string
+        /// Solution:
+        ///     1. Create and array with length 26 to store frequency of each char of the alphabet
+        ///     2. Traverse the string and track char frequency
+        ///     3. Order the frequency array and calculate number of char to delete
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <returns></returns>
+        public int CreateAGoodString(string input)
+        {
+            var charIndex = new Dictionary<char, int>();
+            var chars = "abcdefghijklmnopqrstuvwxyz";
+            for (var i = 0; i < chars.Length; i++)
+            {
+                charIndex[chars[i]] = i;
+            }
+                
+            var frequencyChars = new int[26];
+            for (var i = 0; i < input.Length; i++)
+            {
+                frequencyChars[charIndex[input[i]]] += 1;
+            }
+
+            Array.Sort(frequencyChars);
+            Array.Reverse(frequencyChars);
+            
+            var charToDelete = 0;
+            for (var i = 0; i < frequencyChars.Length - 1; i++) // T.C  -> O(26) = O(1)
+            {
+                if (frequencyChars[i] == 0)
+                    break;
+                var j = i + 1;
+                var charNo = 0;
+                while (j < frequencyChars.Length - 1 && frequencyChars[i] == frequencyChars[j])
+                {
+                    charNo += 1;
+                    charToDelete += charNo;
+                    frequencyChars[j] -= charNo;
+                    j++;
+                }
+            }
+
+            return charToDelete;
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace PracticeTests.Course.Assignments
             new int[0], 0,
             new[] { 3 })]
 
-        public void  MergeTwoArrays_ShouldReturnMergedArray_AndKeepIndexItem(
+        public void  MergeTwoArrays_ShouldReturn_MergedArrayAndKeepIndexItem_For_TwoAscendingOrderedArrays(
             int[] list1, int m, int[] list2, int n, int[] expected)
         {
             var sut = new ProblemsOnSorting();
@@ -64,7 +64,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new[] { 2, 0, 2, 1, 1, 0 }, new[] { 0, 0, 1, 1, 2, 2 })]
         [InlineData(new[] { 2, 0, 1 }, new[] { 0, 1, 2 })]
         [InlineData(new int[0], new int[0])]
-        public void SortColors_ShouldReturn_SortedColorsInOrderRedWhiteBlue_ForAGivenListOfColors(
+        public void SortColors_ShouldReturn_SortedColorsInOrderRedWhiteBlue_For_AGivenListOfColors(
             int[] input, int[] expected)
         {
             var sut = new ProblemsOnSorting();
@@ -72,6 +72,21 @@ namespace PracticeTests.Course.Assignments
             sut.SortColors(input);
 
             Assert.Equal(expected, input);
+        }
+
+        [Theory]
+        [InlineData("aaabbbcccd", 4)]
+        [InlineData("aa", 0)]
+        [InlineData("aab", 0)]
+        [InlineData("aaaaabbbbbcccddd", 2)]
+        public void CreateAGoodString_ShouldReturn_NumberOfCharThatMustBeDeletedToHaveAGoodString_For_AGivenString(
+            string input, int expected)
+        {
+            var sut = new ProblemsOnSorting();
+
+            var actual =sut.CreateAGoodString(input);
+
+            Assert.Equal(expected, actual);
         }
     }
 }
