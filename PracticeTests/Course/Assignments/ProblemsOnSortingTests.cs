@@ -1,5 +1,6 @@
 ﻿using Practice.Course.Class;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -87,6 +88,50 @@ namespace PracticeTests.Course.Assignments
             var actual =sut.CreateAGoodString(input);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(IntervalsData))]
+        public void CanAttendToMeetings_ShouldReturn_True_For_AGivenListOfIntervals(
+            List<int[]> input, bool expected)
+        {
+            var sut = new ProblemsOnSorting();
+
+            var actual =sut.CanAttendToMeetings(input);
+
+            Assert.Equal(expected, actual);
+        }
+
+        public static IEnumerable<object[]> IntervalsData()
+        {
+            yield return new object[]
+            {
+                new List<int[]>
+                {
+                    new[] {0, 30},
+                    new[] {15, 20},
+                    new[] {5, 10},
+                }, false
+            };
+            yield return new object[]
+            {
+                new List<int[]>
+                {
+                    new[] {7, 10},
+                    new[] {2, 4},
+                },
+                true
+            };
+            yield return new object[]
+            {
+                new List<int[]>
+                {
+                    new[] {15, 18},
+                    new[] {1, 4},
+                    new[] {8, 12},
+                    new[] {5, 8},
+                }, true
+            };
         }
     }
 }

@@ -17,6 +17,26 @@ namespace Practice.Course.Assignments
         // https://github.com/babywlfcd/dsa/blob/main/Practice/Sorting.cs
 
         /// <summary>
+        /// Question - 2 - can attend to all meetings
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool CanAttendToMeetings(List<List<int>> input)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Question - 4 numbers of different pairs
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int CountNumberOfPairs(int[] input)
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// Question - 5
         /// Kth largest distinct element in the array
         /// Solution:
