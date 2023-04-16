@@ -9,6 +9,19 @@ namespace Practice.Course.Class
     public class Week3Sorting
     {
         /// <summary>
+        /// Example of problems using sorting
+        /// Solution in the assignment
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public int FindMaxKthElem(int[] arr, int k)
+        {
+            Array.Sort(arr);
+
+            return arr[arr.Length - k];
+        }
+
+        /// <summary>
         /// Inversion count problem
         /// Find numbers of pair that meet the condition:
         /// i < j && A[i] > A[j]
@@ -24,7 +37,7 @@ namespace Practice.Course.Class
             {
                 for (int j = 0; j < input.Length; j++)
                 {
-                    if (input[i] == input[j])
+                    if (i < j && input[i] > input[j])
                         count++;
                 }
             }
