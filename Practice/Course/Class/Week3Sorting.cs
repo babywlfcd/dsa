@@ -41,6 +41,7 @@ namespace Practice.Course.Class
                         count++;
                 }
             }
+
             return count;
         }
 

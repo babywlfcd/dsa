@@ -196,7 +196,7 @@ namespace Practice.LinkedLists
 
             var current = Head;
 
-            while (index> 0)
+            while (index > 0)
             {
                 current = current.Next;
                 index--;
