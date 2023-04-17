@@ -248,7 +248,6 @@ namespace Practice.Course.Assignments
                     }
                 }
 
-
                 if(!hasTarget) result.Add(0);
                 
                 caseNo++;
@@ -296,8 +295,8 @@ namespace Practice.Course.Assignments
         ///     1. traverse array twice.
         ///     2. max variable keep the max value
         ///     3. second variable will keep the second value
-        /// T.C => O(n)
-        /// S.C +> O(1)
+        /// T.C -> O(n)
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -431,20 +430,23 @@ namespace Practice.Course.Assignments
         /// <summary>
         /// Q5. Multiple left rotations of the array
         /// Solution:
-        ///     1. Create an result array of the size of the input
-        ///     2. Traverse the array and populate the result as follow
+        ///     1. Create a result dynamic 2 dimensional list that will keep all responses
+        ///     2. Create an response array of the size of the input
+        ///     3. Traverse the array and populate the result as follow
         ///         - last k elements with first k elements of the array
         ///         - first n - k elements with last n - k elements of the  array
+        /// 
         /// Example of 1 scenario:
         ///     [1, 2, 3, 4, 5] n = 5; k = 2
         ///     result -> [0 0 0 0 0]
         ///     first iteration -> [0 0 0 1 2]
         ///     second iteration -> [3 4 5 1 2]
+        /// 
+        ///     4. Add the response to te result foreach rotation
         /// T.C -> O(n * m) where n - length of the rotations array, m - length of the input array
         /// S.C -> O(m) where m - length of the input array
         /// </summary>
         /// <param name="input"></param>
-        /// <param name="k"></param>
         /// <param name="rotations"></param>
         /// <returns></returns>
         public List<int[]> Rotate(int[] input, int[] rotations)

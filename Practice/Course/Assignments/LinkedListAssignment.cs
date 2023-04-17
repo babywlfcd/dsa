@@ -13,10 +13,18 @@ namespace Practice.Course.Assignments
     /// </summary>
     public class LinkedListAssignment
     {
+        /*
+         * QUESTION - I do not get why 11 is a problem included to linked list assignment. PLEASE ADVICE!
+         * Problems that I will submit to to the session Problems and Patterns on Linked List:
+         * TODO - 11. Flatten Nested List IteratorFlatten Nested List Iterator
+         * TODO - 15.Longest Palindromic List
+         * TODO - 16. Partition List
+         * TODO - 17. LRU Cache
+         */
         // 1. Implement linked list
         // Singly node object: https://github.com/babywlfcd/dsa/blob/main/Practice/LinkedLists/SinglyNode.cs
         // Singly linked list implementation: https://github.com/babywlfcd/dsa/blob/main/Practice/LinkedLists/SinglyLinkedList.cs
-        
+
         /// <summary>
         /// 2.Delete middle node of a Linked List
         /// Solution:
@@ -369,7 +377,7 @@ namespace Practice.Course.Assignments
         /// 9. Remove Loop from Linked List
         /// Solution:
         ///     1. Detect cycle node -> Floyd algorithm to find cycle
-        ///     2. detect second time the node to brake the link to the cycle
+        ///     2. Detect second time the node to brake the link to the cycle
         /// T.C -> O(n)
         /// S.C -> O(1)
         /// </summary>
@@ -539,8 +547,8 @@ namespace Practice.Course.Assignments
 
         /// <summary>
         /// 13. Merge Two Sorted Lists
-        /// l1 - length of the first linked list
-        /// l2 - length of the second linked list
+        ///     l1 - length of the first linked list
+        ///     l2 - length of the second linked list
         /// T.C -> O(l1 + l2)
         /// S.C -> O(l1 + l2)
         /// </summary>
