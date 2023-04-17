@@ -3,13 +3,13 @@
     /// <summary>
     /// Stack implementation using array
     /// </summary>
-    public class Stack1
+    public class StackA
     {
         public int Top;
         public int Capacity;
         public int[] StackNodes;
 
-        public Stack1(int capacity)
+        public StackA(int capacity)
         {
             Top = -1;
             Capacity = capacity;
