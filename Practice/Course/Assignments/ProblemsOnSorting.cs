@@ -10,7 +10,6 @@
         // 5. Quick Sort
         // https://github.com/babywlfcd/dsa/blob/main/Practice/Sorting.cs
 
-
         /// <summary>
         /// Question - 2 - can attend to all meetings
         /// Solution
@@ -284,7 +283,7 @@
             {
                 if (input[i][0] >= prevEnd)
                 {
-                    prevEnd = input[i][0];
+                    prevEnd = input[i][1];
                     continue;
                 }
 

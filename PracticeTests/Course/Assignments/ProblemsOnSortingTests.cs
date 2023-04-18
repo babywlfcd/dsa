@@ -173,6 +173,16 @@ namespace PracticeTests.Course.Assignments
             };
             yield return new object[]
             {
+                new List<int[]>
+                {
+                    new[] {1, 100},
+                    new[] {11, 22},
+                    new[] {1, 11},
+                    new[] {2, 12}
+                }, 2
+            };
+            yield return new object[]
+            {
                 new List<int[]>(), 0
             };
             yield return new object[]
