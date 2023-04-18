@@ -11,6 +11,49 @@
         // https://github.com/babywlfcd/dsa/blob/main/Practice/Sorting.cs
 
         /// <summary>
+        /// Question - 1 - merge all overlapping intervals
+        /// Solution: in place implementation
+        ///     1. keep tracking 2 pointers for traverse and remove in place the overlap interval
+        ///     2. Start traversing the intervals from the second interval
+        ///     3. check end of preview interval with start of the current
+        ///     4. If no overlap advance prev pointers
+        ///     5. If is an overlap join the intervals as follow:
+        ///        - start interval = min between starts the intervals
+        ///        - end interval = max between ends of the intervals
+        ///        - keep same index for next iteration in traversing
+        ///        - remove current interval
+        /// T.C -> O(n)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public List<int[]> MergeOverlapping(List<int[]> input)
+        {
+            if (input.Count == 0 || input[0].Length <= 1)
+                return input;
+
+            var prevEnd = input[0][1];
+            var prevStart = input[0][0];
+            for (int i = 1; i < input.Count; i++)
+            {
+                if (input[i][0] > prevEnd)
+                {
+                    prevStart = input[i][0];
+                    prevEnd = input[i][1];
+                    continue;
+                }
+
+                input[i][0] = Math.Min(input[i][0], prevStart);
+                input[i][1] = Math.Max(input[i][1], prevEnd);
+                input.RemoveAt(i - 1);
+                i--; //keep same index in case of merge
+            }
+
+            return input;
+
+        }
+
+        /// <summary>
         /// Question - 2 - can attend to all meetings
         /// Solution
         ///     1. sort intervals based on the left value of the interval

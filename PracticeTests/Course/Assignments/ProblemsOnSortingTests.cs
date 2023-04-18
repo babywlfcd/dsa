@@ -193,6 +193,107 @@ namespace PracticeTests.Course.Assignments
                 }, 0
             };
         }
-        
+
+        [Theory]
+        [MemberData(nameof(MergeTestData))]
+        public void MergeOverlapping_ShouldReturn_True_For_AGivenListOfIntervals(
+            List<int[]> input, List<int[]> expected)
+        {
+            var sut = new ProblemsOnSorting();
+
+            var actual = sut.MergeOverlapping(input);
+
+            Assert.Equal(expected, actual);
+        }
+
+        public static IEnumerable<object[]> MergeTestData()
+        {
+            yield return new object[] {
+                new List<int[]>
+                {
+                    new[] { 1, 3 },
+                    new[] { 2, 6 },
+                    new[] { 8, 10 },
+                    new[] { 15, 18 }
+                },
+                new List<int[]>
+                {
+                    new[] { 1, 6 },
+                    new[] { 8, 10 },
+                    new[] { 15, 18 }
+                }
+            };
+            yield return new object[] {
+                new List<int[]>
+                {
+                    new[] { 1, 3 },
+                    new[] { 2, 6 },
+                    new[] { 8, 16 },
+                    new[] { 15, 18 }
+                },
+                new List<int[]>
+                {
+                    new[] { 1, 6 },
+                    new[] { 8, 18 }
+                }
+            };
+            yield return new object[] {
+                new List<int[]>
+                {
+                    new[] { 1, 4 },
+                    new[] { 4, 5 }
+                },
+                new List<int[]>
+                {
+                    new[] { 1, 5 }
+                }
+            };
+            yield return new object[] {
+                new List<int[]>
+                {
+                    new[] { 1, 4 },
+                    new[] { 5, 6 }
+                },
+                new List<int[]>
+                {
+                    new[] { 1, 4 },
+                    new[] { 5, 6 }
+                }
+            };
+            yield return new object[] {
+                new List<int[]>
+                {
+                    new[] { 1, 4 },
+                    new[] { 0, 5 }
+                },
+                new List<int[]>
+                {
+                    new[] { 0, 5 },
+                }
+            };
+            yield return new object[] {
+                new List<int[]>
+                {
+                    new[] { 1, 4 },
+                    new[] { 0, 1 }
+                },
+                new List<int[]>
+                {
+                    new[] { 0, 4 },
+                }
+            };
+            yield return new object[] {
+                new List<int[]>
+                {
+                    new[] { 0, 4 },
+                    new[] { 1, 5 }
+                },
+                new List<int[]>
+                {
+                    new[] { 0, 5 },
+                }
+            };
+        }
+
     }
 }
