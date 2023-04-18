@@ -137,5 +137,52 @@ namespace PracticeTests.Course.Assignments
                 new List<int[]>(), false
             };
         }
+
+        [Theory]
+        [MemberData(nameof(RemoveIntervalData))]
+        public void RemoveIntervals_ShouldReturn_True_For_AGivenListOfIntervals(
+            List<int[]> input, int expected)
+        {
+            var sut = new ProblemsOnSorting();
+
+            var actual = sut.RemoveIntervals(input);
+
+            Assert.Equal(expected, actual);
+        }
+
+        public static IEnumerable<object[]> RemoveIntervalData()
+        {
+            yield return new object[]
+            {
+                new List<int[]>
+                {
+                    new[] {1, 2},
+                    new[] {2, 3},
+                    new[] {3, 4},
+                    new[] {1, 3},
+                }, 1
+            };
+            yield return new object[]
+            {
+                new List<int[]>
+                {
+                    new[] {1, 2},
+                    new[] {1, 2},
+                    new[] {1, 2},
+                }, 2
+            };
+            yield return new object[]
+            {
+                new List<int[]>(), 0
+            };
+            yield return new object[]
+            {
+                new List<int[]>
+                {
+                    new int[0]
+                }, 0
+            };
+        }
+        
     }
 }

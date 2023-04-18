@@ -10,18 +10,23 @@
         // 5. Quick Sort
         // https://github.com/babywlfcd/dsa/blob/main/Practice/Sorting.cs
 
+
         /// <summary>
         /// Question - 2 - can attend to all meetings
         /// Solution
         ///     1. sort intervals based on the left value of the interval
         ///     2. check if the right values ar ordered and return yes if is the case
         ///     3. Otherwise return false
+        /// T.C -> O(n*log(n)) because of sorting
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         public bool CanAttendToMeetings(List<int[]> input)
         {
-            if(input.Count == 0) return false;
+            if(input.Count == 0) 
+                return false;
+            
             input.Sort((a, b) => a[0] - b[0]);
 
             for (var i = 0; i < input.Count - 1; i++)
@@ -81,7 +86,6 @@
 
             return maxValue;
         }
-
 
         /// <summary>
         /// Question - 6
@@ -256,6 +260,40 @@
             }
 
             return charToDelete;
+        }
+
+        /// <summary>
+        /// Question - 9 - remove intervals for non-overlapping
+        /// Solution:
+        ///     1. sort intervals after left margin
+        ///     2. compare right margin of the interval with the left margin of the next interval
+        ///        for check overlapping
+        ///     3. in case of overlapping remove the interval that has maximum value to the right margin 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int RemoveIntervals(List<int[]> input)
+        {
+            if (input.Count == 0 || input[0].Length <= 1)
+                return 0;
+
+            input.Sort((a, b) => a[0] - b[0]);
+            var prevEnd = input[0][1];
+            var countRemoveInterval = 0;
+            for (int i = 1; i < input.Count; i++)
+            {
+                if (input[i][0] >= prevEnd)
+                {
+                    prevEnd = input[i][0];
+                    continue;
+                }
+
+                prevEnd = Math.Min(input[i][1], prevEnd);
+                countRemoveInterval++;
+
+            }
+
+            return countRemoveInterval;
         }
     }
 }
