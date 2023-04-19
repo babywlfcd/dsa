@@ -136,7 +136,7 @@ namespace Practice.Course.Class
                     return mid;
 
                 if (input[mid] > input[mid - 1])
-                    high = mid + 1;
+                    high = mid - 1;
                 else
                     low = mid + 1;
             }
