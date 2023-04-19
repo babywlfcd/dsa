@@ -81,7 +81,7 @@
         }
 
         /// <summary>
-        /// Question - 3
+        /// Question - 3 - count conference rooms needed
         /// The problems is reduced to count the overlapping intervals
         /// Is similar with Question 2
         /// T.C -> O(n*log(n)) - because of sorting
