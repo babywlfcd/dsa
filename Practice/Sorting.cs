@@ -222,13 +222,9 @@
             for (var j = low; j < high; j++)
             {
                 if (input[j] < pivot)
-                {
                     i++;
-                }
                 else
-                {
                     continue;
-                }
 
                 var temp = input[i];
                 input[i] = input[j];

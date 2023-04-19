@@ -11,17 +11,64 @@
         // https://github.com/babywlfcd/dsa/blob/main/Practice/Sorting.cs
 
         /// <summary>
+        /// Question - 1 - merge all overlapping intervals
+        /// Solution: in place implementation
+        ///     1. keep 2 tracking pointers for traverse and remove in place the overlap interval
+        ///     2. Start traversing the intervals from the second interval
+        ///     3. check end of preview interval with start of the current
+        ///     4. If no overlap advance prev pointers
+        ///     5. If is an overlap join the intervals as follow:
+        ///        - start interval = min between starts the intervals
+        ///        - end interval = max between ends of the intervals
+        ///        - keep same index for next iteration in traversing
+        ///        - remove current interval
+        /// T.C -> O(n*log(n)) - because of sorting
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public List<int[]> MergeOverlapping(List<int[]> input)
+        {
+            
+            if (input.Count == 0 || input[0].Length <= 1)
+                return input;
+            input.Sort((a, b) => a[0] - b[0]);
+            var prevEnd = input[0][1];
+            var prevStart = input[0][0];
+            for (int i = 1; i < input.Count; i++)
+            {
+                if (input[i][0] > prevEnd)
+                {
+                    prevStart = input[i][0];
+                    prevEnd = input[i][1];
+                    continue;
+                }
+
+                input[i][0] = Math.Min(input[i][0], prevStart);
+                input[i][1] = Math.Max(input[i][1], prevEnd);
+                input.RemoveAt(i - 1);
+                i--; //keep same index in case of merge
+            }
+            return input;
+
+        }
+
+        /// <summary>
         /// Question - 2 - can attend to all meetings
         /// Solution
         ///     1. sort intervals based on the left value of the interval
         ///     2. check if the right values ar ordered and return yes if is the case
         ///     3. Otherwise return false
+        /// T.C -> O(n*log(n)) because of sorting
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         public bool CanAttendToMeetings(List<int[]> input)
         {
-            if(input.Count == 0) return false;
+            if(input.Count == 0) 
+                return false;
+            
             input.Sort((a, b) => a[0] - b[0]);
 
             for (var i = 0; i < input.Count - 1; i++)
@@ -31,6 +78,33 @@
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Question - 3 - count conference rooms needed to accomodate all time intervals
+        /// The problems is reduced to count the overlapping intervals
+        /// Is similar with Question 2
+        /// T.C -> O(n*log(n)) - because of sorting
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int CalculateConferenceRooms(List<int[]> input)
+        {
+
+            if (input.Count == 0)
+                return 0;
+
+            var countOverlap = 1;
+            input.Sort((a, b) => a[0] - b[0]);
+
+            for (var i = 0; i < input.Count - 1; i++)
+            {
+                if (input[i + 1][0] < input[i][1])
+                    countOverlap++;
+            }
+
+            return countOverlap;
         }
 
         /// <summary>
@@ -81,7 +155,6 @@
 
             return maxValue;
         }
-
 
         /// <summary>
         /// Question - 6
@@ -256,6 +329,40 @@
             }
 
             return charToDelete;
+        }
+
+        /// <summary>
+        /// Question - 9 - remove min numbers of intervals for obtain non-overlapping intervals
+        /// Solution:
+        ///     1. sort intervals after left margin
+        ///     2. compare right margin of the interval with the left margin of the next interval
+        ///        for check overlapping
+        ///     3. in case of overlapping remove the interval that has maximum value to the right margin 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int RemoveIntervals(List<int[]> input)
+        {
+            if (input.Count == 0 || input[0].Length <= 1)
+                return 0;
+
+            input.Sort((a, b) => a[0] - b[0]);
+            var prevEnd = input[0][1];
+            var countRemoveInterval = 0;
+            for (int i = 1; i < input.Count; i++)
+            {
+                if (input[i][0] >= prevEnd)
+                {
+                    prevEnd = input[i][1];
+                    continue;
+                }
+
+                prevEnd = Math.Min(input[i][1], prevEnd);
+                countRemoveInterval++;
+
+            }
+
+            return countRemoveInterval;
         }
     }
 }
