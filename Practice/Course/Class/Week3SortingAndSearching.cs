@@ -111,6 +111,8 @@ namespace Practice.Course.Class
         /// Q. Given a sorted array rotated a number of time find the pivot
         /// Pivot is the start of the array
         /// after rotations the pivot is the single element that is less that its neighbor
+        /// T.C -> O(log(n))
+        /// T.C -> O(1)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
