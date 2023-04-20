@@ -46,5 +46,77 @@ namespace Practice.Course.Assignments
             }
             return 0;
         }
+
+        /// <summary>
+        /// 3. Search in Rotated Sorted Array
+        /// T.C -> O(log(n))
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int FindTarget(int[] input, int target)
+        {
+
+            var answer = -1;
+            var low = 0;
+            var high = input.Length - 1;
+
+            while (low <= high)
+            {
+                var middle = low + (high - low) / 2;
+                if (input[middle] == target)
+                {
+                    answer = middle;
+                    high = middle - 1; //keep searching on the left
+                }
+
+                if (input[middle] < target)
+                    low = middle + 1;
+                else
+                    high = middle - 1;
+            }
+
+            return answer;
+        }
+
+        /// <summary>
+        /// 5. Find Minimum in Rotated Sorted Array
+        /// After rotations the pivot is the single element that is less that its neighbor
+        /// T.C -> O(log(n))
+        /// T.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int FindMinInSortedRotatedArray(int[] input)
+        {
+            if (input.Length == 1)
+                return input[0];
+
+            
+
+            // validate if min is first element or last element
+            if (input[0] < input[input.Length - 1])
+                return input[0];
+
+            if (input[0] > input[input.Length - 1])
+                return input[input.Length -1];
+
+            var low = 1;
+            var high = input.Length - 1;
+
+            while (low <= high)
+            {
+                var mid = low + (high - low) / 2;
+                if (input[mid] < input[mid - 1] && input[mid] < input[mid + 1])
+                    return input[mid];
+
+                if (input[mid] > input[0])
+                    low = mid + 1;
+                else
+                    high = mid - 1;
+            }
+
+            return 0;
+        }
     }
 }

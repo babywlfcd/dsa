@@ -141,15 +141,17 @@ namespace PracticeTests.Course.Assignments
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
-            singlyLinkedList.AddAtTail(9);
-            singlyLinkedList.AddAtTail(8);
-            singlyLinkedList.AddAtTail(7);
+            singlyLinkedList.AddAtTail(1);
+            singlyLinkedList.AddAtTail(2);
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
             singlyLinkedList.AddAtTail(5);
+            singlyLinkedList.AddAtTail(6);
 
             var sut = new LinkedListAssignment();
 
             var actual = sut.FindMiddleNodeSlowFaster(singlyLinkedList.Head);
-            Assert.Equal(7, actual.Value);
+            Assert.Equal(4, actual.Value);
         }
 
         [Fact]

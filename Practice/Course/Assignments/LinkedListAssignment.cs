@@ -147,7 +147,7 @@ namespace Practice.Course.Assignments
         public SinglyNode FindMiddleNodeSlowFaster(SinglyNode head)
         {
             var slow = head;
-            var fast = head.Next;
+            var fast = head;
             var count = 1;
             while (fast != null && fast.Next != null)
             {
@@ -155,9 +155,6 @@ namespace Practice.Course.Assignments
                 fast = fast.Next.Next;
                 count++;
             }
-
-            if (count % 2 == 0)
-                return slow.Next;
 
             return slow;
         }
