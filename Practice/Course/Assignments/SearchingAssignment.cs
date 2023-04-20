@@ -48,7 +48,9 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
-        /// 
+        /// 2.Find First and Last Position of Element in Sorted Array
+        /// T.C -> O(log(n))
+        /// S. C -> O(1)
         /// </summary>
         /// <param name="input"></param>
         /// <param name="target"></param>
