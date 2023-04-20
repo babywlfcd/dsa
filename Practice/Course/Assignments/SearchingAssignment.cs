@@ -48,6 +48,82 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public int[] FindFirstAndLastOccurrence(int[] input, int target)
+        {
+            var left = 0;
+            var right = input.Length - 1;
+            var result = new[] { -1, -1 };
+
+            //track first position and search last position from his index
+            var middleIndex = -1;
+
+            if (input.Length == 0)
+                return result;
+
+            var tempFirstIndex = -1;
+
+            //find start position
+            while (left <= right)
+            {
+                var middle = left + (right - left) / 2;
+
+                if (target == input[middle])
+                {
+                    tempFirstIndex = middle;
+                    right = middle - 1;
+
+                    if (tempFirstIndex == left)
+                    {
+                        middleIndex = middle;
+                        break;
+                    }
+                }
+
+                if (target > input[middle])
+                    left = middle + 1;
+
+                if (target < input[middle])
+                    right = middle - 1;
+            }
+
+            result[0] = tempFirstIndex;
+
+            if (result[0] == -1)
+                return result;
+
+            //find end position
+            left = middleIndex;
+            right = input.Length - 1;
+            var tempLastIndex = -1;
+
+            while (left <= right)
+            {
+                var middle = left + (right - left) / 2;
+
+                if (target == input[middle])
+                {
+                    tempLastIndex = middle;
+                    left = middle + 1;
+                }
+
+                if (target > input[middle])
+                    left = middle + 1;
+
+                if (target < input[middle])
+                    right = middle - 1;
+            }
+
+            result[1] = tempLastIndex;
+
+            return new int[2];
+        }
+
+        /// <summary>
         /// 3. Search in Rotated Sorted Array
         /// T.C -> O(log(n))
         /// S.C -> O(1)
@@ -56,27 +132,39 @@ namespace Practice.Course.Assignments
         /// <returns></returns>
         public int FindTarget(int[] input, int target)
         {
-
-            var answer = -1;
-            var low = 0;
-            var high = input.Length - 1;
-
-            while (low <= high)
+            var slow = 0;
+            var fast = input.Length - 1;
+            const int result = -1;
+            while (slow <= fast)
             {
-                var middle = low + (high - low) / 2;
-                if (input[middle] == target)
+                var mid = slow + (fast - slow) / 2;
+
+                if (input[mid] == target)
+                    return mid;
+
+                if (input[slow] <= input[mid])
                 {
-                    answer = middle;
-                    high = middle - 1; //keep searching on the left
+                    //must use "<=" at here since we need to make sure target is in the left part,
+                    //then safely drop the right part
+                    if (input[slow] <= target && target < input[mid])
+                        fast = mid - 1;
+                    else
+                        slow = mid + 1;
                 }
 
-                if (input[middle] < target)
-                    low = middle + 1;
+                //if right part is monotonically increasing, or the pivot point is on the left part
                 else
-                    high = middle - 1;
+                {
+                    //must use "<=" at here since we need to make sure target is in the right part,
+                    //then safely drop the left part
+                    if (input[mid] < target && target <= input[fast])
+                        slow = mid + 1;
+                    else
+                        fast = mid - 1;
+                }
             }
 
-            return answer;
+            return result;
         }
 
         /// <summary>
@@ -91,8 +179,6 @@ namespace Practice.Course.Assignments
         {
             if (input.Length == 1)
                 return input[0];
-
-            
 
             // validate if min is first element or last element
             if (input[0] < input[input.Length - 1])
