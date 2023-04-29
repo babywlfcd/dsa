@@ -97,7 +97,6 @@ namespace Practice.LinkedLists
             while (index - 1 > 0)
             {
                 current = current.Next;
-                Length++;
                 index--;
             }
 
@@ -162,7 +161,7 @@ namespace Practice.LinkedLists
                 return;
             }
 
-            if (Length == index)
+            if (Length == index + 1)
             {
                 RemoveAtTail();
                 return;
@@ -173,7 +172,6 @@ namespace Practice.LinkedLists
             while (index - 1 > 0)
             {
                 current = current.Next;
-                Length++;
                 index--;
             }
 

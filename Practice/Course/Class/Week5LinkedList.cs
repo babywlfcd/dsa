@@ -9,7 +9,7 @@ using Practice.LinkedLists;
 
 namespace Practice.Course.Class
 {
-    public class Week4LinkedList
+    public class Week5LinkedList
     {
         /// <summary>
         /// Solution 1:
