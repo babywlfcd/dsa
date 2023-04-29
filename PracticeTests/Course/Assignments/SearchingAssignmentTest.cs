@@ -40,16 +40,30 @@ namespace PracticeTests.Course.Assignments
         [Theory]
         [InlineData(new[] { 4, 5, 6, 7, 0, 1, 2 }, 0, 4)]
         [InlineData(new[] { 4, 5, 6, 7, 0, 1, 2 }, 3, -1)]
-        [InlineData(new[] { 2, 2, 2, 2, 2, 2, 2 }, 2, 0)]
         [InlineData(new[] { 1 }, 0, -1)]
         [InlineData(new[] { 1, 3 }, 3, 1)]
         [InlineData(new[] { 1, 3 }, 1, 0)]
-        public void FindFirstOccurrenceOfATarget_ShouldReturnTheIndexOfFoundedElementOrMinusOne_For_AGivenArrayThatContainTargetRespectiveNotContainTheTarget(
+        public void FindTarget_ShouldReturnTheIndexOfFoundedElementOrMinusOne_For_AGivenArrayThatContainTargetRespectiveNotContainTheTarget(
             int[] input, int target, int expected)
         {
-            var sut = new Week3SortingAndSearching();
-            var result = sut.FindFirstOccurrenceOfATarget(input, target);
+            var sut = new SearchingAssignment();
+            var result = sut.FindTarget(input, target);
             Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData(new[] { 5, 7, 7, 8, 8, 10 }, 8, new[] { 3, 4 })]
+        [InlineData(new[] { 5, 7, 7, 8, 8, 10 }, 6, new[] { -1, -1 })]
+        [InlineData(new int[] { }, 0, new[] { -1, -1 })]
+        public void FindFirstAndLastOccurrence_ShouldReturn_FirsAndLastPosition_For_AGivenTarget(int[] input,
+            int target, int[] expected)
+        {
+            var sut = new SearchingAssignment();
+
+            var result = sut.FindFirstAndLastOccurrence(input, target);
+
+            Assert.Equal(expected[0], result[0]);
+            Assert.Equal(expected[1], result[1]);
         }
     }
 }
