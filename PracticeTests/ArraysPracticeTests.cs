@@ -108,5 +108,19 @@ namespace PracticeTests
 
             };
         }
+
+
+        [Theory]
+        [InlineData("ABDEFGABEF", 6)]
+        [InlineData("BBBB", 1)]
+        [InlineData("", 0)]
+        public void LongestSubstring_ShouldReturn_WaterTrap_For_AListOfGivenHeights(string height, int expected)
+        {
+            var sut = new ArraysPractice();
+
+            var result = sut.LongestSubstring(height);
+
+            Assert.Equal(expected, result);
+        }
     }
 }

@@ -18,4 +18,9 @@
     <Compile Remove="StackAndQueue\Stack2.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="Tree\BinaryTree.cs" />
+    <Compile Include="Tree\Node.cs" />
+  </ItemGroup>
+
 </Project>

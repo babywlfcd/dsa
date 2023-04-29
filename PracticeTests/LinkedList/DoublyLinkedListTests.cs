@@ -63,15 +63,16 @@ namespace PracticeTests.LinkedList
             // arrange
             var sut = new DoublyLinkedList();
             sut.AddAtHead(12);
+            sut.AddAtHead(8);
 
             // act
             sut.AddAtTail(3);
 
             //assert
-            Assert.Equal(12, sut.Head.Value); // same head
+            Assert.Equal(12, sut.Head.Next.Value); // same head
             Assert.Null(sut.Head.Previous);
-            Assert.Equal(3, sut.Head.Next.Value);
-            Assert.Null(sut.Head.Next.Next);
+            Assert.Equal(3, sut.Head.Next.Next.Value);
+            Assert.Null(sut.Head.Next.Next.Next);
         }
 
 
@@ -97,15 +98,15 @@ namespace PracticeTests.LinkedList
             var sut = new DoublyLinkedList();
             sut.AddAtTail(12);
             sut.AddAtTail(3);
+            sut.AddAtTail(5);
+            sut.AddAtTail(11);
 
             // act
-            sut.AddAtIndex(1, 8);
+            sut.AddAtIndex(2, 8);
 
             //assert
-            Assert.Equal(8, sut.Head.Next.Value); // same head
+            Assert.Equal(8, sut.Head.Next.Next.Value); // same head
             Assert.Null(sut.Head.Previous);
-            //Assert.Equal(3, sut.Head.Next.Value);
-            //Assert.Null(sut.Head.Next.Next);
         }
     }
 }

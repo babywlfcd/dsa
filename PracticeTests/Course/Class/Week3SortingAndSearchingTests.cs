@@ -62,8 +62,8 @@ namespace PracticeTests.Course.Class
             int[] input, int expected)
         {
             var sut = new Week3SortingAndSearching();
-            var acctual = sut.FindPivot(input);
-            Assert.Equal(expected, acctual);
+            var actual = sut.FindPivot(input);
+            Assert.Equal(expected, actual);
         }
 
     }

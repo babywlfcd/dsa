@@ -3,7 +3,7 @@ using Practice.LinkedLists;
 
 namespace PracticeTests.Course.Class
 {
-    public class Week4LinkedListTests
+    public class Week5LinkedListTests
     {
         [Fact]
         public void FindMiddleNode_SinglyLinkedList_NodeFromMiddleOfTheLinkedList()
@@ -16,7 +16,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(5);
             singlyLinkedList.AddAtTail(6);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var actual = sut.FindMiddleNode(singlyLinkedList);
             Assert.Equal(7, actual.Value);
@@ -33,7 +33,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(5);
             singlyLinkedList.AddAtTail(6);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
 
             var actual = sut.FindMiddleNodeSlowFaster(singlyLinkedList);
             Assert.Equal(7, actual.Value);
@@ -45,7 +45,7 @@ namespace PracticeTests.Course.Class
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
             Assert.False(result);
@@ -59,7 +59,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(9);
             singlyLinkedList.AddAtTail(9);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
             Assert.True(result);
@@ -76,7 +76,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(5);
             singlyLinkedList.AddAtTail(6);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
 
             var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
             Assert.False(result);
@@ -94,7 +94,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(6);
             singlyLinkedList.AddAtTail(7);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
 
             var result = sut.HasLoopAdditionalSpace(singlyLinkedList.Head);
             Assert.True(result);
@@ -111,7 +111,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(5);
             singlyLinkedList.AddAtTail(6);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
 
             var result = sut.HasLoop(singlyLinkedList.Head);
             Assert.False(result);
@@ -134,7 +134,7 @@ namespace PracticeTests.Course.Class
 
             cycle.Next = nodeToCycle;
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
 
             var result = sut.HasLoop(singlyLinkedList.Head);
             Assert.True(result);
@@ -149,7 +149,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(7);
             singlyLinkedList.AddAtTail(6);
             
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var actual = sut.ReverseLinkedList(singlyLinkedList.Head);
             // assert
@@ -168,7 +168,7 @@ namespace PracticeTests.Course.Class
             singlyLinkedList.AddAtTail(7);
             singlyLinkedList.AddAtTail(6);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var actual = sut.ReverseLinkedListRecursive(singlyLinkedList.Head);
             // assert
@@ -184,7 +184,7 @@ namespace PracticeTests.Course.Class
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var actual = sut.ReverseLinkedListRecursive(singlyLinkedList.Head);
             // assert
@@ -198,7 +198,7 @@ namespace PracticeTests.Course.Class
             var singlyLinkedList = new SinglyLinkedList();
             singlyLinkedList.AddAtTail(3);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var actual = sut.ReverseLinkedListRecursive(singlyLinkedList.Head);
             // assert
@@ -216,7 +216,7 @@ namespace PracticeTests.Course.Class
             doublyLinkedList.AddAtHead(4);
             doublyLinkedList.AddAtHead(5);
 
-            var sut = new Week4LinkedList();
+            var sut = new Week5LinkedList();
             // act
             var actual = sut.ReverseDoublyLinkedList(doublyLinkedList.Head);
             // assert
