@@ -63,7 +63,7 @@ namespace PracticeTests.LinkedList
         }
 
         [Fact]
-        public void AddAtIndex_SinglyLinkedListAndANode_LinkedListWithNewNodeAtTheEnd()
+        public void AddAtIndex_SinglyLinkedListAndIndex_LinkedListWithNewNodeAtIndex()
         {
             var singlyLinkedList = new SinglyLinkedList();
             singlyLinkedList.AddAtTail(3);
@@ -71,10 +71,10 @@ namespace PracticeTests.LinkedList
             singlyLinkedList.AddAtTail(11);
             
             //act
-            singlyLinkedList.AddAtIndex(1, 12);
+            singlyLinkedList.AddAtIndex(2, 12);
 
-            Assert.Equal(3, singlyLinkedList.Head.Value);
-            Assert.Equal(12, singlyLinkedList.Head.Next.Value);
+            Assert.Equal(23, singlyLinkedList.Head.Next.Value);
+            Assert.Equal(12, singlyLinkedList.Head.Next.Next.Value);
             Assert.Equal(4, singlyLinkedList.Length);
         }
 
@@ -216,7 +216,7 @@ namespace PracticeTests.LinkedList
         }
 
         [Fact]
-        public void RemoveAtTail_SinglyLinkedListWith_LinkedListWithHeadTheNExtNode()
+        public void RemoveAtTail_SinglyLinkedListWith_LinkedListWithHeadTheNextNode()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
@@ -256,6 +256,20 @@ namespace PracticeTests.LinkedList
         }
 
         [Fact]
+        public void RemoveAtIndex_SinglyLinkedListIndexEqualToLength_RemoveTail()
+        {
+            // arrange
+            var singlyLinkedList = new SinglyLinkedList();
+            singlyLinkedList.AddAtTail(3);
+            singlyLinkedList.AddAtTail(4);
+            // act
+            singlyLinkedList.RemoveAtIndex(1);
+            // assert
+            Assert.Equal(3, singlyLinkedList.Head.Value);
+            Assert.Equal(1, singlyLinkedList.Length);
+        }
+
+        [Fact]
         public void RemoveAtIndex_SinglyLinkedListIndexZero_RemoveHead()
         {
             // arrange
@@ -270,17 +284,20 @@ namespace PracticeTests.LinkedList
         }
 
         [Fact]
-        public void RemoveAtIndex_SinglyLinkedList_RemoveNode()
+        public void RemoveAtIndex_SinglyLinkedList_RemoveNodeAtGivenIndex()
         {
             // arrange
             var singlyLinkedList = new SinglyLinkedList();
             singlyLinkedList.AddAtTail(3);
             singlyLinkedList.AddAtTail(11);
             singlyLinkedList.AddAtTail(23);
+            singlyLinkedList.AddAtTail(15);
             // act
-            singlyLinkedList.RemoveAtIndex(1);
+            singlyLinkedList.RemoveAtIndex(2);
             // assert
-            Assert.Equal(23, singlyLinkedList.Head.Next.Value);
+            Assert.Equal(15, singlyLinkedList.Head.Next.Next.Value);
+            Assert.Equal(3, singlyLinkedList.Length);
+
         }
 
         [Fact]
