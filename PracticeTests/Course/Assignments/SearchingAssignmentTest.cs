@@ -28,7 +28,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new[] { 11, 13, 15, 17 }, 11)]
         [InlineData(new[] { 5, 6, 7, 8, 9, 10, 11, 1, 2, 3 }, 1)]
         [InlineData(new[] {1}, 1)]
-        [InlineData(new[] {3, 2, 1 }, 1)]
+        [InlineData(new[] {2, 3, 1 }, 1)]
         public void FindMinInSortedRotatedArray_ShouldReturn_TheMinimumElement_For_ForASortedArrayRotatedKTimes(
             int[] input, int expected)
         {
