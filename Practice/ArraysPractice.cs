@@ -274,5 +274,35 @@
             }
         }
         #endregion
+
+
+        public int LongestSubstring(string s)
+        {
+            if (s.Length == 0) return 0;
+            var count = 1;
+            var p = 1;
+            var maxChar = int.MinValue;
+
+            for (var i = 2; i < s.Length - 1; i++)
+            {
+                if (maxChar < count)
+                {
+                    maxChar = count;
+                }
+
+                if (s[i] == s[p])
+                {
+                    p++;
+                    i = p + 1;
+                    count = 1;
+                    continue;
+                }
+                if (s[i] != s[p])
+                {
+                    count++;
+                }
+            }
+            return maxChar;
+        }
     }
 }

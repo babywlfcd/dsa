@@ -122,7 +122,7 @@ namespace Practice.Course.Assignments
 
             result[1] = tempLastIndex;
 
-            return new int[2];
+            return result;
         }
 
         /// <summary>
@@ -186,17 +186,15 @@ namespace Practice.Course.Assignments
             if (input[0] < input[input.Length - 1])
                 return input[0];
 
-            if (input[0] > input[input.Length - 1])
-                return input[input.Length -1];
 
-            var low = 1;
+            var low = 0;
             var high = input.Length - 1;
-
+            var min = 0;
             while (low <= high)
             {
                 var mid = low + (high - low) / 2;
                 if (input[mid] < input[mid - 1] && input[mid] < input[mid + 1])
-                    return input[mid];
+                    min = input[mid];
 
                 if (input[mid] > input[0])
                     low = mid + 1;
@@ -204,7 +202,7 @@ namespace Practice.Course.Assignments
                     high = mid - 1;
             }
 
-            return 0;
+            return min;
         }
     }
 }
