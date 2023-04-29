@@ -1,6 +1,4 @@
 ﻿using Practice.Course.Assignments;
-using Practice.Course.Class;
-using Xunit;
 
 namespace PracticeTests.Course.Assignments
 {
@@ -214,7 +212,7 @@ namespace PracticeTests.Course.Assignments
         {
             var sut = new ProblemsOnArray();
 
-            var actual = sut.Bubs1(input);
+            var actual = sut.Bubs(input);
 
             Assert.Equal(expected, actual);
         }
