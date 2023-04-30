@@ -23,7 +23,7 @@ namespace PracticeTests.Course.Class
         }
 
         [Theory]
-        [InlineData(new int[] { 15, - 2, 2, -8, 1, 7,10, 23 }, 5)]
+        [InlineData(new int[] { 15, - 2, 2, -8, 1, 7, 10, 23 }, 5)]
         [InlineData(new int[] { 0, 3, 5, -3, 2 }, 1)]
         [InlineData(new int[] { 1, 2, -1, -2 }, 4)]
         [InlineData(new int[] { 1, 2, -1, 8 }, 0)]
