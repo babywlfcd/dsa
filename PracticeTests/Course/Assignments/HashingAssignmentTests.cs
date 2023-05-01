@@ -112,5 +112,19 @@ namespace PracticeTests.Course.Assignments
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new int[] { 1, 4, 20, 3, 10, 5 }, 33, new int[] {2, 4})]
+        [InlineData(new int[] { 10, 2, -2, -20, 10 }, -10, new int[] { 0, 3 })]
+        [InlineData(new int[] { 1, 2, 3, 12, 4 }, 10, new int[]{})]
+        [InlineData(new int[] { 1, 2, 3, 7, 5 }, 12, new int[] {1, 3})]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 15, new int[] {0, 4})]
+        public void FindSubArrayMarginsWithTargetSumK_Number_Validate(int[] input, int k, int[] expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.FindSubArrayMarginsWithTargetSumK(input, k);
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
