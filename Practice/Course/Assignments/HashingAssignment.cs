@@ -244,5 +244,51 @@ namespace Practice.Course.Assignments
             return true;
         }
 
+        /// <summary>
+        /// 9. Sub-array with given sum
+        /// Solution - using prefix sum
+        ///     1. Traverse the array and store prefix sum in a dictionary: key = prefixSum, value first index
+        ///     2. Compute sum starting from that index and if the target is found return
+        ///     3. Otherwise continue
+        ///     4. If no solution founded return an empty array
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int[] FindSubArrayMarginsWithTargetSumK(int[] input, int k)
+        {
+            var prefixData = new Dictionary<int, int>();
+
+            var prefixSum = 0;
+
+            for (var i = 0; i < input.Length; i++)
+            {
+                var j = i;
+                prefixSum += input[i];
+
+                if (!prefixData.ContainsKey(prefixSum))
+                    prefixData[prefixSum] = i;
+
+                var result = new int[2];
+                var currentSum = 0;
+                while (j < input.Length)
+                {
+                    currentSum += input[j];
+                    if (currentSum == k)
+                    {
+                        result[0] = prefixData[prefixSum];
+                        result[1] = j;
+                        return result;
+                    }
+
+                    j++;
+                }
+            }
+
+            return new int[] {};
+        }
+
     }
 }
