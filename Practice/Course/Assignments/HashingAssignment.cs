@@ -1,4 +1,7 @@
-﻿namespace Practice.Course.Assignments
+﻿using System.Runtime.InteropServices.JavaScript;
+using System.Text;
+
+namespace Practice.Course.Assignments
 {
     public class HashingAssignment
     {
@@ -389,6 +392,53 @@
             }
 
             return result.ToArray();
+        }
+
+        /// <summary>
+        /// 13. Is Dictionary?
+        /// Solution:
+        ///     1. add words to a dictionary: key = word
+        ///     2. traverse the string, create a substring an compute with chars from the  string
+        ///     3. check check if the substring is present in the dictionary until wil potentially create a word
+        ///     3. if the substring represent a word that is present continue with a new substring
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool IsDictionary(string[] words, string input)
+        {
+            if (words.Length == 0 || input.Length == 0)
+                return false;
+
+            var wordsDic = new Dictionary<string, int>();
+            for (var i = 0; i < words.Length; i++)
+            {
+                if (!wordsDic.ContainsKey(words[i]))
+                    wordsDic[words[i]] = 0;
+            }
+
+            var sb = new StringBuilder();
+            bool isWordPresent = false;
+            for (var i = 0; i < input.Length; i++)
+            {
+                isWordPresent = false;
+                sb.Append(input[i]);
+                if (wordsDic.ContainsKey(sb.ToString()))
+                {
+                    if (wordsDic[sb.ToString()] == 1)
+                        return false;
+
+                    isWordPresent = true;
+                    // key visited once
+                    wordsDic[sb.ToString()] = 1;
+                    sb.Clear();
+                }
+            }
+
+            if (isWordPresent)
+                return true;
+
+            return false;
         }
     }
 }
