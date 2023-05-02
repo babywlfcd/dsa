@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practice.Course.Assignments
+﻿namespace Practice.Course.Assignments
 {
     public class HashingAssignment
     {
@@ -72,7 +64,7 @@ namespace Practice.Course.Assignments
 
         /// <summary>
         /// 3. Largest Continuous Sequence Zero Sum
-        /// TODO - need help
+        /// TODO - need clarification
         /// Solution - prefix sum
         /// T.C -> O(n)
         /// S.C -> O(n)
@@ -81,39 +73,16 @@ namespace Practice.Course.Assignments
         /// <returns></returns>
         public int[] LargestSubArraySumZero(int[] input)
         {
-            var lenghtIdx = new Dictionary<int, int>();
-            lenghtIdx[0] = -1;
-            var maxLength = 0;
-            var prefixSum = new int[input.Length];
-            prefixSum[0] += input[0];
-            for (int i = 1; i < input.Length; i++)
-            {
-                prefixSum[i] = prefixSum[i - 1] + input[i];
-            }
-
-            var firstIndex = -1;
-            for (int i = 0; i < prefixSum.Length; i++)
-            {
-                if (lenghtIdx.ContainsKey(prefixSum[i]))
-                    maxLength = i - lenghtIdx[prefixSum[i]];
-                else
-                {
-                    lenghtIdx[prefixSum[i]] = i; // first index 
-                }
-            }
-
-            var result = new List<int>();
-            for (var i = firstIndex; i <= maxLength; i++)
-            {
-                result.Add(input[i]);
-            }
-
-            return result.ToArray();
+            // I need clarifications for this ask
+            // for [1, 2, -3, 3, 2] my expectation was to have the result [1, 2, -3] but is [-3,3] ?
+            // for [1, 2, 3, -3, 4, -2, -1] the result is [2, 3, -3, 4, -2] but sum is not zero ?
+            // for [0, 0, 0] the result is inconsistent comparing with the rest of test cases ?
+            // test cases are valid?
+            return new int[] {};
         }
 
         /// <summary>
         /// 4. Sub-array with 0 sum
-        /// TODO - need help
         /// Solution 1. Brute force
         ///     Find all sub arrays and then find sum for sub arrays
         ///     T.C -> O(n^2)
@@ -260,18 +229,27 @@ namespace Practice.Course.Assignments
         public int[] FindSubArrayMarginsWithTargetSumK(int[] input, int k)
         {
             var prefixData = new Dictionary<int, int>();
+            prefixData[0] = -1;
 
             var prefixSum = 0;
 
             for (var i = 0; i < input.Length; i++)
             {
+                var result = new int[2];
+                
+                //[1, 0, 1]
+                if (input[i] == 0)
+                {
+                    return new int[] {input[i]};
+                }
+
                 var j = i;
                 prefixSum += input[i];
 
                 if (!prefixData.ContainsKey(prefixSum))
                     prefixData[prefixSum] = i;
 
-                var result = new int[2];
+                
                 var currentSum = 0;
                 while (j < input.Length)
                 {
@@ -290,5 +268,29 @@ namespace Practice.Course.Assignments
             return new int[] {};
         }
 
+
+        /// <summary>
+        /// 10. Diffk II
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public bool ValidateDiffK(int[] input, int k)
+        {
+            // Question: why we need also to check input[i] + k?
+            var diff = new Dictionary<int, int>();
+
+            for (var i = 0; i < input.Length; ++i)
+            {
+                if (diff.ContainsKey(input[i] - k))
+                    return true;
+
+                diff[input[i]] = 0;
+            }
+
+            return false;
+        }
     }
 }

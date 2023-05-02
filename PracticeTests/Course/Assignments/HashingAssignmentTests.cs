@@ -70,10 +70,11 @@ namespace PracticeTests.Course.Assignments
         }
 
         [Theory]
-        [InlineData(new int[] { 6, -1, 2, 1, -1 }, true)]
-        [InlineData(new int[] { 0, 3, 5, -3, 2 }, true)]
-        [InlineData(new int[] { 1, 2, -1, -2 }, true)]
-        [InlineData(new int[] { 1, 2, -1, 8 }, false)]
+        [InlineData(new int[] { 4, 2, -3, 1, 6 }, true)]
+        [InlineData(new int[] { 4, 2, 0, 1, 6 }, true)]
+        [InlineData(new int[] { 1, 2, 3 }, false)]
+        [InlineData(new int[] { 0, 0, 0 }, true)]
+        [InlineData(new int[] { 1, -1, 1, -1, 1 }, true)]
         public void ExistSubArraySumZero_SubArraySumZero_ValidateIfExist(int[] input, bool expected)
         {
             var sut = new HashingAssignment();
@@ -118,11 +119,29 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new int[] { 1, 2, 3, 12, 4 }, 10, new int[]{})]
         [InlineData(new int[] { 1, 2, 3, 7, 5 }, 12, new int[] {1, 3})]
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 15, new int[] {0, 4})]
+        [InlineData(new int[] { 1, 2, 0, 4, 5 }, 0, new int[] {0})]
+        [InlineData(new int[] { 1, 0, 1 }, 0, new int[] { 0 })]
         public void FindSubArrayMarginsWithTargetSumK_Number_Validate(int[] input, int k, int[] expected)
         {
             var sut = new HashingAssignment();
             // act
             var actual = sut.FindSubArrayMarginsWithTargetSumK(input, k);
+            Assert.Equal(expected, actual);
+        }
+
+
+        [Theory]
+        [InlineData(new int[] { 1, 5, 3 }, 2, true)]
+        [InlineData(new int[] { 3, 1, 4, 1, 5 }, 2, true)]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 1, true)]
+        [InlineData(new int[] { 1, 3, 5 }, 3, false)]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 7, false)]
+        [InlineData(new int[] { 1, -1, 3 }, 2, true)]
+        public void ValidateDiffK_SubArraySumZero_ValidateIfExist(int[] input, int k, bool expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.ValidateDiffK(input, k);
             Assert.Equal(expected, actual);
         }
 
