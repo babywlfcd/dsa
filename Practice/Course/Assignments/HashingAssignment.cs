@@ -300,6 +300,8 @@
         ///     2. keep a hash table to find distinct values
         ///     3. the length of the hash will represent the distinct no in window -> add to the result
         ///     4. advance pointers and repeat until the end of the array
+        /// T.C -> O(k^2)
+        /// S.C -> O(k)
         /// </summary>
         /// <param name="input"></param>
         /// <param name="k"></param>
