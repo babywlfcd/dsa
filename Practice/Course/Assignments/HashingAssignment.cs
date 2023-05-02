@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-
-namespace Practice.Course.Assignments
+﻿namespace Practice.Course.Assignments
 {
     public class HashingAssignment
     {
