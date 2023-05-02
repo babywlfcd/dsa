@@ -342,5 +342,53 @@
 
             return string.Join(" ", result);
         }
+
+        /// <summary>
+        /// 12. 2 Sum
+        /// Solution:
+        ///     1. Add values to a dictionary: kew = value from the array, value = index where value is stored
+        ///     2. Traverse the array again an check if the pair is present in the dictionary (k - input[i])
+        ///     3. If yes add to the response and mark both keys as visited by ser the value to -i (invalid index)
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int[][] FindSumPairs(int[] input, int k)
+        {
+            /*
+             * Data set Input: nums = [3, 4, 5, 7, 8], target = 12
+             * Output: [(4, 8)]
+             * (5, 7) is also a valid pair. Please adjust the output in the assignment document
+             */
+            var result = new List<int[]>();
+            var values = new Dictionary<int, int>();
+
+            for (var i = 0; i < input.Length; i++)
+            {
+                if (!values.ContainsKey(input[i]))
+                    values[input[i]] = i;
+            }
+
+            for (var i = 0; i < input.Length; i++)
+            {
+                var pair = new int[2];
+                if (values.ContainsKey(k - input[i]) && values[input[i]] != -1)
+                {
+                    var pairIndex = values[k - input[i]];
+                    
+                    pair[0] = input[i];
+                    pair[1] = input[pairIndex];
+
+                    // set visited value with -1 - invalid index
+                    values[input[i]] = -1;
+                    values[input[pairIndex]] = -1;
+                    result.Add(pair);
+                }
+            }
+
+            return result.ToArray();
+        }
     }
 }
