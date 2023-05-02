@@ -440,5 +440,46 @@ namespace Practice.Course.Assignments
 
             return false;
         }
+
+        /// <summary>
+        /// Medium
+        /// 15. Longest Consecutive Sequence
+        /// https://leetcode.com/problems/longest-consecutive-sequence/
+        /// Complexity:
+        /// foreach loop -> O(n)
+        /// while can be  O(n) but is traversed only at i = const val.
+        /// each value will be visited at most 2 times so T.C is O(n)
+        /// T.C -> O(n)
+        /// T.C -> O(n)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int LongestConsecutive(int[] input)
+        {
+            //add unique values to a dictionary 
+            var numValues = new Dictionary<int, int>();
+            for (var i = 0; i < input.Length; i++)
+            {
+                if (numValues.ContainsKey(input[i]))
+                    continue;
+                numValues[input[i]] = input[i];
+            }
+            var longest = 0;
+            foreach (var item in numValues) // O(n)
+            {
+                //check if current value is a start of sequence
+                if (!numValues.ContainsKey(item.Value - 1))
+                {
+                    var length = 0; // this will keep the sequence length
+                    // check for current value if is end of sequence
+                    while (numValues.ContainsKey(item.Value + length))
+                        length++;
+
+                    longest = Math.Max(length, longest);
+                }
+            }
+
+            return longest;
+        }
     }
 }
