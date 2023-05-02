@@ -48,7 +48,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new[] { 1, 2, 3, 4, 5 }, 1 , new[] { 1, 2, 3, 4, 5 })]
         [InlineData(new int[] {} , 1, new int[] {})]
         [InlineData(new[] { 1, 1, 1, 2, 2, 2, 3, 3, 3 }, 3, new[] {1, 2, 3})]
-        public void FindKOccurrence_ValuesWithOccurrenceK_IfAny(int[] input, int k, int[] expected)
+        public void FindKOccurrence_ValuesWithOccurrenceK_CheckForFrequencyKTimesIfAny(int[] input, int k, int[] expected)
         {
             var sut = new HashingAssignment();
 
@@ -62,7 +62,7 @@ namespace PracticeTests.Course.Assignments
         //[InlineData(new int[] { 0, 3, 5, -3, 2 }, 1)]
         //[InlineData(new int[] { 1, 2, -1, -2 }, 4)]
         //[InlineData(new int[] { 1, 2, -1, 8 }, 0)]
-        public void LargestSubArraySumZero_SubArraySumZero_LengthOfLongestSubArray(int[] input, int[] expected)
+        public void LargestSubArraySumZero_SubArraySumZero_LongestSubArray(int[] input, int[] expected)
         {
             var sut = new HashingAssignment();
             // act
@@ -106,7 +106,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(345, true)]
         [InlineData(111, false)]
         [InlineData(1, true)]
-        public void IsColorfulNumber_Number_Validate(int n, bool expected)
+        public void IsColorfulNumber_Number_ValidateIfNumberHaveDifferentDigitsInAllPossibleSubSequences(int n, bool expected)
         {
             var sut = new HashingAssignment();
             // act
@@ -122,7 +122,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 15, new int[] {0, 4})]
         [InlineData(new int[] { 1, 2, 0, 4, 5 }, 0, new int[] {0})]
         [InlineData(new int[] { 1, 0, 1 }, 0, new int[] { 0 })]
-        public void FindSubArrayMarginsWithTargetSumK_Number_Validate(int[] input, int k, int[] expected)
+        public void FindSubArrayMarginsWithTargetSumK_ArrayAndTargetSumK_FindContiguousElementsWithSumK(int[] input, int k, int[] expected)
         {
             var sut = new HashingAssignment();
             // act
@@ -138,7 +138,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new int[] { 1, 3, 5 }, 3, false)]
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 7, false)]
         [InlineData(new int[] { 1, -3, -5 }, 2, true)]
-        public void ValidateDiffK_SubArraySumZero_ValidateIfExist(int[] input, int k, bool expected)
+        public void ValidateDiffK_ArrayAndTargetK_ValidateIfPairExistToMeetTheCondition(int[] input, int k, bool expected)
         {
             var sut = new HashingAssignment();
             // act
@@ -154,7 +154,7 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 1, "1 1 1 1 1")]
         [InlineData(new int[] { 5, 4, 3, 2, 1 }, 5, "5")]
         [InlineData(new int[] { 5, 4, 3, 2, 1 }, 6, "1 1 1 1 1")]
-        public void FindDistinctNumbersInWindow_SubArraySumZero_ValidateIfExist(int[] input, int k, string expected)
+        public void FindDistinctNumbersInWindow_ArrayAndWindowSize_FindDistinctValuesForEachWindow(int[] input, int k, string expected)
         {
             var sut = new HashingAssignment();
             // act
@@ -164,7 +164,7 @@ namespace PracticeTests.Course.Assignments
 
         [Theory]
         [MemberData(nameof(TwoSumData))]
-        public void FindSumPairs_SubArraySumZero_ValidateIfExist(int[] input, int k, List<int[]> expected)
+        public void FindSumPairs_ArrayAndTargetK_FindAllPairsWithSumEqualToK(int[] input, int k, List<int[]> expected)
         {
             var sut = new HashingAssignment();
             // act
@@ -232,6 +232,24 @@ namespace PracticeTests.Course.Assignments
                     new int[] {3, 3}
                 }
             };
+        }
+
+        [Theory]
+        [InlineData(new string[] { "apple", "banana", "cat", "dog" }, "catapple", true)]
+        [InlineData(new string[] { "apple", "banana", "cat", "dog" }, "dogapplebanana", true)]
+        [InlineData(new string[] { "apple", "banana", "cat", "dog" }, "dogcatapple", true)]
+        [InlineData(new string[] { "apple", "banana", "cat", "dog" }, "applecatcatdog", false)]
+        [InlineData(new string[] { "abc", "def", "ghi" }, "abcdefg", false)]
+        [InlineData(new string[] { "abc", "def", "ghi" }, "ghidefabc", true)]
+        [InlineData(new string[] {}, "ab", false)]
+        [InlineData(new string[] { "apple"}, "", false)]
+
+        public void IsDictionary_WordsListAnsAString_ValidateIfStringCanBeComputedUsingWordsOnce(string[] words, string input, bool expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.IsDictionary(words, input);
+            Assert.Equal(expected, actual);
         }
 
     }
