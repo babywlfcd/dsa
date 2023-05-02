@@ -267,5 +267,22 @@ namespace PracticeTests.Course.Assignments
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData(new[] { 2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8 }, new[] { 2, 1, 8, 3 }, new[] { 2, 2, 1, 1, 8, 8, 3, 5, 6, 7, 9 })]
+        [InlineData(new[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 }, new[] { 9, 5, 1 }, new[] { 9, 5, 1, 2, 3, 4, 6, 7, 8 })]
+        [InlineData(new[] { 3, 4, 1, 2, 5, 6, 7, 8, 9, 10 }, new[] { 4, 6, 8 }, new[] { 4, 6, 8, 1, 2, 3, 5, 7, 9, 10 })]
+        [InlineData(new[] { 1, 2, 3, 4, 5 }, new[] { 6, 7, 8 }, new[] { 1, 2, 3, 4, 5 })]
+        [InlineData(new[] { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 }, new[] { 4, 5, 6 }, new[] { 4, 4, 5, 5, 1, 1, 2, 2, 3, 3 })]
+        [InlineData(new[] { 4, 5, 6 }, new int[] { }, new[] { 4, 5, 6 })]
+        [InlineData(new[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }, new[] { 3, 5, 7 }, new[] { 3, 5, 7, 1, 2, 4, 6, 8, 9, 10 })]
+        public void SortArrayInGivenOrder_ShouldReturn_FirsArrayOrderedByKeepingRelativeOrderFromSecond_ForTwoGivenArrays(int[] input1, int[] input2, int[] expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.SortArrayInGivenOrder(input1, input2);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
