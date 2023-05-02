@@ -1,4 +1,6 @@
-﻿namespace Practice.Course.Assignments
+﻿using System.Runtime.InteropServices.JavaScript;
+
+namespace Practice.Course.Assignments
 {
     public class HashingAssignment
     {
@@ -279,18 +281,66 @@
         /// <returns></returns>
         public bool ValidateDiffK(int[] input, int k)
         {
-            // Question: why we need also to check input[i] + k?
+            // Question: why we need also to check input[i] - k?
             var diff = new Dictionary<int, int>();
 
             for (var i = 0; i < input.Length; ++i)
             {
-                if (diff.ContainsKey(input[i] - k))
+                if (diff.ContainsKey(k + input[i]) || diff.ContainsKey(input[i] - k))
                     return true;
 
                 diff[input[i]] = 0;
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// 11. Distinct Numbers in Window
+        /// Solution
+        ///     1. stat left and right pointer: left = i = 0, right = k - 1
+        ///     2. keep a hash table to find distinct values
+        ///     3. the length of the hash will represent the distinct no in window -> add to the result
+        ///     4. advance pointers and repeat until the end of the array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public string FindDistinctNumbersInWindow(int[] input, int k)
+        {
+            /*
+             * why in the next test cases we have 4 values in the response?
+             * Both have only 3 possible window of length 3
+             * Input: arr[] = {1, 2, 1, 2, 1}, k = 3 
+             * Output: 2 2 2 2
+             * Input: arr[] = {1, 1, 1, 1, 1}, k = 3
+             * Output: 1 1 1 1
+             */
+
+            // Problem does not specify if k can be greater than input length
+            // If yes I take in consideration the smallest window possible 
+            // I am assuming the k will start from the beginning of the array until find his right position
+            // Is this the right assumption?
+            if ( k > input.Length)
+                k = k % input.Length;
+
+            var right = k - 1;
+            var result = new List<int>();
+            for (var i = 0; i < input.Length - k + 1; i++)
+            {
+                var distinctValues = new Dictionary<int, int>();
+                var j = i;
+                while (j <= right)
+                {
+                    if (!distinctValues.ContainsKey(input[j]))
+                        distinctValues[input[j]]= 0;
+                    j++;
+                }
+                result.Add(distinctValues.Count);
+                right++;
+            }
+
+            return string.Join(" ", result);
         }
     }
 }

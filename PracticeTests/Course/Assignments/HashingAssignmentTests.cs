@@ -136,12 +136,28 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 1, true)]
         [InlineData(new int[] { 1, 3, 5 }, 3, false)]
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 7, false)]
-        [InlineData(new int[] { 1, -1, 3 }, 2, true)]
+        [InlineData(new int[] { 1, -3, -5 }, 2, true)]
         public void ValidateDiffK_SubArraySumZero_ValidateIfExist(int[] input, int k, bool expected)
         {
             var sut = new HashingAssignment();
             // act
             var actual = sut.ValidateDiffK(input, k);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 1, 3, 4, 2, 3 }, 4, "3 4 4 3" )]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 3, "3 3 3")]
+        [InlineData(new int[] { 1, 2, 1, 2, 1 }, 2, "2 2 2 2")]
+        [InlineData(new int[] { 1, 1, 1, 1, 1 }, 2, "1 1 1 1")]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 1, "1 1 1 1 1")]
+        [InlineData(new int[] { 5, 4, 3, 2, 1 }, 5, "5")]
+        [InlineData(new int[] { 5, 4, 3, 2, 1 }, 6, "1 1 1 1 1")]
+        public void FindDistinctNumbersInWindow_SubArraySumZero_ValidateIfExist(int[] input, int k, string expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.FindDistinctNumbersInWindow(input, k);
             Assert.Equal(expected, actual);
         }
 
