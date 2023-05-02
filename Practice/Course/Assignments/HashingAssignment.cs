@@ -481,5 +481,91 @@ namespace Practice.Course.Assignments
 
             return longest;
         }
+
+        /// <summary>
+        /// 16. Sort Array in given Order
+        /// Solution
+        ///     1. keep frequency iv the values from the first array in a dictionary
+        ///     2. save values from b that are in a in a different dictionary
+        ///     3. save values that are not in b in a dynamic array
+        ///     4. replace elements in the firs array with values from the second
+        ///        by decreasing frequency of that particular value
+        ///     5. at the end order the dynamic array and set remaining elements in
+        ///        the first array with values stored in the dynamic array
+        /// T.C -> O(n * log(n) + m), where n = input1.Length and m = input2 length
+        /// S.C -> O(n + m)
+        /// </summary>
+        /// <param name="input1"></param>
+        /// <param name="input2"></param>
+        /// <returns></returns>
+        public int[] SortArrayInGivenOrder(int[] input1, int[] input2)
+        {
+            if (input2.Length == 0)
+            {
+                Array.Sort(input1); //O(n * log(n))
+                return input1;
+            }
+
+            var frequencyInput1 = new Dictionary<int, int>();
+            
+            for (var i = 0; i < input1.Length; i++) //O(n)
+            {
+                if (!frequencyInput1.ContainsKey(input1[i]))
+                    frequencyInput1[input1[i]] = 1;
+                else
+                    frequencyInput1[input1[i]] +=1;
+            }
+
+            var valuesInput2 = new Dictionary<int, int>();
+            for (var i = 0; i < input2.Length; i++) //O(m)
+            {
+                // save only distinct values of b even though I am assuming that b contains only distinct values
+                if (valuesInput2.ContainsKey(input2[i]) || !frequencyInput1.ContainsKey(input2[i]))
+                    continue;
+                valuesInput2[input2[i]] = 0;
+            }
+
+            // in b does not have any values that are in a return input 1 sorted
+            if (!valuesInput2.Any())
+            {
+                Array.Sort(input1); //O(n * log(n))
+                return input1;
+            }
+
+            var otherValues = new List<int>();
+            for (var i = 0; i < input1.Length; i++) //O(n)
+            {
+                if (!valuesInput2.ContainsKey(input1[i]))
+                    otherValues.Add(input1[i]);
+            }
+
+            var nextIndex = -1;
+            var idx = 0;
+            var coutItemInB = valuesInput2.Count;
+            foreach(var item in valuesInput2) //O(n)
+            {
+                
+                var frequency = frequencyInput1[item.Key];
+
+                while (frequency > 0)
+                {
+                    input1[idx] = item.Key;
+                    frequency--;
+                    idx++;
+                }
+
+                coutItemInB--;
+                if (coutItemInB == 0)
+                    nextIndex = idx;
+            }
+            otherValues.Sort();
+
+            for (var i = 0; i < otherValues.Count; i++)
+            {
+                input1[nextIndex + i] = otherValues[i];
+            }
+
+            return input1;
+        }
     }
 }
