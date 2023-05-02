@@ -4,6 +4,7 @@ using Practice.Course.Class;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -136,13 +137,101 @@ namespace PracticeTests.Course.Assignments
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 1, true)]
         [InlineData(new int[] { 1, 3, 5 }, 3, false)]
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, 7, false)]
-        [InlineData(new int[] { 1, -1, 3 }, 2, true)]
+        [InlineData(new int[] { 1, -3, -5 }, 2, true)]
         public void ValidateDiffK_SubArraySumZero_ValidateIfExist(int[] input, int k, bool expected)
         {
             var sut = new HashingAssignment();
             // act
             var actual = sut.ValidateDiffK(input, k);
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 1, 2, 1, 3, 4, 2, 3 }, 4, "3 4 4 3" )]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 3, "3 3 3")]
+        [InlineData(new int[] { 1, 2, 1, 2, 1 }, 2, "2 2 2 2")]
+        [InlineData(new int[] { 1, 1, 1, 1, 1 }, 2, "1 1 1 1")]
+        [InlineData(new int[] { 1, 2, 3, 4, 5 }, 1, "1 1 1 1 1")]
+        [InlineData(new int[] { 5, 4, 3, 2, 1 }, 5, "5")]
+        [InlineData(new int[] { 5, 4, 3, 2, 1 }, 6, "1 1 1 1 1")]
+        public void FindDistinctNumbersInWindow_SubArraySumZero_ValidateIfExist(int[] input, int k, string expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.FindDistinctNumbersInWindow(input, k);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(TwoSumData))]
+        public void FindSumPairs_SubArraySumZero_ValidateIfExist(int[] input, int k, List<int[]> expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.FindSumPairs(input, k);
+            Assert.Equal(expected, actual);
+        }   
+
+        public static IEnumerable<object[]> TwoSumData()
+        {
+            yield return new object[]
+            {
+                new int[] { 1, 5, 2, 7, 3, 6, 4 },
+                8,
+                new List<int[]>
+                {
+                    new int[] {1, 7},
+                    new int[] {5, 3},
+                    new int[] {2, 6},
+                    new int[] {4, 4}
+                }
+            };
+            yield return new object[]
+            {
+                new int[] { 3, 4, 5, 7, 8 },
+                12,
+                new List<int[]>
+                {
+                    new int[] {4, 8},
+                    new int[] {5, 7}
+                }
+            };
+            yield return new object[]
+            {
+                new int[] { 1, 2, 3, 4, 5 },
+                10,
+                new List<int[]>
+                {
+                    new int[] {5, 5}
+                }
+            };
+            yield return new object[]
+            {
+                new int[] { 1, 2, 3, 4, 5 },
+                7,
+                new List<int[]>
+                {
+                    new int[] {2, 5},
+                    new int[] {3, 4}
+                }
+            };
+            yield return new object[]
+            {
+                new int[] { 1, 2, 3, 4, 5 },
+                1,
+                new List<int[]>()
+            };
+            yield return new object[]
+            {
+                new int[] { 1, 2, 3, 4, 5 },
+                6,
+                new List<int[]>
+                {
+                    new int[] {1, 5},
+                    new int[] {2, 4},
+                    new int[] {3, 3}
+                }
+            };
         }
 
     }
