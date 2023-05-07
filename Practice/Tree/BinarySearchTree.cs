@@ -10,10 +10,10 @@ namespace Practice.Tree
     /// Binary Search Tree card
     /// https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/
     /// </summary>
-    public class BinaryTree
+    public class BinarySearchTree
     {
         public Node Root;
-        public BinaryTree(Node root = null)
+        public BinarySearchTree(Node root = null)
         {
             Root = root;
         }
