@@ -6,20 +6,17 @@ using System.Threading.Tasks;
 
 namespace Practice.Tree
 {
-    /// <summary>
-    /// Binary Search Tree card
-    /// https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/
-    /// </summary>
     public class BinarySearchTree
     {
-        public Node Root;
-        public BinarySearchTree(Node root = null)
+        public Node Head;
+        public BinarySearchTree(Node head = null)
         {
-            Root = root;
+            Head = head;
         }
 
         /// <summary>
-        /// TODO
+        /// T.C -> O(n^2)
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="head"></param>
         /// <returns></returns>
@@ -28,7 +25,7 @@ namespace Practice.Tree
             var current = head;
             while (current != null && current.Left != null)
             {
-                if (current.Value <= current.Left.Value)
+                if (current.Left.Value >= head.Value)
                     return false;
                 current = current.Left;
             }
@@ -45,10 +42,10 @@ namespace Practice.Tree
 
         public Node Insert(int value)
         {
-            if (Root == null)
-                return Root = new Node(value);
+            if (Head == null)
+                return Head = new Node(value);
 
-            var currentNode = Root;
+            var currentNode = Head;
             while (true)
             {
                 if (value < currentNode.Value)
@@ -73,7 +70,7 @@ namespace Practice.Tree
                 }
             }
 
-            return Root;
+            return Head;
         }
 
         public Node Search(Node head, int val)
