@@ -142,10 +142,10 @@ namespace PracticeTests.Tree
             tree.Insert(3);
 
             // act 
-            var actual = tree.SearchRecursive(head, 5);
+            var actual = tree.IsValid(head);
 
             // assert
-            Assert.Null(actual);
+            Assert.True(actual);
         }
     }
 }

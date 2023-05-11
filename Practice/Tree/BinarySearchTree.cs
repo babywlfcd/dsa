@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace Practice.Tree
 {
-    /// <summary>
-    /// Binary Search Tree card
-    /// https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/
-    /// </summary>
     public class BinarySearchTree
     {
         public Node Head;
@@ -19,9 +15,8 @@ namespace Practice.Tree
         }
 
         /// <summary>
-        /// Medium
-        /// 98. Validate Binary Search Tree
-        /// https://leetcode.com/problems/validate-binary-search-tree/description/
+        /// T.C -> O(n^2)
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="head"></param>
         /// <returns></returns>
@@ -30,14 +25,14 @@ namespace Practice.Tree
             var current = head;
             while (current != null && current.Left != null)
             {
-                if (current.Value < current.Left.Value)
+                if (current.Left.Value >= head.Value)
                     return false;
                 current = current.Left;
             }
 
             while (current != null && current.Right != null)
             {
-                if (current.Value > current.Right.Value)
+                if (current.Value >= current.Right.Value)
                     return false;
                 current = current.Right;
             }
@@ -45,13 +40,6 @@ namespace Practice.Tree
             return true;
         }
 
-        /// <summary>
-        /// Medium
-        /// 701. Insert into a Binary Search Tree
-        /// https://leetcode.com/problems/insert-into-a-binary-search-tree/
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
         public Node Insert(int value)
         {
             if (Head == null)
