@@ -85,6 +85,20 @@ namespace PracticeTests.Course.Assignments
         }
 
         [Theory]
+        [InlineData(new int[] { 1, 5, 6, 2, 1 }, 3)]
+        [InlineData(new int[] { 3, 5, 7 }, 0)]
+       // [InlineData(new int[] { 1, 2, 3 }, false)]
+       // [InlineData(new int[] { 0, 0, 0 }, true)]
+       // [InlineData(new int[] { 1, -1, 1, -1, 1 }, true)]
+        public void CountSumMaxMinEven_SubArraySumZero_ValidateIfExist(int[] input, int expected)
+        {
+            var sut = new HashingAssignment();
+            // act
+            var actual = sut.CountSumMaxMinEven(input);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("A man, a plan, a canal: Panama", true)]
         [InlineData("race a car", false)]
         [InlineData("level", true)]
