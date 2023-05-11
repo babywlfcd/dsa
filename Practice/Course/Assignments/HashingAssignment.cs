@@ -115,6 +115,51 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
+        /// 5. Shaggy and distances
+        /// Solution 1: brute force
+        ///     1. fins min max in each sub-array and count if is even
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int CountSumMaxMinEven(int[] input)
+        {
+            // I need clarifications for this ask
+            // problem example:
+            // -> Consider an array A = [1, 5, 6, 2, 1]. Here, the sub-array [1, 5] has the maximum element 5 and 
+            //    the minimum element 1.Therefore, the sum of the maximum and minimum elements is 6, 
+            //    which is even.Similarly, the sub-arrays[5, 6], [6, 2], [2, 1] and [1, 5, 6, 2, 1] also satisfy the given
+            //    condition.Hence, the total number of sub - arrays that satisfy the condition is 5.
+            // [5, 6], [2, 1] is odd right?
+            // [1] is also SubArray and min = max = 1. Problem statement does not exclude this case. 
+            // [1, 5, 6, 2, 1] - for this data set min is and mx is 6, right?
+            //                   or min and max element should be first and last element in the subarray?
+
+            var count = 0;
+            for (var i = 0; i < input.Length - 1; i++)
+            {
+                for (var j = i + 1; j < input.Length; j++)
+                {
+                    var min = int.MaxValue;
+                    var max = int.MinValue;
+                    for (var k = i; k <= j; k++)
+                    {
+                        if(min > input[k])
+                            min = input[k];
+                        if(max < input[k]) 
+                            max = input[k];
+                    }
+
+                    var sum = min + max;
+                    if(sum % 2 == 0)
+                        count++;
+                }
+            }
+
+            return count;
+        }
+
+
+        /// <summary>
         /// 6. K Occurrences
         /// T.C -> O(n + m) where n = input length, m = valuesOccurrence length
         /// S.C -> O(m)

@@ -15,6 +15,34 @@ namespace Practice.Course.Class
         ///     Find all sub arrays and then find sum for sub arrays
         ///     T.C -> O(n^2)
         ///     S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool ExistSubArraySumZeroBruteForce(int[] input)
+        {
+            
+            // SubArrays
+            for (var i = 0; i < input.Length; i++)
+            {
+                for (var j = i; j < input.Length; j++)
+                {
+                    var sum = 0;
+
+                    for (var k = i; k <= j; k++)
+                    {
+                        sum += input[k];
+                    }
+
+                    if (sum == 0)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Sub array with sum zero.
         /// Solution 2 - prefix sum
         ///     Add values to a dictionary and if value already exist return true
         ///     T.C -> O(n)
