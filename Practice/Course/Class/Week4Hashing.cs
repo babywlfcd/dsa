@@ -20,7 +20,6 @@ namespace Practice.Course.Class
         /// <returns></returns>
         public bool ExistSubArraySumZeroBruteForce(int[] input)
         {
-            
             // SubArrays
             for (var i = 0; i < input.Length; i++)
             {
@@ -52,7 +51,12 @@ namespace Practice.Course.Class
         /// <returns></returns>
         public bool ExitSubArraySumZero(int[] input)
         {
+            // kew = prefix sum; val - frequency of prefix sum
             var values = new Dictionary<int, int>();
+            // initiate the dictionary with value 0 for case when 0 is in the prefix sum
+            // example 
+            // 1. [0, 3, 5, -3, 2] -> PS: [0, 2, 8, 5, 7]
+            //2. [1, 2, -1, -2] -> PS: [1, 3, 2, 0]
             values[0] = 1;
             var previewVal = 0;
             for (var i = 0; i < input.Length; i++)

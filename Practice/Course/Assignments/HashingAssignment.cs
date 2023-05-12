@@ -118,6 +118,8 @@ namespace Practice.Course.Assignments
         /// 5. Shaggy and distances
         /// Solution 1: brute force
         ///     1. fins min max in each sub-array and count if is even
+        /// T.C -> O(n^3)
+        /// S.C -> O(1)
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -366,7 +368,7 @@ namespace Practice.Course.Assignments
              */
 
             // Problem does not specify if k can be greater than input length
-            // If yes I take in consideration the smallest window possible 
+            // If yes, I take in consideration the smallest window possible 
             // I am assuming the k will start from the beginning of the array until find his right position
             // Is this the right assumption?
             if ( k > input.Length)
@@ -611,6 +613,64 @@ namespace Practice.Course.Assignments
             }
 
             return input1;
+        }
+
+        /// <summary>
+        /// 17. Replicating Substring
+        /// Solution:
+        ///     1. Construct substring Using 2 pointers and traverse the string till middle of the string:
+        ///        a. use string builder since string is immutable
+        ///        b. start index and runner index = traverse index as follow
+        ///           - continue advance start index and runner index if string contain same char from start
+        ///           - advance runner index until we will find same char 
+        ///     2. Store the substring in a dictionary
+        ///     3. check if the substring divide string length. If no return false
+        ///     4. iterate over string and check if the substring value is in the dictionary
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public bool ReplicateSubstring(string s)
+        {
+            if (s.Length <= 1)
+                return false;
+
+            var sb = new StringBuilder();
+            sb.Append(s[0]);
+            var start = 0;
+            var isDifferent = false;
+            for (var i = 1; i < s.Length / 2; i++) 
+            {
+                if (isDifferent && s[i] == s[start])
+                    break;
+
+                //traverse string once and advance runner index in while -> O(n)
+                while (s[i] == s[start]) 
+                {
+                    sb.Append(s[start]);
+                    start++;
+                    i++;
+                }
+
+                if (s[i] != s[start])
+                    isDifferent = true;
+
+                sb.Append(s[i]);
+            }
+
+            if (s.Length % sb.Length != 0)
+                return false;
+
+            var substrFrequency = new Dictionary<string, int>();
+            substrFrequency[sb.ToString()] = 1;
+            for (var i = sb.Length; i < s.Length; i = i + sb.Length)
+            {
+                if (!substrFrequency.ContainsKey(s.Substring(i, sb.Length)))
+                    return false;
+            }
+
+            return true;
         }
     }
 }
