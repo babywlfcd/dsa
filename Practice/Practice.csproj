@@ -7,19 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Tree\**" />
-    <EmbeddedResource Remove="Tree\**" />
-    <None Remove="Tree\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="RecursionPractice.cs" />
-    <Compile Remove="StackAndQueue\Queue1.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Tree\BinaryTree.cs" />
-    <Compile Include="Tree\Node.cs" />
+    <Compile Remove="Tree\BinaryTree.cs" />
   </ItemGroup>
 
 </Project>
