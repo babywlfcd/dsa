@@ -11,9 +11,7 @@ namespace Practice.Course.Assignments
     public class TreesAssignment
     {
         /// <summary>
-        /// Easy - LNR
         /// 1. InOrder Traversal - LNR
-        /// https://leetcode.com/problems/binary-head-inorder-traversal/
         /// T.C -> O(n) - where n = no of nodes
         /// S.C -> O(h) where h = height of head
         /// </summary>
@@ -76,7 +74,7 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
-        /// 4. Binary Tree From Inorder And Postorder
+        /// 4. Binary Tree From InOrder And PostOrder
         /// </summary>
         /// <param name="inOrder"></param>
         /// <param name="postOrder"></param>
