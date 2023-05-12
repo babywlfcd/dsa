@@ -115,6 +115,53 @@ namespace Practice.Course.Assignments
         }
 
         /// <summary>
+        /// 5. Shaggy and distances
+        /// Solution 1: brute force
+        ///     1. fins min max in each sub-array and count if is even
+        /// T.C -> O(n^3)
+        /// S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int CountSumMaxMinEven(int[] input)
+        {
+            // I need clarifications for this ask
+            // problem example:
+            // -> Consider an array A = [1, 5, 6, 2, 1]. Here, the sub-array [1, 5] has the maximum element 5 and 
+            //    the minimum element 1.Therefore, the sum of the maximum and minimum elements is 6, 
+            //    which is even.Similarly, the sub-arrays[5, 6], [6, 2], [2, 1] and [1, 5, 6, 2, 1] also satisfy the given
+            //    condition.Hence, the total number of sub - arrays that satisfy the condition is 5.
+            // [5, 6], [2, 1] is odd right?
+            // [1] is also SubArray and min = max = 1. Problem statement does not exclude this case. 
+            // [1, 5, 6, 2, 1] - for this data set min is and mx is 6, right?
+            //                   or min and max element should be first and last element in the subarray?
+
+            var count = 0;
+            for (var i = 0; i < input.Length - 1; i++)
+            {
+                for (var j = i + 1; j < input.Length; j++)
+                {
+                    var min = int.MaxValue;
+                    var max = int.MinValue;
+                    for (var k = i; k <= j; k++)
+                    {
+                        if(min > input[k])
+                            min = input[k];
+                        if(max < input[k]) 
+                            max = input[k];
+                    }
+
+                    var sum = min + max;
+                    if(sum % 2 == 0)
+                        count++;
+                }
+            }
+
+            return count;
+        }
+
+
+        /// <summary>
         /// 6. K Occurrences
         /// T.C -> O(n + m) where n = input length, m = valuesOccurrence length
         /// S.C -> O(m)
@@ -321,7 +368,7 @@ namespace Practice.Course.Assignments
              */
 
             // Problem does not specify if k can be greater than input length
-            // If yes I take in consideration the smallest window possible 
+            // If yes, I take in consideration the smallest window possible 
             // I am assuming the k will start from the beginning of the array until find his right position
             // Is this the right assumption?
             if ( k > input.Length)
@@ -566,6 +613,64 @@ namespace Practice.Course.Assignments
             }
 
             return input1;
+        }
+
+        /// <summary>
+        /// 17. Replicating Substring
+        /// Solution:
+        ///     1. Construct substring Using 2 pointers and traverse the string till middle of the string:
+        ///        a. use string builder since string is immutable
+        ///        b. start index and runner index = traverse index as follow
+        ///           - continue advance start index and runner index if string contain same char from start
+        ///           - advance runner index until we will find same char 
+        ///     2. Store the substring in a dictionary
+        ///     3. check if the substring divide string length. If no return false
+        ///     4. iterate over string and check if the substring value is in the dictionary
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public bool ReplicateSubstring(string s)
+        {
+            if (s.Length <= 1)
+                return false;
+
+            var sb = new StringBuilder();
+            sb.Append(s[0]);
+            var start = 0;
+            var isDifferent = false;
+            for (var i = 1; i < s.Length / 2; i++) 
+            {
+                if (isDifferent && s[i] == s[start])
+                    break;
+
+                //traverse string once and advance runner index in while -> O(n)
+                while (s[i] == s[start]) 
+                {
+                    sb.Append(s[start]);
+                    start++;
+                    i++;
+                }
+
+                if (s[i] != s[start])
+                    isDifferent = true;
+
+                sb.Append(s[i]);
+            }
+
+            if (s.Length % sb.Length != 0)
+                return false;
+
+            var substrFrequency = new Dictionary<string, int>();
+            substrFrequency[sb.ToString()] = 1;
+            for (var i = sb.Length; i < s.Length; i = i + sb.Length)
+            {
+                if (!substrFrequency.ContainsKey(s.Substring(i, sb.Length)))
+                    return false;
+            }
+
+            return true;
         }
     }
 }
