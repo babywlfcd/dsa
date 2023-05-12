@@ -15,6 +15,33 @@ namespace Practice.Course.Class
         ///     Find all sub arrays and then find sum for sub arrays
         ///     T.C -> O(n^2)
         ///     S.C -> O(1)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool ExistSubArraySumZeroBruteForce(int[] input)
+        {
+            // SubArrays
+            for (var i = 0; i < input.Length; i++)
+            {
+                for (var j = i; j < input.Length; j++)
+                {
+                    var sum = 0;
+
+                    for (var k = i; k <= j; k++)
+                    {
+                        sum += input[k];
+                    }
+
+                    if (sum == 0)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Sub array with sum zero.
         /// Solution 2 - prefix sum
         ///     Add values to a dictionary and if value already exist return true
         ///     T.C -> O(n)
@@ -24,7 +51,12 @@ namespace Practice.Course.Class
         /// <returns></returns>
         public bool ExitSubArraySumZero(int[] input)
         {
+            // kew = prefix sum; val - frequency of prefix sum
             var values = new Dictionary<int, int>();
+            // initiate the dictionary with value 0 for case when 0 is in the prefix sum
+            // example 
+            // 1. [0, 3, 5, -3, 2] -> PS: [0, 2, 8, 5, 7]
+            //2. [1, 2, -1, -2] -> PS: [1, 3, 2, 0]
             values[0] = 1;
             var previewVal = 0;
             for (var i = 0; i < input.Length; i++)

@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Practice\Practice.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StackAndQueue\" />
+  </ItemGroup>
+
 </Project>
