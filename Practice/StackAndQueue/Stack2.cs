@@ -1,56 +1,48 @@
-﻿namespace Practice.StackAndQueue
+﻿using Practice.LinkedLists;
+
+namespace Practice.StackAndQueue
 {
     /// <summary>
-    /// Stack implementation using array
+    /// stack implementation using linked list
+    /// TODO
     /// </summary>
-    public class Stack1
+    public class Stack2
     {
         public int Top;
-        public int Capacity;
-        public int[] StackNodes;
+        public SinglyLinkedList StackNodes;
 
-        public Stack1(int capacity)
+        public Stack2()
         {
             Top = -1;
-            Capacity = capacity;
-            StackNodes = new int[Capacity];
+            StackNodes = new SinglyLinkedList();
         }
 
         /// <summary>
         /// Insert
-        /// overflow condition if stack is full
+        /// The new values are added to the head
         /// T.C -> O(1)
         /// </summary>
         /// <param name="value"></param>
-        public bool Push(int value)
+        public void Push(int value)
         {
-            if (Top >= Capacity - 1)
-            {
-                return false;
-            }
-
             Top++;
-            StackNodes[Top] = value;
-            return true;
-
+            StackNodes.AddAtHead(value);
         }
 
         /// <summary>
-        /// Remove
-        /// Underflow condition for stack empty
+        /// Delete
+        /// underflow condition for stack empty
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
         public int Pop()
         {
-            if (Top < 0)
-            {
+            if (Top == -1)
                 return 0;
-            }
 
-            var elem = StackNodes[Top];
+            StackNodes.RemoveAtHead();
             Top--;
-            return elem;
+            return Top;
         }
 
         /// <summary>
@@ -58,25 +50,25 @@
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
-        public int Pick()
+        public int? Pick()
         {
             if (Top < 0)
             {
                 return 0;
             }
 
-            var elem = StackNodes[Top];
-            return elem;
+            var elem = StackNodes.GetNode(Top);
+            return elem.Value;
         }
 
         /// <summary>
-        /// overflow 
+        /// overflow exception
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
         public bool IsFull()
         {
-            return Top >= Capacity;
+            return false;
         }
 
         /// <summary>
@@ -84,9 +76,9 @@
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
-        public bool IsEmpty()
+        public bool IsEmmty()
         {
-            return Top < 0;
+            return false;
         }
     }
 }
