@@ -1,5 +1,4 @@
-﻿using Practice.LinkedLists;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +7,13 @@ using Practice.Tree;
 
 namespace PracticeTests.Tree
 {
-    public class BinaryTreeTests
+    public class BinarySearchTreeTests
     {
         [Fact]
         public void Insert_EmptyBinaryTree_TreeWithRootNodeOnly()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
 
             // act 
             var actual = tree.Insert(3);
@@ -28,7 +27,7 @@ namespace PracticeTests.Tree
         public void Insert_BinaryTreeAndValueLessThanHeadValue_TreeWithNodeAtLeft()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
             var head = tree.Insert(5);
 
             // act 
@@ -44,7 +43,7 @@ namespace PracticeTests.Tree
         public void Insert_BinaryTreeAndValueGreaterThanHeadValue_TreeWithNodeAtRight()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
             var head = tree.Insert(4);
             tree.Insert(2);
             tree.Insert(7);
@@ -62,7 +61,7 @@ namespace PracticeTests.Tree
         public void Search_BinaryTreeAndValueExist_NodeWithGivenValue()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
             var head = tree.Insert(4);
             tree.Insert(2);
             tree.Insert(7);
@@ -80,7 +79,7 @@ namespace PracticeTests.Tree
         public void Search_BinaryTreeAndValueNotExist_Null()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
             var head = tree.Insert(4);
             tree.Insert(2);
             tree.Insert(7);
@@ -98,7 +97,7 @@ namespace PracticeTests.Tree
         public void SearchRecursive_BinaryTreeAndValueExist_NodeWithGivenValue()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
             var head = tree.Insert(4);
             tree.Insert(2);
             tree.Insert(7);
@@ -116,7 +115,7 @@ namespace PracticeTests.Tree
         public void SearchRecursive_BinaryTreeAndValueNotExist_Null()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
             var head = tree.Insert(4);
             tree.Insert(2);
             tree.Insert(7);
@@ -134,7 +133,7 @@ namespace PracticeTests.Tree
         public void IsValid_BinaryTreeValid_True()
         {
             // arrange
-            var tree = new BinaryTree();
+            var tree = new BinarySearchTree();
             var head = tree.Insert(4);
             tree.Insert(2);
             tree.Insert(7);
@@ -142,10 +141,10 @@ namespace PracticeTests.Tree
             tree.Insert(3);
 
             // act 
-            var actual = tree.SearchRecursive(head, 5);
+            var actual = tree.IsValid(head);
 
             // assert
-            Assert.Null(actual);
+            Assert.True(actual);
         }
     }
 }

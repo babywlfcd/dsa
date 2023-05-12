@@ -17,6 +17,8 @@
         }
 
         /// <summary>
+        /// Insert
+        /// overflow condition if stack is full
         /// T.C -> O(1)
         /// </summary>
         /// <param name="value"></param>
@@ -34,7 +36,8 @@
         }
 
         /// <summary>
-        /// 1. if stack is empty is underflow 
+        /// Remove
+        /// Underflow condition for stack empty
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
@@ -73,7 +76,7 @@
         /// <returns></returns>
         public bool IsFull()
         {
-            return Top < 0;
+            return Top >= Capacity;
         }
 
         /// <summary>
@@ -83,7 +86,7 @@
         /// <returns></returns>
         public bool IsEmpty()
         {
-            return Top >= Capacity;
+            return Top < 0;
         }
     }
 }

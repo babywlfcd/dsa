@@ -11,13 +11,14 @@ namespace Practice.StackAndQueue
         public int Top;
         public SinglyLinkedList StackNodes;
 
-        public Stack2(int capacity)
+        public Stack2()
         {
             Top = -1;
             StackNodes = new SinglyLinkedList();
         }
 
         /// <summary>
+        /// Insert
         /// The new values are added to the head
         /// T.C -> O(1)
         /// </summary>
@@ -29,14 +30,17 @@ namespace Practice.StackAndQueue
         }
 
         /// <summary>
-        /// 1. if stack is empty underflow exception 
+        /// Delete
+        /// underflow condition for stack empty
+        /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
         public int Pop()
         {
             if (Top == -1)
-                // return new Und
-                StackNodes.RemoveAtTail();
+                return 0;
+
+            StackNodes.RemoveAtHead();
             Top--;
             return Top;
         }
@@ -46,9 +50,15 @@ namespace Practice.StackAndQueue
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
-        public int Pick()
+        public int? Pick()
         {
-            return 0;
+            if (Top < 0)
+            {
+                return 0;
+            }
+
+            var elem = StackNodes.GetNode(Top);
+            return elem.Value;
         }
 
         /// <summary>

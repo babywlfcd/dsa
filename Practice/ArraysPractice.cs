@@ -302,5 +302,21 @@
             }
             return maxChar;
         }
+
+
+        /// <summary>
+        /// Solution 1:
+        ///     1. Order arrays
+        ///     2. Go with 2 pointers starting  from the beginning of the arrays.
+        ///     3. compare values and add to the  result if are equals
+        ///     4. advance to the next value and if not
+        /// </summary>
+        /// <param name="input1"></param>
+        /// <param name="input2"></param>
+        /// <returns></returns>
+        public int[] IntersectArrays(int[] input1, int[] input2)
+        {
+            return new int[] {};
+        }
     }
 }
