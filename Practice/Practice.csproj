@@ -10,7 +10,6 @@
     <Compile Remove="RecursionPractice.cs" />
     <Compile Remove="StackAndQueue\Queue1.cs" />
     <Compile Remove="StackAndQueue\Stack2.cs" />
-    <Compile Remove="Tree\BinaryTree.cs" />
   </ItemGroup>
 
 </Project>
