@@ -31,8 +31,8 @@
 
             Top++;
             StackNodes[Top] = value;
-            return true;
 
+            return true;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@
         /// <returns></returns>
         public bool IsFull()
         {
-            return Top >= Capacity;
+            return Top >= Capacity - 1;
         }
 
         /// <summary>
