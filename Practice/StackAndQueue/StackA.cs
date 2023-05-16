@@ -3,13 +3,13 @@
     /// <summary>
     /// Stack implementation using array
     /// </summary>
-    public class Stack1
+    public class StackA
     {
         public int Top;
         public int Capacity;
         public int[] StackNodes;
 
-        public Stack1(int capacity)
+        public StackA(int capacity)
         {
             Top = -1;
             Capacity = capacity;
@@ -31,8 +31,8 @@
 
             Top++;
             StackNodes[Top] = value;
-            return true;
 
+            return true;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@
         /// <returns></returns>
         public bool IsFull()
         {
-            return Top >= Capacity;
+            return Top >= Capacity - 1;
         }
 
         /// <summary>

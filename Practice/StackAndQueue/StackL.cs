@@ -6,12 +6,12 @@ namespace Practice.StackAndQueue
     /// stack implementation using linked list
     /// TODO
     /// </summary>
-    public class Stack2
+    public class StackL
     {
         public int Top;
         public SinglyLinkedList StackNodes;
 
-        public Stack2()
+        public StackL()
         {
             Top = -1;
             StackNodes = new SinglyLinkedList();
@@ -23,10 +23,11 @@ namespace Practice.StackAndQueue
         /// T.C -> O(1)
         /// </summary>
         /// <param name="value"></param>
-        public void Push(int value)
+        public bool Push(int value)
         {
             Top++;
             StackNodes.AddAtHead(value);
+            return true;
         }
 
         /// <summary>
@@ -62,23 +63,13 @@ namespace Practice.StackAndQueue
         }
 
         /// <summary>
-        /// overflow exception
-        /// T.C -> O(1)
-        /// </summary>
-        /// <returns></returns>
-        public bool IsFull()
-        {
-            return false;
-        }
-
-        /// <summary>
         /// overflow
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
-        public bool IsEmmty()
+        public bool IsEmpty()
         {
-            return false;
+            return Top == -1;
         }
     }
 }
