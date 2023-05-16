@@ -10,24 +10,24 @@ namespace Practice.Tree
     public class BinaryTree
     {
         private TreeNode Root;
-        public BinaryTree(TreeNode root)
+        public BinaryTree(TreeNode root = null)
         {
             Root = root;
         }
 
-        public CBTInserter(TreeNode root)
+        public void CBTInserter(TreeNode root)
         {
             
         }
 
         public int Insert(int val)
         {
-           
+            return 0;
         }
 
         public TreeNode Get_root()
         {
-
+            return Root;
         }
     }
 }
