@@ -454,7 +454,7 @@ namespace Practice.Course.Assignments
                 current = current.Next;
             }
 
-            var nodeValues = new int?[count];
+            var nodeValues = new int[count];
             current = head;
             var index = 0;
             while (current != null)
@@ -518,7 +518,7 @@ namespace Practice.Course.Assignments
                 length++;
             }
 
-            var nodeValues = new int?[length];
+            var nodeValues = new int[length];
 
             current = head;
             var index = 0;

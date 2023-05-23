@@ -38,7 +38,36 @@ namespace PracticeTests.StackAndQueue
         }
 
         [Fact]
-        public void Pop_StackAEmpty_ReturnZeroWhenRemoveAnElement()
+        public void Peek_StackLNotEmpty_ReturnElemFromTop()
+        {
+            // arrange
+            var stack = new StackL();
+            stack.Push(1);
+            stack.Push(2);
+
+            // act 
+            var actual = stack.Peek();
+
+            // assert
+            Assert.Equal(stack.StackNodes.Head.Value, actual);
+            Assert.Equal(1, stack.Top);
+        }
+
+        [Fact]
+        public void Peek_StackLEmpty_ReturnZero()
+        {
+            var stack = new StackL();
+            // act 
+            var actual = stack.Pop();
+
+            // assert
+            Assert.Equal(0, actual);
+            Assert.Null(stack.StackNodes.Head);
+            Assert.Equal(-1, stack.Top);
+        }
+
+        [Fact]
+        public void Pop_StackLEmpty_HeadValue()
         {
             var stack = new StackL();
             // act 
