@@ -6,14 +6,23 @@ using System.Threading.Tasks;
 
 namespace Practice.Tree
 {
-    public class BinarySearchTree
+    /// <summary>
+    /// Complete Binary tree is a special binary tree where all the levels of the tree
+    /// are filled completely except the lowest level nodes which are filled from as left as possible
+    /// Properties of CBT:
+    ///     A complete binary tree is said to be a proper binary tree where all leaves have the same depth.
+    ///     In a complete binary tree number of nodes at depth d is 2d.
+    ///     In a  complete binary tree with n nodes height of the tree is log(n+1).
+    ///     All the levels except the last level are completely full.
+    /// </summary>
+    public class CompleteBinaryTree
     {
         public Node Head;
-        public BinarySearchTree(Node head = null)
+        public CompleteBinaryTree(Node head = null)
         {
             Head = head;
         }
-
+        /*
         /// <summary>
         /// T.C -> O(n^2)
         /// S.C -> O(1)
@@ -27,7 +36,6 @@ namespace Practice.Tree
             {
                 if (current.Left.Value >= head.Value)
                     return false;
-
                 current = current.Left;
             }
 
@@ -39,42 +47,43 @@ namespace Practice.Tree
             }
 
             return true;
-        }
+        }*/
 
         public Node Insert(int value)
         {
+            var newNode = new Node(value);
             if (Head == null)
-                return Head = new Node(value);
+                return Head = newNode;
 
-            var currentNode = Head;
-            while (true)
+            var nodes = new Queue<Node>();
+            nodes.Enqueue(Head);
+
+            while (nodes.Count != 0)
             {
-                if (value < currentNode.Value)
-                {
-                    if (currentNode.Left == null)
-                    {
-                        currentNode.Left = new Node(value);
-                        break;
-                    }
+                var current = nodes.Peek();
+                //check children of the current node
 
-                    currentNode = currentNode.Left;
-                }
-                else
+                if (current.Left == null)
                 {
-                    if (currentNode.Right == null)
-                    {
-                        currentNode.Right = new Node(value);
-                        break;
-                    }
-
-                    currentNode = currentNode.Right;
+                    current.Left = newNode;
+                    break;
                 }
+
+                if (current.Right == null)
+                {
+                    current.Right = newNode;
+                    break;
+                }
+
+                nodes.Dequeue();
+                nodes.Enqueue(current.Left);
+                nodes.Enqueue(current.Right);
             }
 
             return Head;
         }
 
-        public Node Search(Node head, int val)
+        /*public Node Search(Node head, int val)
         {
             var current = head;
             while (current != null)
@@ -106,6 +115,6 @@ namespace Practice.Tree
             }
 
             return current;
-        }
+        }*/
     }
 }

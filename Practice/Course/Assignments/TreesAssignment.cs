@@ -18,7 +18,7 @@ namespace Practice.Course.Assignments
         /// <param name="head"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public List<int> InOrderTraverse(Node head, List<int> result)
+        public List<int?> InOrderTraverse(Node head, List<int?> result)
         {
             if (head?.Left != null)
                 InOrderTraverse(head.Left, result);
@@ -40,7 +40,7 @@ namespace Practice.Course.Assignments
         /// <param name="head"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public List<int> PreOrderTraverse(Node head, List<int> result)
+        public List<int?> PreOrderTraverse(Node head, List<int?> result)
         {
             result.Add(head.Value);
 
@@ -60,7 +60,7 @@ namespace Practice.Course.Assignments
         /// <param name="result"></param>
         /// <param name="array"></param>
         /// <returns></returns>
-        public List<int> PostOrderTraverse(Node result, List<int> array)
+        public List<int?> PostOrderTraverse(Node result, List<int?> array)
         {
             if (result.Left != null)
                 PostOrderTraverse(result.Left, array);
@@ -91,7 +91,7 @@ namespace Practice.Course.Assignments
         {
             var result = new List<int[]>();
 
-            var nodes = new Queue<int>();
+            var nodes = new Queue<int?>();
 
             nodes.Enqueue(root.Value);
 
