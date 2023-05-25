@@ -17,7 +17,8 @@ namespace Practice.Course.Class
             {
                 minStack.Push(value);
             }
-            return 0;
+
+            return minStack.StackNodes[stackoriginal.Top];
         }
 
         public int Pop(int value)
@@ -27,11 +28,9 @@ namespace Practice.Course.Class
             var x = stackoriginal.Pop();
 
             return 0;
-    }
-    }
-
-    public class stackMin
-    {
-
+        }
     }
 }
+
+
+
