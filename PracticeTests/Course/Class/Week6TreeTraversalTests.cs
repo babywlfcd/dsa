@@ -24,7 +24,7 @@ namespace PracticeTests.Course.Class
             tree.Insert(6);
             tree.Insert(5);
 
-            var expected = new List<int> {5, 1, 9, 2, 8, 3, 7, 6, 5};
+            var expected = new List<int?> {5, 1, 9, 2, 8, 3, 7, 6, 5};
             var sut = new Week6TreeTraversals();
             var actual = sut.LevelTraversal(tree.Head);
 

@@ -18,7 +18,7 @@ namespace Practice.Course.Class
         /// <param name="tree"></param>
         /// <param name="array"></param>
         /// <returns></returns>
-        public List<int> PreOrderTraverse(Node root, List<int> treeNodes)
+        public List<int?> PreOrderTraverse(Node root, List<int?> treeNodes)
         {
             if(root == null)
                 return treeNodes;
@@ -40,7 +40,7 @@ namespace Practice.Course.Class
         /// <param name="head"></param>
         /// <param name="treeNodes"></param>
         /// <returns></returns>
-        public List<int> InOrderTraverse(Node head, List<int> treeNodes)
+        public List<int?> InOrderTraverse(Node head, List<int?> treeNodes)
         {
             if (head == null)
                 return treeNodes;
@@ -63,7 +63,7 @@ namespace Practice.Course.Class
         /// <param name="head"></param>
         /// <param name="treeNodes"></param>
         /// <returns></returns>
-        public List<int> PostOrderTraverse(Node head, List<int> treeNodes)
+        public List<int?> PostOrderTraverse(Node head, List<int?> treeNodes)
         {
             if (head == null)
                 return treeNodes;
@@ -78,11 +78,11 @@ namespace Practice.Course.Class
         }
 
         // Level order traversal from the left to right
-        public List<int> LevelTraversal(Node head)
+        public List<int?> LevelTraversal(Node head)
         {
-            var result = new List<int>();
+            var result = new List<int?>();
 
-            var nodes = new Queue<int>();
+            var nodes = new Queue<int?>();
 
             nodes.Enqueue(head.Value);
             var current = head;
