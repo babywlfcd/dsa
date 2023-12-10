@@ -58,12 +58,10 @@
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
-        public int Pick()
+        public int Peek()
         {
             if (Top < 0)
-            {
                 return 0;
-            }
 
             var elem = StackNodes[Top];
             return elem;

@@ -4,7 +4,7 @@ namespace Practice.StackAndQueue
 {
     /// <summary>
     /// stack implementation using linked list
-    /// TODO
+    /// TODO - need to maintain only data and next pointer?
     /// </summary>
     public class StackL
     {
@@ -47,18 +47,16 @@ namespace Practice.StackAndQueue
         }
 
         /// <summary>
-        /// return the element from the top of the stack
+        /// return the value from the top of the stack without removing
         /// T.C -> O(1)
         /// </summary>
         /// <returns></returns>
-        public int? Pick()
+        public int Peek()
         {
             if (Top < 0)
-            {
                 return 0;
-            }
 
-            var elem = StackNodes.GetNode(Top);
+            var elem = StackNodes.GetNode(StackNodes.Head.Value);
             return elem.Value;
         }
 
