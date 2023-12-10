@@ -58,6 +58,7 @@ namespace Practice.Course.Assignments
 
             return Print(current);
         }
+
         private void RemoveAtIndex(SinglyNode head, int index)
         {
             if (head == null || head.Next == null || head.Next.Next == null)
@@ -73,6 +74,7 @@ namespace Practice.Course.Assignments
 
             current.Next = current.Next.Next;
         }
+
         private string Print(SinglyNode head)
         {
             var sb = new StringBuilder();
@@ -120,7 +122,7 @@ namespace Practice.Course.Assignments
                 mid = count / 2;
             else
                 mid = count / 2 + 1;
-            
+
             current = head;
             while (mid > 0)
             {
@@ -214,6 +216,7 @@ namespace Practice.Course.Assignments
                 current = current.Next;
                 count--;
             }
+
             // if n exceed linked list length do not remove
             if (count != 0)
                 return Print(head);
@@ -248,7 +251,7 @@ namespace Practice.Course.Assignments
             if (head == null)
                 return null;
 
-            var keepNode = head; 
+            var keepNode = head;
             var current = head.Next;
 
             while (current != null)
@@ -444,7 +447,7 @@ namespace Practice.Course.Assignments
         /// <returns></returns>
         public string ReorderLinkedList(SinglyNode head)
         {
-            if(head == null) return string.Empty;
+            if (head == null) return string.Empty;
 
             var current = head;
             var count = 0;
@@ -564,7 +567,7 @@ namespace Practice.Course.Assignments
                 return Print(head1);
 
             var newHead = new SinglyNode(0); // Creating this dummy node ease the logic
-            var runnerHead = newHead;        // This is the runner node
+            var runnerHead = newHead; // This is the runner node
 
             while (head1 != null && head2 != null)
             {
@@ -647,6 +650,6 @@ namespace Practice.Course.Assignments
 
             return previewNode;
         }
-
     }
 }
+
