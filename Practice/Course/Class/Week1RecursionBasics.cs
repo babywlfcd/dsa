@@ -1,92 +1,118 @@
-﻿namespace Practice.Course.Class
+﻿using System.Threading.Tasks.Sources;
+
+namespace Practice.Course.Class
 {
     public class Week1RecursionBasics
     {
-        /*
-         * ----------------
-         * || Assignment ||       
-         * ----------------
-         */
-
-        // Q1. Sum of Digits!
-        // Initial solution
-        public int SumDigits(int n)
+        /// <summary>
+        /// Calculate multiplication of a 2 integers using only +, - operators
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public long Multiply(int a, int n)
         {
+            if (n == 0) return 0;
 
-            //var last_digit = n % 10;
-            int sum = 0;
-            while (n != 0)
-            {
-                var last_digit = n % 10;
-                sum += last_digit;
-                n = (n - last_digit) / 10;
+            if (n < 0)
+                return 0 - Multiply(a, 0 - n);
 
-            }
-
-            return sum;
+            return a + Multiply(a, n - 1);
         }
 
-        // Q1. Sum of Digits!
-        // solved with while - 1 min
-        // solved with recursion - check solution and ask
-        // Solution complexity:
-        //  10^(d-1) <= n < 10^d , d - digits of n
-        //  d-1 <= log(n) < d
-        //  d <= log(n) + 1
-        // lower bound log(n); upper bound log(n) + 1
-        // => time complexity O(log(n))
-        //    space complexity O(log(n)) - recursion
-        public int SumOfDigits(int n)
+        /// <summary>
+        /// Calculate expression pow(n, k) % d
+        /// Math formula:
+        ///     (a * b) % d = ((a % d) * (b % d)) % d
+        /// Sol 1.
+        ///     recursion formula (n^k) % d = n * (n^k) % d;
+        ///     T.C -> O(k)
+        ///     S.C -> O(k)
+        /// Sol 2:  based on the math formula n ^ k = n ^ (k/2) * n ^ (k / 2)
+        ///         number of iteration can be reduced looping with step d / 2
+        ///         However the condition above is valid only for even numbers
+        ///         so we need to take special attention for odd numbers and the formula is
+        ///         n ^ k = N * (n ^ (k/2) * n ^ (k / 2))
+        ///     T.C -> O(log k)
+        ///     S.C -> O(log k)
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="k"></param>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public int CalculateExpression(int n, int k, int d)
         {
-            if (n <= 9)
-                return n;
+            // edge cases
+            if (d == 0)
+                throw new DivideByZeroException("d cannot be zero");
 
-            return n % 10 + SumOfDigits(n / 10);
+            if (n < 0)
+                n = (-1) * n;
+
+            if (k == 0)
+                return 1 % d;
+
+            // k < 0: pow(n, -k) = 1 / pow(n, k)
+            if (k < 0)
+                return 1 / CalculateExpression(n, 0 - k, d);
+
+            // pow(n, k) = n * pow(n, k - 1)
+            // n ^ k = n ^ (k/2) * n ^ (k / 2) - valid for odd numbers
+            var x = CalculateExpression(n, k / 2, d);
+
+            if (d % 2 == 0)
+                return (x * x) % d;
+
+            return (n * x * x) % d;
         }
 
-        // Q2. Is magic?
-        // Solution time 5 min
-        // Complexity:
-        // Time and space: O(log(n))
-        public bool IsMagic(int n)
+        /// <summary>
+        /// Check if the string is a Palindrome
+        /// T.C -> O(n)
+        /// S.C -> O(n)
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public bool IsPalindrome(string s, int start, int end)
         {
-            // preview problem return sum of digits for a given number;
-            int sum = SumOfDigits(n);
+            if (s.Length <= 1)
+                return true;
 
-            while (sum >= 10) // Remark: correct code by unit testing. Initially, the while condition was missing
-                sum = sum % 10 + SumOfDigits(sum / 10);
+            var left = s[0];
+            var right = s[^1];
 
-            return sum == 1;
+            if (left >= right)
+                return true;
+
+            if (left != right) return false;
+
+            return IsPalindrome(s, start + 1, end - 1);
+
         }
 
-        // Q3. Implement Power Function - pow(A, B) % C
-        // Solution time 15 min - I looked for the idea
-        // Time amd Space complexity - O(log(k))
-        public int CalculateExpressionRec(int a, int b, int c)
+        /// <summary>
+        /// Calculate square root of a natural number
+        /// T.C -> O(sqrt(n))
+        /// S.C -&gt; O(sqrt(n))
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int Sqrt(int n, int k)
         {
-            if (a < 0)
-                a = (-1) * a;
+            var temp = k * k;
+            if (temp == n)
+                return k;
 
-            if (b == 0)
-                return 1 % c;
+            if (temp > n)
+                return k - 1;
 
-            // review the class negative power edge case
-            if (b < 0)
-                return 1 / CalculateExpressionRec(a, 0 - b, c); // this is always 0 ?
-            // a^b = a^(b/2) * a^(b/2) - will work only for even power
-            if (b % 2 == 0)
-            {
-                var x = CalculateExpressionRec(a, b / 2, c);
-                return (x * x) % c;
-            }
-            else
-            {
-                var x = CalculateExpressionRec(a, b / 2, c);
-                return (a * x * x) % c;
-            }
+            return Sqrt(n, k + 1);
         }
 
-        // TODO: 4) Tower of hanoi - I understand the problem. Not sure about the implementation. 
-        // TODO: 5) Gray Code - I need clarification to understand the ask
     }
 }
