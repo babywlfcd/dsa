@@ -62,7 +62,7 @@ namespace Practice.Course.Class
             // n ^ k = n ^ (k/2) * n ^ (k / 2) - valid for odd numbers
             var x = CalculateExpression(n, k / 2, d);
 
-            if (d % 2 == 0)
+            if (k % 2 == 0)
                 return (x * x) % d;
 
             return (n * x * x) % d;
@@ -91,7 +91,6 @@ namespace Practice.Course.Class
             if (left != right) return false;
 
             return IsPalindrome(s, start + 1, end - 1);
-
         }
 
         /// <summary>
@@ -113,6 +112,5 @@ namespace Practice.Course.Class
 
             return Sqrt(n, k + 1);
         }
-
     }
 }

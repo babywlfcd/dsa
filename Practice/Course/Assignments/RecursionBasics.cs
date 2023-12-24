@@ -74,18 +74,15 @@
             // review the class negative power edge case
             if (b < 0)
                 return 1 / CalculateExpressionRec(a, 0 - b, c); // this is always 0 ?
-                                                                // a^b = a^(b/2) * a^(b/2) - will work only for even power
+            // a^b = a^(b/2) * a^(b/2) - will work only for even power
+            
             var x = CalculateExpressionRec(a, b / 2, c);
             if (b % 2 == 0)
             {
-               
                 return (x * x) % c;
             }
-            else
-            {
-               // var x = CalculateExpressionRec(a, b / 2, c);
-                return (a * x * x) % c;
-            }
+
+            return (a * x * x) % c;
         }
 
         // TODO: 4) Tower of hanoi - I understand the problem. Not sure about the implementation. 
