@@ -73,19 +73,23 @@
 
             // review the class negative power edge case
             if (b < 0)
-                return 1 / CalculateExpressionRec(a, 0 - b, c); // this is always 0 ?
-                                                                // a^b = a^(b/2) * a^(b/2) - will work only for even power
+
+                /* this call  will crash for int.MinVale
+                    int range: -2147...8 to 2147...7
+                    return 1 / CalculateExpressionRec(a, 0 - b, c); */
+                return 1 /a * CalculateExpressionRec(a, 0 - (b +1), c);
+            // this is always 0 because of int. if we want exact value double should be returned?
+
+
+            // a^b = a^(b/2) * a^(b/2) - will work only for even power
+
             var x = CalculateExpressionRec(a, b / 2, c);
             if (b % 2 == 0)
             {
-               
                 return (x * x) % c;
             }
-            else
-            {
-               // var x = CalculateExpressionRec(a, b / 2, c);
-                return (a * x * x) % c;
-            }
+
+            return (a * x * x) % c;
         }
 
         // TODO: 4) Tower of hanoi - I understand the problem. Not sure about the implementation. 
@@ -165,7 +169,7 @@
             return SetAthNumber(a - 1) + SetAthNumber(a - 2) + SetAthNumber(a - 3) + a;
         }
 
-        // Kth Symbol
+        // Q5 Kth Symbol
         //        0			=> a = 1 => 2^(1 - 1) el => 2^0 = 1
         //    0       1		=> a = 2 => 2^(2 - 1) el => 2^1 = 2
         // 0    1   1   0	=> a = 3 => 2^(3 - 1) el => 2^2 = 4

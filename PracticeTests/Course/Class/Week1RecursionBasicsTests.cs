@@ -7,8 +7,8 @@ namespace PracticeTests.Course.Class
     {
         [Theory]
         [InlineData(5, 3, 15)]
-        [InlineData(15, -3, -15)]
-        [InlineData(9-5, 3, -15)]
+        [InlineData(5, -3, -15)]
+        [InlineData(-5, 3, -15)]
         [InlineData(-5, -3, 15)]
         public void DigitSum_Should_SumOfDigits_For_ANumber(int a, int n, int expected)
         {

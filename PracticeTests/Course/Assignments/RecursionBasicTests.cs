@@ -49,7 +49,8 @@ namespace PracticeTests.Course.Assignments
         [InlineData(-2, 3, 3, 2)]
         [InlineData(2, -3, 3, 0)]
         [InlineData(-5, 2, 7, 4)]
-        [InlineData(-5, 3, 7, 6)] 
+        [InlineData(-5, 3, 7, 6)]
+        [InlineData(-5, -2, 7, 0)]
         [InlineData(-1000000000, 0, 1, 0)]
         [InlineData(1000000000, 1000000000, 1000000000, 0)]
         public void CalculateExpressionRec_ShouldReturn_PositiveOnly(int a, int b, int c, int expected)
