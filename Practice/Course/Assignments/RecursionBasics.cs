@@ -73,7 +73,7 @@
 
             // review the class negative power edge case
             if (b < 0)
-                return 1 / CalculateExpressionRec(a, 0 - b, c); // this is always 0 ?
+                return 1 / CalculateExpressionRec(a, 0 - b, c); // this is always 0 because of int. if we want exact value double should be returned?
             // a^b = a^(b/2) * a^(b/2) - will work only for even power
             
             var x = CalculateExpressionRec(a, b / 2, c);
@@ -162,7 +162,7 @@
             return SetAthNumber(a - 1) + SetAthNumber(a - 2) + SetAthNumber(a - 3) + a;
         }
 
-        // Kth Symbol
+        // Q5 Kth Symbol
         //        0			=> a = 1 => 2^(1 - 1) el => 2^0 = 1
         //    0       1		=> a = 2 => 2^(2 - 1) el => 2^1 = 2
         // 0    1   1   0	=> a = 3 => 2^(3 - 1) el => 2^2 = 4
