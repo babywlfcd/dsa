@@ -55,8 +55,14 @@ namespace Practice.Course.Class
                 return 1 % d;
 
             // k < 0: pow(n, -k) = 1 / pow(n, k)
+
+            /* this call  will crash for int.MinVale
+                   int range: -2147...8 to 2147...7
             if (k < 0)
-                return 1 / CalculateExpression(n, 0 - k, d);
+                   return return 1 / CalculateExpression(n, 0 - k, d); */
+
+            if (k < 0)
+                return 1 / k * CalculateExpression(n, 0 - (k + 1), d); ;
 
             // pow(n, k) = n * pow(n, k - 1)
             // n ^ k = n ^ (k/2) * n ^ (k / 2) - valid for odd numbers

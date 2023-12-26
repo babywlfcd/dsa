@@ -73,9 +73,16 @@
 
             // review the class negative power edge case
             if (b < 0)
-                return 1 / CalculateExpressionRec(a, 0 - b, c); // this is always 0 because of int. if we want exact value double should be returned?
+
+                /* this call  will crash for int.MinVale
+                    int range: -2147...8 to 2147...7
+                    return 1 / CalculateExpressionRec(a, 0 - b, c); */
+                return 1 /a * CalculateExpressionRec(a, 0 - (b +1), c);
+            // this is always 0 because of int. if we want exact value double should be returned?
+
+
             // a^b = a^(b/2) * a^(b/2) - will work only for even power
-            
+
             var x = CalculateExpressionRec(a, b / 2, c);
             if (b % 2 == 0)
             {
