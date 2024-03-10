@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Practice.Course.Assignments;
-using Practice.Course.Class;
+﻿using Practice.Course.Assignments;
 
 namespace PracticeTests.Course.Assignments
 {

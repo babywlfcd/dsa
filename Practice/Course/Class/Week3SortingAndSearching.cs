@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Practice.Course.Class
+﻿namespace Practice.Course.Class
 {
     public class Week3SortingAndSearching
     {
@@ -25,7 +18,7 @@ namespace Practice.Course.Class
         /// <summary>
         /// Inversion count problem
         /// Find numbers of pair that meet the condition:
-        /// i < j && A[i] > A[j]
+        /// i &lt; j &amp;&amp; A[i] &gt; A[j]
         /// Solution 1 - Brut force
         /// T.C -> O(n^2)
         /// </summary>
@@ -134,8 +127,8 @@ namespace Practice.Course.Class
             while (low <= high)
             {
                 var mid = low + (high - low) / 2;
-                if (input[mid] < input[mid - 1] && input[mid] < input[mid + 1])
-                    return mid;
+                if (input[mid] < input[mid - 1] && input[mid] < input[mid + 1]) 
+                        return mid;
 
                 if (input[mid] > input[mid - 1])
                     high = mid - 1;
