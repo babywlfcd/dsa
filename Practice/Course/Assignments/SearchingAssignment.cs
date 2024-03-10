@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Practice.Course.Assignments
+﻿namespace Practice.Course.Assignments
 {
     public class SearchingAssignment
     {
@@ -168,10 +161,10 @@ namespace Practice.Course.Assignments
 
             return result;
         }
-
         /// <summary>
         /// 5. Find Minimum in Rotated Sorted Array
         /// After rotations the pivot is the single element that is less that its neighbor
+        /// https://leetcode.com/problems/search-in-rotated-sorted-array/description/
         /// T.C -> O(log(n))
         /// T.C -> O(1)
         /// </summary>
@@ -193,10 +186,14 @@ namespace Practice.Course.Assignments
             while (low <= high)
             {
                 var mid = low + (high - low) / 2;
+                // safety check
+                if (input[mid] == input[high])
+                    return input[mid];
+
                 if (input[mid] < input[mid - 1] && input[mid] < input[mid + 1])
                     min = input[mid];
 
-                if (input[mid] > input[0])
+                if (input[mid] > input[high])
                     low = mid + 1;
                 else
                     high = mid - 1;
