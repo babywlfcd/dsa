@@ -164,7 +164,7 @@
         /// <summary>
         /// 5. Find Minimum in Rotated Sorted Array
         /// After rotations the pivot is the single element that is less that its neighbor
-        /// https://leetcode.com/problems/search-in-rotated-sorted-array/description/
+        /// https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
         /// T.C -> O(log(n))
         /// T.C -> O(1)
         /// </summary>
