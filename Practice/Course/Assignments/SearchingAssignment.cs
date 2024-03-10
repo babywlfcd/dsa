@@ -172,34 +172,28 @@
         /// <returns></returns>
         public int FindMinInSortedRotatedArray(int[] input)
         {
+            var left = 0;
+            var right = input.Length - 1;
+
+            //validation
             if (input.Length == 1)
                 return input[0];
 
-            // validate if min is first element or last element
-            if (input[0] < input[input.Length - 1])
-                return input[0];
+            if (input.Length == 2)
+                return Math.Min(input[0], input[1]);
 
-
-            var low = 0;
-            var high = input.Length - 1;
-            var min = 0;
-            while (low <= high)
+            while (left < right)
             {
-                var mid = low + (high - low) / 2;
-                // safety check
-                if (input[mid] == input[high])
-                    return input[mid];
+                var mid = left + (right - left) / 2;
 
-                if (input[mid] < input[mid - 1] && input[mid] < input[mid + 1])
-                    min = input[mid];
+                if (input[mid] > input[right])
+                    left = mid + 1;
 
-                if (input[mid] > input[high])
-                    low = mid + 1;
-                else
-                    high = mid - 1;
+                if (input[mid] < input[right])
+                    right = mid;
             }
 
-            return min;
+            return input[left];
         }
     }
 }
