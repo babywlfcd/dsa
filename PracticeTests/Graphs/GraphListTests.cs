@@ -4,10 +4,45 @@ namespace PracticeTests.Graphs
 {
     public class GraphListTests
     {
-        [Fact]
-        public void TestAdjacencyList_UnweightedUndirectedGraph()
+        public static IEnumerable<object[]> GraphData()
         {
-            var graph = new GraphList(5);
+            //graph = { 0: [1, 2], 1: [3], 2: [], 3: [4], 4: []}, source = 0, destination = 4.
+            yield return new object[]
+            {
+                5,
+                new int[][] {
+                    new int[] { 1, 2 },
+                    new int[] { 1, 4 },
+                    new int[] { 2, 3 },
+                    new int[] { 2, 5 },
+                    new int[] { 2, 4 },
+                    new int[] { 3, 5 },
+                    new int[] { 3, 4 } },
+                "0: 2 4 \r\n" +
+                "1: 1 3 5 4 \r\n" +
+                "2: 2 5 4 \r\n" +
+                "3: 1 2 3 \r\n" +
+                "4: 2 3 \r\n"
+            };
+        }
+
+        [Theory]
+        [MemberData(nameof(GraphData))]
+        public void TestAdjacencyList_UnweightedUndirectedGraph(int v, int[][] edges, string expected)
+        {
+            var graph = new GraphList(v, edges);
+            var graphMatrix = graph.CreateAdjacencyListUnWeightedUndirected();
+           
+            var result = graph.PrintGraph();
+            Assert.Equal(
+                //"0: \r\n" + // if  we want to not handle 0 based index we can create a list of size vertices + 1
+                expected, result);
+        }
+
+        [Fact]
+        public void TestAdjacencyList_UnweightedUndirectedGraph_CreateGraph()
+        {
+            var graph = new GraphList(5, new int[][] { });
             var graphMatrix = graph.CreateAdjacencyList();
             graph.AddEdgeUnWeightedUndirected(1, 2);
             graph.AddEdgeUnWeightedUndirected(1, 4);
@@ -30,7 +65,7 @@ namespace PracticeTests.Graphs
         [Fact]
         public void TestAdjacencyMatrix_UnweightedDirectedGraph()
         {
-            var graph = new GraphList(5);
+            var graph = new GraphList(5, new int[][] {});
             var graphMatrix = graph.CreateAdjacencyList();
             graph.AddEdgeUnWeightedDirected(1, 2);
             graph.AddEdgeUnWeightedDirected(1, 4);
@@ -53,7 +88,7 @@ namespace PracticeTests.Graphs
         [Fact]
         public void TestAdjacencyMatrix_WeightedUndirectedGraph()
         {
-            var graph = new GraphList(5);
+            var graph = new GraphList(5, new int[][] { });
             var graphMatrix = graph.CreateAdjacencyListWheighted();
             graph.AddEdgeWeightedUndirected(1, 2, 12);
             graph.AddEdgeWeightedUndirected(1, 4, 15);
@@ -76,7 +111,7 @@ namespace PracticeTests.Graphs
         [Fact]
         public void TestAdjacencyMatrix_WeightedDirectedGraph()
         {
-            var graph = new GraphList(5);
+            var graph = new GraphList(5, new int[][] { });
             var graphMatrix = graph.CreateAdjacencyListWheighted();
             graph.AddEdgeWeightedDirected(1, 2, 12);
             graph.AddEdgeWeightedDirected(1, 4, 15);
