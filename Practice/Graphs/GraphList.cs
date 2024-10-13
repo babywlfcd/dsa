@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 namespace Practice.Graphs
 {
+    //TODO: update implementation
     public class GraphList
     {
         private readonly int _vertices;
-        private List<List<int>> _adjacencyList;
-        private List<List<(int, int)>> _adjacencyListWheighted;
+        private readonly int[][] _edges;
+        private List<List<int>> _adjacencyList = new List<List<int>>();
+        private List<List<(int, int)>> _adjacencyListWheighted = new List<List<(int, int)>>();
 
-        public GraphList(int vertices)
+        public GraphList(int vertices, int[][] edges)
         {
             _vertices = vertices;
+            _edges = edges;
         }
 
         public List<List<int>> CreateAdjacencyList()
         {
-            _adjacencyList = new List<List<int>>();
             // if  we want to not handle 0 based index we can create a list of size vertices + 1
             // i <= _vertices
             for (var i = 0; i < _vertices; i++)
@@ -30,9 +32,25 @@ namespace Practice.Graphs
             return _adjacencyList;
         }
 
+        public List<List<int>> CreateAdjacencyListUnWeightedUndirected()
+        {
+            // if  we want to not handle 0 based index we can create a list of size vertices + 1
+            // i <= _vertices
+            for (var i = 0; i < _vertices; i++)
+            {
+                _adjacencyList.Add(new List<int>());
+            }
+
+            foreach (var edge in _edges)
+            {
+                AddEdgeUnWeightedUndirected(edge[0], edge[1]);
+            }
+
+            return _adjacencyList;
+        }
+
         public List<List<int>> CreateAdjacencyListWheighted()
         {
-            _adjacencyListWheighted = new List<List<(int, int)>>();
             // if  we want to not handle 0 based index we can create a list of size vertices + 1
             // i <= _vertices
             for (var i = 0; i < _vertices; i++)

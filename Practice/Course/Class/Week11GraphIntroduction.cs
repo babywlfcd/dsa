@@ -29,6 +29,5 @@ namespace Practice.Course.Class
 
         // See GraphMatrix.cs for an example of how to implement a graph using an adjacency matrix.
         // See GraphList.cs for an example of how to implement a graph using an adjacency list.
-
     }
 }
