@@ -21,9 +21,6 @@ namespace Practice.Course.Assignments
         /// Solution 3: Optimal Solution Using SOR operator
         ///     The next properties are used:
         ///     a ^ a = 0
-        ///     commutativity a ^ b = b ^ a.
-        ///     associativity a ^ b ^ c = a ^ (b ^ c) = (a ^ b) ^ c
-        ///     a ^ 0 = a.
         ///     We traverse the array once and based on properties of XOR double elements will
         ///     cancel each other, and we will have the single element     
         /// </summary>
@@ -132,6 +129,9 @@ namespace Practice.Course.Assignments
         ///     - we will shift the bits to the right until the number becomes 0
         /// Remarks: This is better algo as in Solution 1 we ignore 32 as constant 
         /// whereas in this solution 32 is max value of log(n)
+        /// 
+        /// Remarks: THis is better algo as in Solution 1 we ignore 32 as constant 
+        /// whereas in this solution 32 is max max value of log(n)
         /// 
         /// T.C = O(log n)
         /// S.C = O(1)
