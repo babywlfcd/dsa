@@ -8,6 +8,9 @@ namespace Practice.Course.Assignments
         /// Easy - Q1
         /// 136. Single Number
         /// Source: https://leetcode.com/problems/single-number/
+        /// Medium
+        /// 540. Single Element in a Sorted Array
+        /// https://leetcode.com/problems/single-element-in-a-sorted-array/description/
         /// Solution 1: Brut force approach
         ///     Sort the array and traverse the array and check if the current element is equal to the next element
         ///     T.C -> O(n log(n))
@@ -18,7 +21,7 @@ namespace Practice.Course.Assignments
         ///     Traverse the Hashset and return the element with count = 1
         ///     T.C -> O(n)
         ///     S.C -> O(n)
-        /// Solution 3: Optimal Solution Using SOR operator
+        /// Solution 3: Optimal Solution Using XOR operator
         ///     The next properties are used:
         ///     a ^ a = 0
         ///     We traverse the array once and based on properties of XOR double elements will
@@ -45,7 +48,7 @@ namespace Practice.Course.Assignments
         ///     - We will use a carry to store the value of the sum of the two numbers
         ///     - We will use a StringBuilder to store the result
         ///     - We will iterate over the two strings and calculate the sum and the carry
-        ///       Remark: in case of string we need to convert the character to integer or
+        ///       Remark: in case of string we need to convert the character to integer, or
         ///               we can use the ASCII value of the character
         ///     - We will add the carry to the result
         ///     - We will reverse the result
@@ -131,7 +134,7 @@ namespace Practice.Course.Assignments
         /// whereas in this solution 32 is max value of log(n)
         /// 
         /// Remarks: THis is better algo as in Solution 1 we ignore 32 as constant 
-        /// whereas in this solution 32 is max max value of log(n)
+        /// whereas in this solution 32 is max value of log(n)
         /// 
         /// T.C = O(log n)
         /// S.C = O(1)
